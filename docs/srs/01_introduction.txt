@@ -1,0 +1,217 @@
+================================================================================
+         SOFTWARE REQUIREMENTS SPECIFICATION (SRS) - SECTION 1
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                           INTRODUCTION
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        IEEE 830-1998 Compliant
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+1. INTRODUCTION
+================================================================================
+
+1.1 PURPOSE
+--------------------------------------------------------------------------------
+
+This Software Requirements Specification (SRS) document provides a complete and 
+comprehensive description of the requirements for the Recruitment and Interview 
+Management System (EasyHire). This document is intended for:
+
+    a) Software Developers - To understand functional and technical requirements
+    b) Quality Assurance Team - To develop test cases and validation criteria
+    c) Project Managers - To plan and track development activities
+    d) System Administrators - To understand deployment and operational needs
+    e) Stakeholders - To validate business requirements alignment
+    f) Maintenance Teams - To understand system behavior for future enhancements
+
+The document defines:
+    - Functional requirements with numbered specifications
+    - Non-functional requirements including quality attributes
+    - System constraints and assumptions
+    - External interface requirements
+    - Data requirements and entity relationships
+
+1.2 SCOPE
+--------------------------------------------------------------------------------
+
+1.2.1 Product Name: EasyHire (Recruitment and Interview Management System)
+
+1.2.2 Product Overview:
+EasyHire is an enterprise web application that automates the complete hiring 
+workflow from job vacancy creation through employee onboarding decision. The 
+system provides a centralized platform for HR teams, department heads, and 
+interviewers to collaborate on recruitment activities.
+
+1.2.3 Product Functions (High-Level):
+
+    ┌────────────────────────────────────────────────────────────────────┐
+    │                      CORE SYSTEM FUNCTIONS                         │
+    ├────────────────────────────────────────────────────────────────────┤
+    │  F1: User Management & Authentication                              │
+    │      - Multi-role user registration and login                      │
+    │      - Password management with email-based recovery               │
+    │      - Session management with remember-me functionality           │
+    │                                                                    │
+    │  F2: Vacancy Management                                            │
+    │      - Create, update, and close job vacancies                     │
+    │      - Reopen expired vacancies                                    │
+    │      - Associate with departments and positions                    │
+    │      - Set urgency flags and due dates                             │
+    │                                                                    │
+    │  F3: Candidate Management                                          │
+    │      - Online job application with CV upload                       │
+    │      - Candidate profile viewing and status tracking               │
+    │      - Selection status workflow (Received/Viewed/Considering)     │
+    │      - CV download (single and batch)                              │
+    │                                                                    │
+    │  F4: Interview Management                                          │
+    │      - Multi-stage interview scheduling                            │
+    │      - Online/Offline interview type support                       │
+    │      - Interviewer assignment per vacancy                          │
+    │      - Interview status tracking (Pending/Passed/Rejected)         │
+    │                                                                    │
+    │  F5: Email Communication                                           │
+    │      - Template-based email composition                            │
+    │      - Dynamic placeholder substitution                            │
+    │      - Email history and audit trail                               │
+    │      - Inbox reading via IMAP                                      │
+    │                                                                    │
+    │  F6: Review & Feedback                                             │
+    │      - Interviewer review submission                               │
+    │      - Review history per candidate-interview                      │
+    │                                                                    │
+    │  F7: Reporting & Analytics                                         │
+    │      - Dashboard with KPI metrics                                  │
+    │      - Charts by department and position                           │
+    │      - PDF/Excel report generation                                 │
+    │                                                                    │
+    │  F8: Notification System                                           │
+    │      - Real-time WebSocket notifications                           │
+    │      - Notification history and status                             │
+    └────────────────────────────────────────────────────────────────────┘
+
+1.2.4 Benefits:
+    - Streamlined recruitment workflow
+    - Reduced manual effort in candidate tracking
+    - Improved communication with candidates
+    - Data-driven hiring decisions
+    - Complete audit trail for compliance
+    - Role-based access control for security
+
+1.2.5 Objectives:
+    - Provide 360-degree view of recruitment process
+    - Enable collaboration between HR and departments
+    - Automate routine communication tasks
+    - Generate actionable reports for decision-making
+    - Ensure data security and access control
+
+1.3 DEFINITIONS, ACRONYMS, AND ABBREVIATIONS
+--------------------------------------------------------------------------------
+
+1.3.1 Definitions:
+
+    Candidate       - An individual who applies for a job vacancy
+    Vacancy         - An open job position requiring candidates
+    Interview       - A scheduled evaluation session with candidate
+    Stage           - A numbered phase in multi-interview process
+    Review          - Written feedback by interviewer
+    Selection Status- Candidate's progress (Received/Viewed/Considering)
+    Interview Status- Candidate's interview result (Pending/Passed/Rejected)
+    Recall          - Bringing back a previous candidate for new vacancy
+    Employment      - Final hiring decision for a candidate
+    Template        - Pre-defined email format with placeholders
+
+1.3.2 Acronyms:
+
+    EasyHire - Brand name for the Recruitment and Interview Management System
+    SRS     - Software Requirements Specification
+    HR      - Human Resources
+    CV      - Curriculum Vitae (Resume)
+    CRUD    - Create, Read, Update, Delete
+    MVC     - Model-View-Controller
+    JPA     - Java Persistence API
+    ORM     - Object-Relational Mapping
+    REST    - Representational State Transfer
+    SMTP    - Simple Mail Transfer Protocol
+    IMAP    - Internet Message Access Protocol
+    JSON    - JavaScript Object Notation
+    AJAX    - Asynchronous JavaScript and XML
+    JWT     - JSON Web Token (not used, session-based)
+    CSRF    - Cross-Site Request Forgery
+    XSS     - Cross-Site Scripting
+    SQL     - Structured Query Language
+    API     - Application Programming Interface
+    UI      - User Interface
+    UX      - User Experience
+    PDF     - Portable Document Format
+    KPI     - Key Performance Indicator
+
+1.3.3 Abbreviations:
+
+    Auth    - Authentication/Authorization
+    Config  - Configuration
+    DB      - Database
+    Dept    - Department
+    Doc     - Document
+    ID      - Identifier
+    Info    - Information
+    Max     - Maximum
+    Min     - Minimum
+    Msg     - Message
+    Noti    - Notification
+    Param   - Parameter
+    Req     - Requirement/Request
+    Sec     - Security/Section
+    Sys     - System
+
+1.4 REFERENCES
+--------------------------------------------------------------------------------
+
+1.4.1 Standards:
+    - IEEE 830-1998: Recommended Practice for SRS
+    - IEEE 1016: Software Design Descriptions
+    - ISO/IEC 25010: Systems and Software Quality Requirements
+
+1.4.2 Technical References:
+    - Spring Boot 2.7.13 Documentation
+    - Spring Security 5 Reference Guide
+    - Spring Data JPA Reference
+    - Thymeleaf 3.x Documentation
+    - JasperReports Library Documentation
+    - MySQL 8.0 Reference Manual
+    - Bootstrap 5 Documentation
+    - jQuery API Documentation
+
+1.4.3 Project Documentation:
+    - README.md - Project overview and setup instructions
+    - LICENSE - MIT License teEasyHire
+    - abstract.txt - Project abstract document
+    - development_plan.txt - Development planning document
+
+1.5 OVERVIEW
+--------------------------------------------------------------------------------
+
+This SRS document is organized into multiple files for manageability:
+
+    ┌─────────────────────────────────────────────────────────────────┐
+    │  FILE                    │  CONTENT                            │
+    ├─────────────────────────────────────────────────────────────────┤
+    │  01_introduction.txt     │  Purpose, Scope, Definitions        │
+    │  02_description.txt      │  Product Perspective, Functions     │
+    │  03_requirements.txt     │  Functional Requirements            │
+    │  04_nonfunctional.txt    │  Non-Functional Requirements        │
+    │  05_interfaces.txt       │  External Interface Requirements    │
+    │  06_data_model.txt       │  Data Requirements & ERD            │
+    │  07_appendix.txt         │  Risk Analysis, Traceability        │
+    └─────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                       END OF SECTION 1 - INTRODUCTION
+================================================================================

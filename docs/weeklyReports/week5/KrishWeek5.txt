@@ -1,0 +1,32 @@
+Weekly Progress Report
+Name: Krish
+Role: DevOps Engineer
+Week: 5 (Jan 26 - Feb 5)
+
+Work Done:
+
+1. Infrastructure Planning:
+   - Decided on the Development Tools: Java 17, Maven, VS Code/IntelliJ.
+   - Planned the Git Workflow: We will use a 'main' branch and individual feature branches.
+   - Documented the "How to Run" steps so everyone has the same setup.
+
+2. Environment Setup:
+   - Installed MySQL Server and Workbench on everyone's machines.
+   - Helped the team configure their Java and Maven environment variables.
+   - Imported the database script created by Anand to verify it runs on all computers.
+
+3. Security Configuration:
+   - Configured Spring Security for the project.
+   - Set up the User Roles (ADMIN, HR, INTERVIEWER) in the security config.
+   - Defined URL access rules (e.g., /admin/** is protected, /login is public).
+   - Configured the custom Login Success Handler.
+
+4. Version Control (Git):
+   - Created the GitHub Repository.
+   - Added the `.gitignore` file to keep the repo clean.
+   - Managed branches and helped resolve a merge conflict in the properties file.
+
+Next Week:
+- Configure a secure local folder for storing Uploaded CVs.
+- Look into Database Indexing for performance.
+- Set up the SMTP Email server configuration.

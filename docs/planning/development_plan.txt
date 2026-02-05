@@ -1,0 +1,699 @@
+================================================================================
+                       DEVELOPMENT PLANNING DOCUMENT
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+1. EXECUTIVE SUMMARY
+================================================================================
+
+This document outlines the development lifecycle of EasyHire, optimized for a 
+specialized 3-member student team. By leveraging parallel workstreams—Backend 
+(Anand), DevOps (Krish), and Frontend (Saloni)—the project is designed for 
+completion within an 8-week (2-month) academic cycle.
+
+================================================================================
+
+2. PROJECT OVERVIEW
+================================================================================
+
+2.1 Project Statistics
+--------------------------------------------------------------------------------
+
+┌────────────────────────────┬──────────────────────────────────────────────────┐
+│ METRIC                     │ VALUE                                            │
+├────────────────────────────┼──────────────────────────────────────────────────┤
+│ Total Source Files         │ 118 Java files                                   │
+│ Entities                   │ 13 domain models                                 │
+│ Repositories               │ 14 data access interfaces                        │
+│ Services                   │ 18 business logic classes                        │
+│ Controllers                │ 23 web controllers                               │
+│ Test Classes               │ 35 unit/integration tests                        │
+│ Configuration Classes      │ 6 configuration classes                          │
+│ Lines of Code (estimated)  │ ~15,000 LOC                                      │
+│ Team Structure             │ 1 Backend, 1 DevOps, 1 Frontend                  │
+│ Development Duration       │ 2 months                                         │
+└────────────────────────────┴──────────────────────────────────────────────────┘
+
+2.2 Technology Stack
+--------------------------------------------------------------------------------
+
+┌────────────────────────────┬──────────────────────────────────────────────────┐
+│ LAYER                      │ TECHNOLOGY                                       │
+├────────────────────────────┼──────────────────────────────────────────────────┤
+│ Build Tool                 │ Maven 3.x                                        │
+│ Framework                  │ Spring Boot 2.7.13                               │
+│ Language                   │ Java 17                                          │
+│ Database                   │ MySQL 8.x                                        │
+│ ORM                        │ JPA/Hibernate                                    │
+│ Security                   │ Spring Security 5                                │
+│ Template Engine            │ Thymeleaf 3.x                                    │
+│ Reporting                  │ JasperReports 6.20.5                             │
+│ Real-time                  │ WebSocket/STOMP                                  │
+│ Frontend                   │ Bootstrap, jQuery, DataTables                    │
+│ Testing                    │ JUnit 5, Mockito, Spring Test                    │
+└────────────────────────────┴──────────────────────────────────────────────────┘
+
+================================================================================
+
+3. MODULE BREAKDOWN
+================================================================================
+
+The system is decomposed into the following development modules:
+
+3.1 Core Infrastructure Module
+--------------------------------------------------------------------------------
+
+Purpose: Foundation components required by all other modules
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Maven Configuration     │ pom.xml                      │ 90                 │
+│ Application Properties  │ application.properties       │ 35                 │
+│ Main Application        │ RecruitmentApplication.java  │ 15                 │
+│ Base Entity Classes     │ Entity.java (if any)         │ 50                 │
+│ Utility Classes         │ DateTimeUtil, EmailLoader    │ 200                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: None (foundation)
+Estimated Effort: 2-3 days
+
+3.2 Security Module
+--------------------------------------------------------------------------------
+
+Purpose: Authentication, authorization, and session management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Security Configuration  │ WebSecurityConfig.java       │ 120                │
+│ User Details Service    │ AppUserDetailsService.java   │ 80                 │
+│ User Details Model      │ AppUserDetails.java          │ 60                 │
+│ Default Admin Init      │ DefaultAdminInitializer.java │ 35                 │
+│ Login Controller        │ LoginController.java         │ 100                │
+│ Password Reset          │ PasswordResetController.java │ 150                │
+│ Password Reset Entity   │ PasswordReset.java           │ 90                 │
+│ Password Reset Service  │ PasswordResetService.java    │ 120                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core Infrastructure, User Module (entity only)
+Estimated Effort: 5-7 days
+
+3.3 User Management Module
+--------------------------------------------------------------------------------
+
+Purpose: User CRUD, role management, status management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ User Entity             │ User.java                    │ 115                │
+│ User Repository         │ UserRepository.java          │ 50                 │
+│ User Service            │ UserService.java (interface) │ 30                 │
+│ User Service Impl       │ UserServiceImpl.java         │ 150                │
+│ User Controller         │ UserController.java          │ 220                │
+│ Profile Controller      │ ProfileController.java       │ 100                │
+│ User Table View         │ user_table.html              │ 150                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core Infrastructure, Security Module, Department Module
+Estimated Effort: 5-6 days
+
+3.4 Department Module
+--------------------------------------------------------------------------------
+
+Purpose: Organizational unit management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Department Entity       │ Department.java              │ 150                │
+│ Department Repository   │ DepartmentRepository.java    │ 40                 │
+│ Department Service      │ DepartmentService.java       │ 100                │
+│ Department Controller   │ DepartmentController.java    │ 180                │
+│ Department Views        │ department_*.html            │ 200                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core Infrastructure, Security Module
+Estimated Effort: 3-4 days
+
+3.5 Position Module
+--------------------------------------------------------------------------------
+
+Purpose: Job title/position management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Position Entity         │ Position.java                │ 150                │
+│ Position Repository     │ PositionRepository.java      │ 35                 │
+│ Position Service        │ PositionService.java         │ 80                 │
+│ Position Controller     │ PositionController.java      │ 150                │
+│ Position Views          │ position_*.html              │ 150                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core Infrastructure, Security Module
+Estimated Effort: 2-3 days
+
+3.6 Vacancy Module
+--------------------------------------------------------------------------------
+
+Purpose: Job vacancy lifecycle management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Vacancy Entity          │ Vacancy.java                 │ 415                │
+│ Vacancy Repository      │ VacancyRepository.java       │ 80                 │
+│ Vacancy Service         │ VacancyService.java          │ 150                │
+│ Vacancy Controller      │ VacancyController.java       │ 340                │
+│ Public Vacancy View     │ VacancyViewController.java   │ 100                │
+│ Vacancy DTOs            │ VacancyDTO.java, etc.        │ 150                │
+│ Vacancy Views           │ vacancy_*.html               │ 400                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, Department, Position Modules
+Estimated Effort: 7-8 days
+
+3.7 Candidate Module
+--------------------------------------------------------------------------------
+
+Purpose: Job application and candidate management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Candidate Entity        │ Candidate.java               │ 345                │
+│ Candidate Repository    │ CandidateRepository.java     │ 100                │
+│ Candidate Service       │ CandidateService.java        │ 200                │
+│ Candidate Controller    │ CandidateController.java     │ 225                │
+│ HR Candidate Controller │ HRCandidateController.java   │ 395                │
+│ Status Entity           │ Status.java                  │ 55                 │
+│ Status Initializer      │ StatusTableInitializer.java  │ 40                 │
+│ CandidateStatus Entity  │ CandidateStatus.java         │ 80                 │
+│ CandidateStatus Service │ CandidateStatusService.java  │ 100                │
+│ Candidate Views         │ candidate_*.html             │ 500                │
+│ Candidate DTOs          │ CandidateSummaryDTO, etc.    │ 200                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, Vacancy Module
+Estimated Effort: 10-12 days
+
+3.8 Interview Module
+--------------------------------------------------------------------------------
+
+Purpose: Interview scheduling and status management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Interview Entity        │ Interview.java               │ 260                │
+│ Interview Repository    │ InterviewRepository.java     │ 80                 │
+│ Interview Service       │ InterviewService.java        │ 200                │
+│ Interview Controller    │ InterviewController.java     │ 345                │
+│ CandidateInterview Ent. │ CandidateInterview.java      │ 105                │
+│ CandidateInterview Svc  │ CandidateInterviewService    │ 100                │
+│ Interview DTOs          │ InterviewDTO, etc.           │ 150                │
+│ Interview Views         │ interview_*.html             │ 400                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, Vacancy, Candidate, User Modules
+Estimated Effort: 8-10 days
+
+3.9 Review Module
+--------------------------------------------------------------------------------
+
+Purpose: Interviewer feedback management
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Reviews Entity          │ Reviews.java                 │ 75                 │
+│ Reviews Repository      │ ReviewsRepository.java       │ 40                 │
+│ Review Service          │ ReviewService.java           │ 80                 │
+│ Review Controller       │ (integrated in HR Candidate) │ -                  │
+│ Review View             │ review_form.html             │ 100                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, Interview, Candidate Modules
+Estimated Effort: 2-3 days
+
+3.10 Email Module
+--------------------------------------------------------------------------------
+
+Purpose: Email composition, sending, and history
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Email Controller        │ EmailController.java         │ 595                │
+│ Email Service           │ EmailService.java            │ 200                │
+│ Mail History Entity     │ MailHistory.java             │ 95                 │
+│ Mail History Service    │ MailHistoryService.java      │ 80                 │
+│ Mail History Controller │ MailHistoryController.java   │ 100                │
+│ Email Models            │ Email.java, EmailInbox.java  │ 100                │
+│ Email Templates         │ EmailTemplate.java, loader   │ 120                │
+│ Template Files          │ email_templates.xml          │ 150                │
+│ Email Views             │ email_*.html                 │ 300                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, Candidate, Interview Modules
+Estimated Effort: 6-8 days
+
+3.11 Notification Module
+--------------------------------------------------------------------------------
+
+Purpose: Real-time notifications via WebSocket
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Notification Entity     │ Notification.java            │ 105                │
+│ Notification Repository │ NotificationRepository.java  │ 50                 │
+│ Notification Service    │ NotificationService.java     │ 120                │
+│ Notification Controller │ NotificationController.java  │ 150                │
+│ WebSocket Config        │ WebSocketConfig.java         │ 60                 │
+│ Notification Views      │ notification_*.html          │ 100                │
+│ WebSocket JS            │ websocket_handler.js         │ 80                 │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, User, Vacancy Modules
+Estimated Effort: 4-5 days
+
+3.12 Dashboard & Charts Module
+--------------------------------------------------------------------------------
+
+Purpose: Analytics and data visualization
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Dashboard Controller    │ DashboardController.java     │ 85                 │
+│ Dashboard Service       │ DashboardService.java        │ 150                │
+│ Dashboard DTO           │ DashboardCountDTO.java       │ 60                 │
+│ Chart Controllers       │ HRChartController.java,      │ 250                │
+│                         │ InterviewerChartController.java |                    │
+│ Chart Service           │ ChartService.java            │ 250                │
+│ Chart DTOs              │ ChartDTO, etc.               │ 150                │
+│ Dashboard Views         │ dashboard*.html              │ 300                │
+│ Chart JS                │ chart_*.js                   │ 200                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Security, Vacancy, Candidate, Interview Modules
+Estimated Effort: 5-6 days
+
+3.13 Reporting Module
+--------------------------------------------------------------------------------
+
+Purpose: PDF/Excel report generation
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Report Controller       │ ReportController.java        │ 365                │
+│ Report Templates        │ *.jrxml (JasperReports)      │ 500                │
+│ Report Views            │ report_selection.html        │ 150                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core, Vacancy, Candidate, Interview Modules
+Estimated Effort: 4-5 days
+
+3.14 Error Handling Module
+--------------------------------------------------------------------------------
+
+Purpose: Custom error pages and exception handling
+
+Components:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ COMPONENT               │ FILES                        │ LOC EST.           │
+├─────────────────────────┼──────────────────────────────┼────────────────────┤
+│ Error Controller        │ ErrorController.java         │ 50                 │
+│ Custom Error Config     │ CustomErrorController.java   │ 80                 │
+│ Error Views             │ 403.html, 404.html, err.html │ 150                │
+└─────────────────────────┴──────────────────────────────┴────────────────────┘
+
+Dependencies: Core
+Estimated Effort: 1-2 days
+
+================================================================================
+
+4. DEVELOPMENT PHASES
+================================================================================
+
+4.1 Phase 1: Foundation (Week 1)
+--------------------------------------------------------------------------------
+
+Objective: Set up project structure and core infrastructure
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 1.1 │ Initialize Maven project with dependencies        │ 0.5   │ Krish     │
+│ 1.2 │ Configure application.properties                  │ 0.5   │ Krish     │
+│ 1.3 │ Set up MySQL database and connection              │ 0.5   │ Krish     │
+│ 1.4 │ Create utility classes (DateTimeUtil, etc.)       │ 1     │ Anand     │
+│ 1.5 │ Configure Spring Security                         │ 2     │ Krish     │
+│ 1.6 │ Create login/logout functionality                 │ 1     │ Krish     │
+│ 1.7 │ Implement password reset                          │ 1.5   │ Anand     │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Working project skeleton
+- Security configuration complete
+- Default admin creation on startup
+
+4.2 Phase 2: Core Entities (Week 2)
+--------------------------------------------------------------------------------
+
+Objective: Implement foundational data models
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 2.1 │ Create User entity, repository, service           │ 2     │ Anand     │
+│ 2.2 │ Implement user CRUD controller                    │ 2     │ Anand     │
+│ 2.3 │ Create Department entity and services             │ 1.5   │ Anand     │
+│ 2.4 │ Create Position entity and services               │ 1     │ Anand     │
+│ 2.5 │ Create Status entity with initializer             │ 0.5   │ Anand     │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- User management complete
+- Department and Position management complete
+- Admin can create users
+
+4.3 Phase 3: Vacancy Management (Week 3)
+--------------------------------------------------------------------------------
+
+Objective: Implement vacancy lifecycle
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 3.1 │ Create Vacancy entity with all fields             │ 1     │ Anand     │
+│ 3.2 │ Implement vacancy repository and service          │ 1.5   │ Anand     │
+│ 3.3 │ Create vacancy controller (CRUD)                  │ 2     │ Anand     │
+│ 3.4 │ Build public vacancy listing page                 │ 1.5   │ Saloni    │
+│ 3.5 │ Implement vacancy reopen functionality            │ 1     │ Anand     │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Vacancy CRUD complete
+- Public can view job listings
+- Vacancy reopen functionality
+
+4.4 Phase 4: Candidate Management (Week 4)
+--------------------------------------------------------------------------------
+
+Objective: Implement candidate application and management
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 4.1 │ Create Candidate entity with CV storage           │ 1.5   │ Anand     │
+│ 4.2 │ Implement job application form                    │ 2     │ Saloni    │
+│ 4.3 │ CV upload and download functionality              │ 1.5   │ Krish     │
+│ 4.4 │ Candidate listing with DataTables                 │ 2     │ Saloni    │
+│ 4.5 │ Selection status workflow                         │ 1     │ Anand     │
+│ 4.6 │ Candidate history view                            │ 1     │ Saloni    │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Public can apply for jobs
+- HR can manage candidates
+- Status tracking functional
+
+4.5 Phase 5: Interview System (Week 5-6)
+--------------------------------------------------------------------------------
+
+Objective: Implement interview scheduling and management
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 5.1 │ Create Interview entity                           │ 1     │ Anand     │
+│ 5.2 │ Create CandidateInterview association             │ 1     │ Anand     │
+│ 5.3 │ Interview scheduling controller                   │ 2     │ Anand     │
+│ 5.4 │ Interviewer assignment (multi-select)             │ 1.5   │ Anand     │
+│ 5.5 │ Interview status management                       │ 1.5   │ Anand     │
+│ 5.6 │ Multi-stage interview support                     │ 1     │ Anand     │
+│ 5.7 │ Create Reviews entity and service                 │ 1     │ Anand     │
+│ 5.8 │ Review submission functionality                   │ 1     │ Saloni    │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Interview scheduling complete
+- Multi-stage interviews supported
+- Interviewers can submit reviews
+
+4.6 Phase 6: Communication (Week 6-7)
+--------------------------------------------------------------------------------
+
+Objective: Implement email and notification systems
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 6.1 │ Configure SMTP/IMAP email service                 │ 1     │ Krish     │
+│ 6.2 │ Create email templates                            │ 1     │ Krish     │
+│ 6.3 │ Email composition and sending                     │ 2     │ Anand     │
+│ 6.4 │ Mail history tracking                             │ 1     │ Anand     │
+│ 6.5 │ Inbox reading functionality                       │ 1     │ Anand     │
+│ 6.6 │ Configure WebSocket                               │ 1     │ Krish     │
+│ 6.7 │ Create Notification entity and service            │ 1     │ Anand     │
+│ 6.8 │ Real-time notification delivery                   │ 1.5   │ Krish     │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Email sending functional
+- Real-time notifications working
+- Mail history tracked
+
+4.7 Phase 7: Analytics & Reports (Week 7-8)
+--------------------------------------------------------------------------------
+
+Objective: Implement dashboard and reporting
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 7.1 │ Create dashboard service with counts              │ 1.5   │ Anand     │
+│ 7.2 │ Build HR dashboard view                           │ 1.5   │ Saloni    │
+│ 7.3 │ Department-specific dashboard                     │ 1     │ Saloni    │
+│ 7.4 │ Chart service and visualizations                  │ 2     │ Saloni    │
+│ 7.5 │ JasperReports template design                     │ 2     │ Krish     │
+│ 7.6 │ PDF/Excel export functionality                    │ 2     │ Krish     │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Dashboard with metrics
+- Charts for data visualization
+- PDF and Excel reports
+
+4.8 Phase 8: Testing & Polish (Week 8)
+--------------------------------------------------------------------------------
+
+Objective: Complete testing and finalize
+
+Tasks:
+┌─────┬───────────────────────────────────────────────────┬───────┬───────────┐
+│ ID  │ TASK                                              │ DAYS  │ OWNER     │
+├─────┼───────────────────────────────────────────────────┼───────┼───────────┤
+│ 8.1 │ Unit tests for all services                       │ 2     │ Krish     │
+│ 8.2 │ Controller tests                                  │ 1.5   │ Krish     │
+│ 8.3 │ Repository tests                                  │ 1     │ Krish     │
+│ 8.4 │ Error handling and custom pages                   │ 1     │ Krish     │
+│ 8.5 │ UI/UX refinements                                 │ 1     │ Saloni    │
+│ 8.6 │ Documentation                                     │ 0.5   │ All       │
+└─────┴───────────────────────────────────────────────────┴───────┴───────────┘
+
+Deliverables:
+- Comprehensive test suite
+- Error handling complete
+- Documentation finalized
+
+================================================================================
+
+5. DEPENDENCY GRAPH
+================================================================================
+
+                           DEVELOPMENT DEPENDENCY FLOW
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │                                                                         │
+    │                        ┌──────────────────┐                            │
+    │                        │       CORE       │                            │
+    │                        │  INFRASTRUCTURE  │                            │
+    │                        └────────┬─────────┘                            │
+    │                                 │                                       │
+    │                        ┌────────▼─────────┐                            │
+    │                        │    SECURITY      │                            │
+    │                        │     MODULE       │                            │
+    │                        └────────┬─────────┘                            │
+    │                                 │                                       │
+    │              ┌──────────────────┼──────────────────┐                   │
+    │              │                  │                  │                    │
+    │     ┌────────▼──────┐  ┌────────▼──────┐  ┌────────▼──────┐           │
+    │     │   DEPARTMENT  │  │    POSITION   │  │     USER      │           │
+    │     │    MODULE     │  │    MODULE     │  │    MODULE     │           │
+    │     └────────┬──────┘  └────────┬──────┘  └───────────────┘           │
+    │              │                  │                                       │
+    │              └──────────┬───────┘                                      │
+    │                         │                                               │
+    │                ┌────────▼─────────┐                                    │
+    │                │     VACANCY      │                                    │
+    │                │     MODULE       │                                    │
+    │                └────────┬─────────┘                                    │
+    │                         │                                               │
+    │        ┌────────────────┼────────────────┐                             │
+    │        │                │                │                              │
+    │   ┌────▼─────┐    ┌─────▼────┐    ┌─────▼────────┐                    │
+    │   │CANDIDATE │    │INTERVIEW │    │NOTIFICATION  │                    │
+    │   │  MODULE  │    │  MODULE  │    │   MODULE     │                    │
+    │   └────┬─────┘    └────┬─────┘    └──────────────┘                    │
+    │        │               │                                               │
+    │        └───────┬───────┘                                               │
+    │                │                                                        │
+    │       ┌────────▼─────────┐                                             │
+    │       │   REVIEW MODULE  │                                             │
+    │       └────────┬─────────┘                                             │
+    │                │                                                        │
+    │       ┌────────▼─────────┐                                             │
+    │       │   EMAIL MODULE   │                                             │
+    │       └────────┬─────────┘                                             │
+    │                │                                                        │
+    │    ┌───────────┼───────────┐                                           │
+    │    │           │           │                                            │
+    │  ┌─▼────┐   ┌──▼───┐   ┌───▼────┐                                      │
+    │  │DASH- │   │CHARTS│   │REPORTS │                                      │
+    │  │BOARD │   │      │   │        │                                      │
+    │  └──────┘   └──────┘   └────────┘                                      │
+    │                                                                         │
+    └─────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+
+6. CRITICAL PATH ANALYSIS
+================================================================================
+
+The critical path determines the minimum time to complete the project.
+
+Critical Path: Core → Security → User → Department → Position → Vacancy → 
+               Candidate → Interview → Email → Dashboard/Reports
+
+Minimum Duration: 8 weeks
+
+Bottlenecks:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ BOTTLENECK              │ REASON                      │ MITIGATION         │
+├─────────────────────────┼─────────────────────────────┼────────────────────┤
+│ Vacancy Entity          │ Many dependencies, complex  │ Early completion,  │
+│                         │ relationships               │ thorough design    │
+├─────────────────────────┼─────────────────────────────┼────────────────────┤
+│ Candidate Module        │ File handling, status       │ Dedicated 2        │
+│                         │ workflow complexity         │ developers         │
+├─────────────────────────┼─────────────────────────────┼────────────────────┤
+│ Interview Module        │ Multi-stage logic,          │ Early design,      │
+│                         │ many-to-many relationships  │ parallel testing   │
+└─────────────────────────┴─────────────────────────────┴────────────────────┘
+
+================================================================================
+
+7. RESOURCE ALLOCATION & TEAM ROLES
+================================================================================
+
+The project utilizes a "Concurrent Development" model to justify the 8-week 
+timeline.
+
+7.1 Anand (Backend Development)
+--------------------------------------------------------------------------------
+- Responsibilities: Core entity modeling, Service layer business logic, 
+  Repository pattern implementation, and API endpoint construction.
+- Primary Modules: Vacancy, Candidate, Interview, and Review logic.
+
+7.2 Krish (DevOps & Infrastructure)
+--------------------------------------------------------------------------------
+- Responsibilities: MySQL schema design, Spring Security configuration, 
+  SMTP/IMAP integration, WebSocket setup, and Maven dependency management.
+- Primary Modules: Security, Email, Notification, and Deployment optimization.
+
+7.3 Saloni (Frontend Development)
+--------------------------------------------------------------------------------
+- Responsibilities: Thymeleaf template engine implementation, Bootstrap 
+  styling, Client-side validation, DataTables integration, and Chart.js.
+- Primary Modules: Dashboard, Reporting UI, and all CRUD Views.
+
+================================================================================
+
+8. FUTURE ENHANCEMENTS (ROADMAP)
+================================================================================
+
+Phase 2 Features (Post-Initial Release):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ FEATURE                         │ PRIORITY │ ESTIMATED EFFORT              │
+├─────────────────────────────────┼──────────┼───────────────────────────────┤
+│ CSRF Protection Enable          │ High     │ 1 day                         │
+│ HTTPS/TLS Configuration         │ High     │ 2 days                        │
+│ Password Complexity Validation  │ High     │ 1 day                         │
+│ Rate Limiting for Login         │ High     │ 2 days                        │
+│ Docker Containerization         │ Medium   │ 3 days                        │
+│ External File Storage (S3)      │ Medium   │ 5 days                        │
+│ API Documentation (Swagger)     │ Medium   │ 3 days                        │
+│ Audit Logging                   │ Medium   │ 4 days                        │
+│ Caching (Redis)                 │ Medium   │ 4 days                        │
+│ Mobile Responsive Enhancement   │ Low      │ 5 days                        │
+│ Multi-language Support          │ Low      │ 7 days                        │
+│ Third-party ATS Integration     │ Low      │ 10 days                       │
+└─────────────────────────────────┴──────────┴───────────────────────────────┘
+
+================================================================================
+
+9. SUMMARY
+================================================================================
+
+This Development Plan provides a structured approach to understanding and 
+potentially reconstructing the Recruitment and Interview Management System.
+
+Key Metrics:
+- **Total Modules**: 14
+- **Total Development Effort**: ~8 weeks (2 months)
+- **Team Size**: 3 Specialized Students
+- **Lines of Code**: ~15,000 LOC
+
+The modular breakdown ensures:
+- Clear separation of concerns
+- Manageable development units
+- Testable components
+- Maintainable codebase
+
+================================================================================
+                       END OF DEVELOPMENT PLAN DOCUMENT
+================================================================================

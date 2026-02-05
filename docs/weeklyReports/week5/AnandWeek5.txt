@@ -1,0 +1,56 @@
+Weekly Progress Report
+Name: Anand
+Role: Backend Developer & Database Designer
+Week: 5 (Jan 26 - Feb 5)
+
+Task Completed:
+
+1. Requirements & Planning (Pre-dev):
+   - Met with the team to finalize the "EasyHire" features.
+   - Wrote the SRS document drafts to define what we are actually building.
+   - Selected the Tech Stack: Decided to use Spring Boot because it covers Security and Web easily.
+
+2. Database Design & Setup:
+   - Designed the Entity-Relationship Diagram (ERD) for the entire system (See SRS Document).
+   - Decided the table structures for Users, Departments, Positions, and Vacancies.
+   - Wrote the SQL script to create these tables and shared it with the team.
+   - Set up the relationships (Foreign Keys) to make sure data is consistent.
+
+3. Project Initialization:
+   - Created the Spring Boot project and added dependencies (Web, JPA, Security).
+   - Connected the application to the MySQL database I designed.
+   - Organized the project folder structure (Controllers, Services).
+
+4. User Module Backend:
+   - Wrote the User Entity class matching the database table.
+   - Implemented the Registration Logic (checking for duplicate emails).
+   - Used BCrypt to encrypt passwords for security.
+
+5. Department & Position Management:
+   - Wrote the code to Add, Update, and Delete Departments.
+   - Wrote the code to functionality to manage Job Positions.
+   - Linked Positions to Departments (e.g., "Software Engineer" belongs to "IT Department").
+   - Tested all these features manually to make sure they work before giving them to the frontend team.
+
+Plan for Next Week:
+- I need to link the Candidates to the Job Vacancies in the database.
+- Will write the logic to handle file uploads for CVs.
+- Need to ensure only active jobs can accept applications.
+
+--------------------------------------------------------------------uploaded
+Completed the remaining company’s project presentations.
+ Requirements & Planning (Pre-dev): Met with the team to finalize the "EasyHire" features. Wrote the
+SRS document drafts to define what we are actually building. Selected the Tech Stack: Decided to use
+Spring Boot because it covers Security and Web easily.
+ Database Design & Setup: Designed the Entity-Relationship Diagram (ERD) for the entire system (See
+SRS Document). Decided the table structures for Users, Departments, Positions, and Vacancies. Wrote
+the SQL script to create these tables and shared it with the team. Set up the relationships (Foreign Keys)
+to make sure data is consistent.
+ Project Initialization: Created the Spring Boot project and added dependencies (Web, JPA, Security).
+Connected the application to the MySQL database I designed. Organized the project folder structure
+(Controllers, Services).
+ User Backend: Wrote the User Entity class matching the database table. Implemented the Registration
+Logic (checking for duplicate emails). Used BCrypt to encrypt passwords for security.
+ Department & Position Management: Wrote the code to Add, Update, and Delete Departments. Wrote
+the code to functionality to manage Job Positions. Linked Positions to Departments (e.g., "Software
+Engineer" belongs to "IT Department").

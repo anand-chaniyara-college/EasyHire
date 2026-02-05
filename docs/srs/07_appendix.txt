@@ -1,0 +1,273 @@
+================================================================================
+         SOFTWARE REQUIREMENTS SPECIFICATION (SRS) - SECTION 7
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                APPENDIX: RISKS AND TRACEABILITY MATRIX
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+7. APPENDIX
+================================================================================
+
+7.1 RISK ANALYSIS
+================================================================================
+
+7.1.1 Risk Identification and Mitigation
+--------------------------------------------------------------------------------
+
+┌─────┬─────────────────────────┬────────┬────────┬──────────────────────────┐
+│ ID  │ RISK                    │ PROB.  │ IMPACT │ MITIGATION               │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R01 │ Database connection     │ Medium │ High   │ Connection pool retry,   │
+│     │ failure                 │        │        │ graceful error handling  │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R02 │ Email server            │ Medium │ Medium │ Async email sending,     │
+│     │ unavailability          │        │        │ queue fallback, alerts   │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R03 │ File upload size        │ Low    │ Low    │ Client-side validation,  │
+│     │ exceeded                │        │        │ clear error messages     │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R04 │ Concurrent user         │ Medium │ Medium │ Database optimization,   │
+│     │ performance degradation │        │        │ caching, pagination      │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R05 │ Session hijacking       │ Low    │ High   │ HTTPS, secure cookies,   │
+│     │                         │        │        │ session regeneration     │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R06 │ SQL injection attack    │ Low    │ High   │ JPA parameterized        │
+│     │                         │        │        │ queries, input validation│
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R07 │ Password brute force    │ Medium │ High   │ BCrypt hashing, rate     │
+│     │                         │        │        │ limiting (recommended)   │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R08 │ Data loss from BLOB     │ Medium │ High   │ Regular backups, file    │
+│     │ storage failure         │        │        │ storage migration option │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R09 │ WebSocket connection    │ Low    │ Low    │ SockJS fallback,         │
+│     │ failure                 │        │        │ polling alternative      │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R10 │ Report generation       │ Low    │ Low    │ Pagination of data,      │
+│     │ timeout                 │        │        │ async generation         │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R11 │ Hibernate ddl-auto      │ Medium │ High   │ Use 'validate' or        │
+│     │ unintended schema       │        │        │ migration scripts in     │
+│     │ changes                 │        │        │ production               │
+├─────┼─────────────────────────┼────────┼────────┼──────────────────────────┤
+│ R12 │ Cross-browser           │ Low    │ Medium │ Thorough cross-browser   │
+│     │ compatibility issues    │        │        │ testing, polyfills       │
+└─────┴─────────────────────────┴────────┴────────┴──────────────────────────┘
+
+Probability: Low (<20%), Medium (20-60%), High (>60%)
+Impact: Low (workaround exists), Medium (significant), High (critical)
+
+7.1.2 Security Vulnerabilities Assessment
+--------------------------------------------------------------------------------
+
+┌─────────────────────────────┬────────────────┬──────────────────────────────┐
+│ VULNERABILITY               │ CURRENT STATUS │ RECOMMENDATION               │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ CSRF Protection             │ DISABLED       │ Enable in production         │
+│                             │ (http.csrf()   │ with proper token            │
+│                             │  .disable())   │ management                   │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ Password Complexity         │ NOT ENFORCED   │ Implement password policy    │
+│                             │ (auto-generated│ validation                   │
+│                             │  only)         │                              │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ HTTPS Enforcement           │ NOT CONFIGURED │ Configure SSL/TLS for        │
+│                             │                │ production deployment        │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ Rate Limiting               │ NOT IMPLEMENTED│ Add rate limiting for        │
+│                             │                │ login and API endpoints      │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ Session Timeout             │ DEFAULT        │ Configure appropriate        │
+│                             │                │ timeout value                │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ Input Sanitization          │ THYMELEAF      │ Maintained through           │
+│                             │ ESCAPING       │ default Thymeleaf escaping   │
+├─────────────────────────────┼────────────────┼──────────────────────────────┤
+│ SQL Injection               │ PROTECTED      │ JPA parameterized queries    │
+│                             │                │ in use                       │
+└─────────────────────────────┴────────────────┴──────────────────────────────┘
+
+7.2 REQUIREMENTS TRACEABILITY MATRIX
+================================================================================
+
+This matrix maps requirements to implementation components.
+
+7.2.1 Functional Requirements to Implementation
+--------------------------------------------------------------------------------
+
+┌──────────────────┬──────────────────────────────────────────────────────────┐
+│ REQUIREMENT ID   │ IMPLEMENTING COMPONENT(S)                                │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-AUTH-001-011  │ WebSecurityConfig.java, LoginController.java,            │
+│                  │ PasswordResetController.java                             │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-USER-001-009  │ UserController.java, UserService.java,                   │
+│                  │ UserRepository.java, User.java                           │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-DEPT-001-005  │ DepartmentController.java, DepartmentService.java,       │
+│                  │ DepartmentRepository.java, Department.java               │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-POS-001-005   │ PositionController.java, PositionService.java,           │
+│                  │ PositionRepository.java, Position.java                   │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-VAC-001-009   │ VacancyController.java, VacancyService.java,             │
+│                  │ VacancyRepository.java, Vacancy.java                     │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-CAN-001-014   │ CandidateController.java, HRCandidateController.java,    │
+│                  │ CandidateService.java, Candidate.java                    │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-INT-001-010   │ InterviewController.java, InterviewService.java,         │
+│                  │ InterviewRepository.java, Interview.java,                │
+│                  │ CandidateInterview.java                                  │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-REV-001-003   │ HRCandidateController.java, ReviewService.java,          │
+│                  │ ReviewsRepository.java, Reviews.java                     │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-EMAIL-001-009 │ EmailController.java, EmailService.java,                 │
+│                  │ MailHistoryService.java, MailHistory.java                │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-NOTI-001-005  │ NotificationController.java, NotificationService.java,   │
+│                  │ WebSocketConfig.java, Notification.java                  │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-DASH-001-004  │ DashboardController.java, DashboardService.java,         │
+│                  │ ChartController.java, ChartService.java                  │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-RPT-001-003   │ ReportController.java, JasperReports templates           │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ FR-STATUS-001    │ StatusTableInitializer.java, StatusService.java,         │
+│                  │ Status.java                                              │
+└──────────────────┴──────────────────────────────────────────────────────────┘
+
+7.2.2 Non-Functional Requirements to Implementation
+--------------------------------------------------------------------------------
+
+┌──────────────────┬──────────────────────────────────────────────────────────┐
+│ REQUIREMENT ID   │ IMPLEMENTING COMPONENT(S)                                │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ NFR-PERF-001-008 │ DataTables server-side processing, HikariCP,             │
+│                  │ indexed queries, async email                             │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ NFR-SEC-001-010  │ WebSecurityConfig.java, BCryptPasswordEncoder,           │
+│                  │ Spring Security filters, Thymeleaf escaping              │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ NFR-REL-001-006  │ Exception handlers, @Transactional annotations,          │
+│                  │ JPA constraints                                          │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ NFR-USE-001-008  │ Bootstrap CSS, validation annotations,                   │
+│                  │ JavaScript validation, toast notifications               │
+├──────────────────┼──────────────────────────────────────────────────────────┤
+│ NFR-MNT-001-006  │ Layered architecture, application.properties,            │
+│                  │ JUnit tests, logging configuration                       │
+└──────────────────┴──────────────────────────────────────────────────────────┘
+
+7.3 TEST CASE COVERAGE
+================================================================================
+
+7.3.1 Existing Unit Tests
+--------------------------------------------------------------------------------
+
+┌────────────────────────────────────┬─────────────────────────────────────────┐
+│ TEST CLASS                         │ COVERAGE AREA                           │
+├────────────────────────────────────┼─────────────────────────────────────────┤
+│ UserServiceTest.java               │ User CRUD operations                    │
+│ PositionServiceTest.java           │ Position CRUD operations                │
+│ DepartmentServiceTest.java         │ Department CRUD operations              │
+│ VacancyServiceTest.java            │ Vacancy CRUD operations                 │
+│ InterviewServiceTest.java          │ Interview CRUD operations               │
+│ CandidateServiceTest.java          │ Candidate CRUD operations               │
+│ ReviewServiceTest.java             │ Review operations                       │
+│ ChartServiceTest.java              │ Chart data generation                   │
+│ PasswordResetServiceTest.java      │ Password reset token handling           │
+│ EmailServiceTest.java              │ Email sending                           │
+│ CandidateStatusServiceTest.java    │ Status changes                          │
+│ CandidateInterviewServiceTest.java │ Interview assignment                    │
+│ StatusServiceTest.java             │ Status lookup                           │
+├────────────────────────────────────┼─────────────────────────────────────────┤
+│ UserControllerTest.java            │ User API endpoints                      │
+│ VacancyControllerTest.java         │ Vacancy API endpoints                   │
+│ InterviewControllerTest.java       │ Interview API endpoints                 │
+│ CandidateControllerTest.java       │ Candidate API endpoints                 │
+│ DepartmentControllerTest.java      │ Department API endpoints                │
+│ PositionControllerTest.java        │ Position API endpoints                  │
+│ DashboardControllerTest.java       │ Dashboard API endpoints                 │
+│ ChartControllerTest.java           │ Chart API endpoints                     │
+│ EmailControllerTest.java           │ Email API endpoints                     │
+│ LoginControllerTest.java           │ Login/logout                            │
+│ PasswordResetControllerTest.java   │ Password reset API                      │
+│ NotificationControllerTest.java    │ Notification API                        │
+│ MailHistoryControllerTest.java     │ Mail history API                        │
+│ ProfileControllerTest.java         │ Profile API                             │
+├────────────────────────────────────┼─────────────────────────────────────────┤
+│ UserRepositoryTest.java            │ User queries                            │
+│ VacancyRepositoryTest.java         │ Vacancy queries                         │
+│ InterviewRepositoryTest.java       │ Interview queries                       │
+│ CandidateRepositoryTest.java       │ Candidate queries                       │
+│ DepartmentRepositoryTest.java      │ Department queries                      │
+│ PositionRepositoryTest.java        │ Position queries                        │
+│ CandidateInterviewRepoTest.java    │ CandidateInterview queries              │
+│ CandidateStatusRepoTest.java       │ CandidateStatus queries                 │
+└────────────────────────────────────┴─────────────────────────────────────────┘
+
+7.3.2 Recommended Additional Tests
+--------------------------------------------------------------------------------
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RECOMMENDED TEST                                                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ - Integration tests for complete user flows                                 │
+│ - Security tests for role-based access                                      │
+│ - Performance tests with JMeter or Gatling                                  │
+│ - Email delivery tests with mock SMTP                                       │
+│ - WebSocket notification tests                                              │
+│ - File upload edge case tests                                               │
+│ - Cross-browser UI tests with Selenium                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+7.4 GLOSSARY
+================================================================================
+
+┌───────────────────────────┬───────────────────────────────────────────────────┐
+│ TERM                      │ DEFINITION                                        │
+├───────────────────────────┼───────────────────────────────────────────────────┤
+│ ATS                       │ Applicant Tracking System                         │
+│ BCrypt                    │ Blowfish-based password hashing algorithm         │
+│ BLOB                      │ Binary Large Object (database type)               │
+│ DataTables                │ jQuery plugin for dynamic tables                  │
+│ DTO                       │ Data Transfer Object                              │
+│ Entity                    │ JPA-managed database model class                  │
+│ HikariCP                  │ High-performance JDBC connection pool             │
+│ IMAP                      │ Internet Message Access Protocol                  │
+│ JPA                       │ Java Persistence API                              │
+│ JasperReports             │ Open-source reporting library                     │
+│ LONGBLOB                  │ MySQL type for large binary data                  │
+│ MVC                       │ Model-View-Controller architecture                │
+│ Repository                │ Data access layer interface                       │
+│ Service                   │ Business logic layer component                    │
+│ SMTP                      │ Simple Mail Transfer Protocol                     │
+│ STOMP                     │ Simple Text Oriented Messaging Protocol           │
+│ Thymeleaf                 │ Java template engine for web                      │
+│ WebSocket                 │ Full-duplex communication protocol                │
+└───────────────────────────┴───────────────────────────────────────────────────┘
+
+7.5 REVISION HISTORY
+================================================================================
+
+┌─────────┬────────────┬───────────────────────────────────────────────────────┐
+│ VERSION │ DATE       │ DESCRIPTION                                           │
+├─────────┼────────────┼───────────────────────────────────────────────────────┤
+│ 1.0     │ 2026-02-04 │ Initial SRS document creation through                 │
+│         │            │ reverse engineering analysis                          │
+└─────────┴────────────┴───────────────────────────────────────────────────────┘
+
+================================================================================
+                         END OF SRS DOCUMENT
+================================================================================

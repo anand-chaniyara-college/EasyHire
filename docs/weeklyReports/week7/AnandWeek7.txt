@@ -1,0 +1,25 @@
+Weekly Progress Report
+Name: Anand
+Role: Backend Developer
+Week: 7 (Feb 25 - Mar 10)
+
+Tasks Completed:
+
+1. Interview Logic (Core Feature):
+   - Implemented the 'Interview' entity and mapped it to 'Candidate' and 'User' (Interviewer).
+   - Wrote validaton logic: "Check if Interviewer is free at 10 AM before booking".
+   - Handled the time zone issue (dates were saving incorrectly, fixed it by using `LocalDateTime`).
+
+2. Workflow State Machine:
+   - Implemented the logic to change Candidate Status.
+   - Steps: Received -> Screening -> Interview Scheduled -> Interview Passed -> Offered.
+   - Created an audit log table to track *who* changed the status.
+
+3. Integration:
+   - Connected the Interview module with the Email service.
+   - When an interview is booked, it triggers the email sending function automatically.
+
+Next Week:
+- Dashboard Analytics APIs.
+- Reporting Module (Jasper Reports).
+- Feedback foEasyHire.

@@ -1,0 +1,27 @@
+Weekly Progress Report
+Name: Anand
+Role: Backend Developer
+Week: 6 (Feb 6 - Feb 24)
+
+Tasks Completed:
+
+1. Vacancy Module:
+   - Wrote the logic to Publish, Close, and Reopen job vacancies.
+   - Added validations: For example, ensuring a job cannot be closed if it has interviews scheduled today.
+   - Tested the status updates using Postman.
+
+2. Application Process:
+   - Created the 'Candidate' Entity.
+   - Wrote the main API where the Frontend sends the candidate data and we save it.
+   - Mapped the Candidate to the specific Vacancy (Foreign Key) automatically.
+   - Handled the file upload logic using `StandardServletMultipartResolver`. We are saving files with a unique name to avoid conflicts.
+
+3. Search & Filters:
+   - Wrote a complex JPQL query to filter candidates.
+   - HR can now search candidates by "Skill", "Experience", or "Status".
+   - It was returning duplicate results initially, so I added `DISTINCT` to the query to fix it.
+
+Next Week Plan:
+- Interview Scheduling logic (It seems complex).
+- Candidate Status Workflow.
+- Sending email acknowledgments.

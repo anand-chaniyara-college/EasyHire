@@ -1,0 +1,38 @@
+Weekly Report: Saloni (Frontend Developer)
+Week: 5 (Jan 26 - Feb 5)
+Project: EasyHire
+
+Work Done:
+
+1. UX Planning & Design:
+   - Sketched the wireframes on paper to visualize how the Dashboard will look.
+   - Selected the Color Palette (Blue & White professional theme) and Fonts.
+   - Planned the User Journey: How a user goes from Login -> Dashboard -> Job Posting.
+
+2. Design & Layouts:
+   - Built the "Master Layout" for the website. This includes the Sidebar and the Top Header.
+   - Made sure the sidebar collapses on small screens (mobile friendly).
+   - Designed a standard Footer to show on every page.
+   - Picked the color theme and fonts for the whole application.
+
+3. Login & Authentication Screens:
+   - Designed the Login Page with a modern look.
+   - Added checks (Validation) to make sure users don't leave fields empty.
+   - Added "Pop-up Alerts" that show up if the password is wrong.
+   - Designed the "Forgot Password" flow so users can recover accounts.
+
+4. Dashboard & User Management:
+   - Designed the main Admin Dashboard page layout.
+   - Created the "System Users" page:
+     - It shows a list of all users in a neat table.
+     - Added "Active/Inactive" status badges.
+   - Designed the "Add New User" pop-up form so Admin can add people easily without leaving the page.
+
+5. FoEasyHire for Data Entry:
+   - Designed the foEasyHire for "Add Department" and "Add Position".
+   - Started working on the "Create Job" form. It's a big form, so I organized it into sections like "Basic Info" and "Salary Details" to make it easy to fill.
+
+Plan for Next Week:
+- I will build the "Careers Page" for public applicants.
+- Need to design the long "Job Application" form.
+- Will work on the candidate list view for HR.

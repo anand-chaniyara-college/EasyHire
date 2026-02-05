@@ -1,0 +1,27 @@
+Weekly Progress Report
+Name: Saloni
+Role: Frontend Developer
+Week: 6 (Feb 6 - Feb 24)
+
+Work Done:
+
+1. Public Career Page:
+   - Designed the "Careers" page for visitors.
+   - Used Bootstrap Cards to display jobs heavily.
+   - Added a Department Filter at the top (e.g., Show only "IT" jobs).
+
+2. Job Application Form:
+   - This was a big form. I split it into multiple steps (Personal Info -> Education -> Upload).
+   - Added a File Input for the Resume.
+   - Used JavaScript to show a "Uploading..." progress text so the user knows something is happening.
+   - Added a check: If someone enters an email that already applied, we show a red warning instantly.
+
+3. HR Candidate View:
+   - Built the page where HR sees all applicants.
+   - Integrated 'DataTables' jQuery plugin. It gives us Search and Sorting for free.
+   - Designed a "Quick Preview" modal. When HR clicks an eye icon, a small popup shows the resume summary.
+
+Next Week:
+- Design the Interview Scheduler (calender view).
+- Candidate Profile page.
+- Email Template UI.

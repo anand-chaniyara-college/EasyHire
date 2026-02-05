@@ -1,0 +1,22 @@
+Weekly Progress Report
+Name: Anand
+Role: Backend Developer
+Week: 10 (Apr 03 - Apr 17)
+
+Tasks Completed:
+
+1. Final Bug Fixes:
+   - Fixed the issue where "Interview Time" was showing in UTC instead of Local time.
+   - Fixed the "Reset Password" link expiry issue (it was expiring too fast).
+   - Resolved all the bugs Saloni reported from the UI testing.
+
+2. Documentation:
+   - Generated the Swagger API documentation.
+   - Wrote the "Developer Guide.txt" explaining our folder structure and logic.
+
+3. Wrap Up:
+   - Formatted all the Java files (Ctrl+Alt+L) to look neat.
+   - Did a final walkthrough of the codebase.
+
+Status: PROJECT SUCCESSFUL.
+Ready for the external viva.

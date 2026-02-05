@@ -1,0 +1,25 @@
+Weekly Progress Report
+Name: Anand
+Role: Backend Developer
+Week: 9 (Mar 19 - Apr 02)
+
+Tasks Completed:
+
+1. AI Scoring (Enhancement):
+   - Implemented a keyword matching service.
+   - It splits the Resume text and compares it with Job Requirements.
+   - Calculates a simple score (0-100) and saves it in the database.
+
+2. Bulk Actions:
+   - Wrote an API to handle valid list of IDs.
+   - Can now "Reject" or "Shortlist" 50 candidates in one click.
+   - Used `@Transactional` to make sure if one fails, all are rolled back.
+
+3. Cleanup:
+   - Refactored the `EmailService` to handle bulk sending (using a loop with a small delay to be safe).
+   - Removed some old unused controllers.
+
+Next Week:
+- Final Bug fixes.
+- API Documentation.
+- Code handover.

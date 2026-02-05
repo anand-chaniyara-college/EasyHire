@@ -1,0 +1,431 @@
+================================================================================
+         SOFTWARE REQUIREMENTS SPECIFICATION (SRS) - SECTION 4
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                     NON-FUNCTIONAL REQUIREMENTS
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+4. NON-FUNCTIONAL REQUIREMENTS
+================================================================================
+
+This section specifies quality attributes and constraints that define how the 
+system should perform, rather than what it should do.
+
+================================================================================
+4.1 PERFORMANCE REQUIREMENTS
+================================================================================
+
+NFR-PERF-001: Page Load Time
+--------------------------------------------------------------------------------
+The system SHALL load any page within 3 seconds under normal network conditions.
+Measurement: 95th percentile response time
+Verification: Performance testing with JMeter
+
+NFR-PERF-002: DataTables Response
+--------------------------------------------------------------------------------
+The system SHALL return DataTables results within 2 seconds for up to 10,000 
+records with server-side pagination.
+Measurement: Average response time
+Verification: Load testing with large datasets
+
+NFR-PERF-003: Concurrent Users
+--------------------------------------------------------------------------------
+The system SHALL support a minimum of 100 concurrent users without degradation.
+Measurement: Response time remains under 3 seconds
+Verification: Load testing with concurrent sessions
+
+NFR-PERF-004: Database Query Time
+--------------------------------------------------------------------------------
+The system SHALL execute database queries within 1 second for standard operations.
+Measurement: Query execution time
+Verification: Database profiling and query analysis
+
+NFR-PERF-005: File Upload Time
+--------------------------------------------------------------------------------
+The system SHALL complete file uploads (up to 16MB) within 30 seconds.
+Measurement: Upload completion time
+Verification: Testing with various file sizes
+
+NFR-PERF-006: Email Sending Time
+--------------------------------------------------------------------------------
+The system SHALL queue and initiate email sending within 5 seconds of request.
+Measurement: Time from send button to SMTP handoff
+Verification: Email send timing tests
+
+NFR-PERF-007: Report Generation Time
+--------------------------------------------------------------------------------
+The system SHALL generate PDF/Excel reports within 10 seconds for up to 1,000 
+records.
+Measurement: Report generation time
+Verification: Report generation with large datasets
+
+NFR-PERF-008: WebSocket Notification Latency
+--------------------------------------------------------------------------------
+The system SHALL deliver notifications within 1 second of event occurrence.
+Measurement: End-to-end notification latency
+Verification: WebSocket latency testing
+
+================================================================================
+4.2 SECURITY REQUIREMENTS
+================================================================================
+
+NFR-SEC-001: Password Encryption
+--------------------------------------------------------------------------------
+The system SHALL store all passwords using BCrypt with minimum cost factor 10.
+Standard: OWASP Password Storage Guidelines
+Verification: Database inspection, code review
+
+NFR-SEC-002: Session Management
+--------------------------------------------------------------------------------
+The system SHALL:
+- Generate cryptographically secure session IDs
+- Invalidate sessions on logout
+- Support configurable session timeout
+Standard: OWASP Session Management
+Verification: Security testing
+
+NFR-SEC-003: Role-Based Access Control
+--------------------------------------------------------------------------------
+The system SHALL enforce role-based access at both URL and method levels.
+Standard: Principle of Least Privilege
+Verification: Authorization testing per role
+
+NFR-SEC-004: CSRF Protection
+--------------------------------------------------------------------------------
+The system SHALL implement CSRF protection for all state-changing requests.
+Note: Currently disabled in config - should be enabled in production
+Standard: OWASP CSRF Prevention
+Verification: CSRF token validation testing
+
+NFR-SEC-005: SQL Injection Prevention
+--------------------------------------------------------------------------------
+The system SHALL use parameterized queries via JPA/Hibernate to prevent SQL 
+injection attacks.
+Standard: OWASP SQL Injection Prevention
+Verification: Security code review, penetration testing
+
+NFR-SEC-006: XSS Prevention
+--------------------------------------------------------------------------------
+The system SHALL escape all user input using Thymeleaf's default escaping.
+Standard: OWASP XSS Prevention
+Verification: XSS vulnerability testing
+
+NFR-SEC-007: Password Policy
+--------------------------------------------------------------------------------
+The system SHOULD enforce minimum password complexity (not currently implemented):
+- Minimum 8 characters
+- At least one uppercase, lowercase, number
+Standard: NIST Password Guidelines
+Verification: Password validation testing
+
+NFR-SEC-008: Secure Communication
+--------------------------------------------------------------------------------
+The system SHOULD use HTTPS for all communications in production.
+Standard: TLS 1.2 or higher
+Verification: SSL/TLS configuration review
+
+NFR-SEC-009: Session Fixation Protection
+--------------------------------------------------------------------------------
+The system SHALL regenerate session ID upon successful authentication.
+Standard: Spring Security default behavior
+Verification: Session ID inspection before/after login
+
+NFR-SEC-010: Sensitive Data Protection
+--------------------------------------------------------------------------------
+The system SHALL NOT expose sensitive data (passwords, tokens) in:
+- URLs
+- Logs
+- Error messages
+Standard: OWASP Sensitive Data Exposure
+Verification: Log and response inspection
+
+================================================================================
+4.3 RELIABILITY REQUIREMENTS
+================================================================================
+
+NFR-REL-001: System Availability
+--------------------------------------------------------------------------------
+The system SHALL maintain 99% uptime during business hours.
+Measurement: (Uptime / Total Time) * 100
+Verification: Monitoring and logging
+
+NFR-REL-002: Error Handling
+--------------------------------------------------------------------------------
+The system SHALL gracefully handle all exceptions without exposing stack traces 
+to end users.
+Measurement: No stack traces in production responses
+Verification: Error scenario testing
+
+NFR-REL-003: Data Integrity
+--------------------------------------------------------------------------------
+The system SHALL maintain referential integrity using database constraints.
+Measurement: No orphan records allowed
+Verification: Database constraint verification
+
+NFR-REL-004: Transaction Management
+--------------------------------------------------------------------------------
+The system SHALL use database transactions for multi-step operations to ensure 
+atomicity.
+Measurement: All-or-nothing commits
+Verification: Transaction testing
+
+NFR-REL-005: Connection Timeout Handling
+--------------------------------------------------------------------------------
+The system SHALL display a friendly error page for database connection timeouts.
+Measurement: Custom error page shown
+Verification: Timeout scenario testing
+
+NFR-REL-006: Email Failure Handling
+--------------------------------------------------------------------------------
+The system SHALL notify users when email sending fails without data loss.
+Measurement: Appropriate error message displayed
+Verification: Email failure simulation
+
+================================================================================
+4.4 USABILITY REQUIREMENTS
+================================================================================
+
+NFR-USE-001: Responsive Design
+--------------------------------------------------------------------------------
+The system SHALL adapt to screen sizes from 1024x768 to 1920x1080 and above.
+Standard: Bootstrap responsive breakpoints
+Verification: Cross-resolution testing
+
+NFR-USE-002: Browser Compatibility
+--------------------------------------------------------------------------------
+The system SHALL function correctly on:
+- Chrome 90+
+- Firefox 88+
+- Edge 90+
+- Safari 14+
+Verification: Cross-browser testing
+
+NFR-USE-003: Navigation
+--------------------------------------------------------------------------------
+The system SHALL provide:
+- Consistent navigation sidebar
+- Breadcrumb trails where applicable
+- Intuitive menu structure
+Verification: Usability testing
+
+NFR-USE-004: Form Validation
+--------------------------------------------------------------------------------
+The system SHALL provide:
+- Client-side validation for immediate feedback
+- Server-side validation for security
+- Clear error messages
+Verification: Form submission testing
+
+NFR-USE-005: Loading Indicators
+--------------------------------------------------------------------------------
+The system SHALL display loading indicators for:
+- Page loads
+- AJAX requests
+- File uploads
+Verification: UI inspection during operations
+
+NFR-USE-006: Confirmation Dialogs
+--------------------------------------------------------------------------------
+The system SHALL require confirmation for destructive actions:
+- Status changes
+- Interview cancellation
+- User deactivation
+Verification: Confirmation dialog testing
+
+NFR-USE-007: Notification Feedback
+--------------------------------------------------------------------------------
+The system SHALL provide visual feedback for:
+- Successful operations (success toast)
+- Failed operations (error toast)
+- Validation errors (field highlighting)
+Verification: UI feedback testing
+
+NFR-USE-008: Accessibility
+--------------------------------------------------------------------------------
+The system SHOULD follow WCAG 2.1 Level A guidelines:
+- Proper heading hierarchy
+- Alt text for images
+- Keyboard navigability
+Verification: Accessibility audit
+
+================================================================================
+4.5 SCALABILITY REQUIREMENTS
+================================================================================
+
+NFR-SCA-001: Horizontal Scalability
+--------------------------------------------------------------------------------
+The system architecture SHOULD support horizontal scaling through:
+- Stateless session handling (future enhancement)
+- Database connection pooling
+- Load balancer compatibility
+Verification: Architecture review
+
+NFR-SCA-002: Database Scalability
+--------------------------------------------------------------------------------
+The system SHALL use indexed queries for frequently accessed data.
+Measurement: Query execution plans
+Verification: Database index analysis
+
+NFR-SCA-003: File Storage Scalability
+--------------------------------------------------------------------------------
+The system stores files in database BLOBs. For large-scale deployments, 
+migration to external file storage (S3, filesystem) SHOULD be considered.
+Verification: Storage capacity planning
+
+NFR-SCA-004: Connection Pool Sizing
+--------------------------------------------------------------------------------
+The system SHALL use HikariCP connection pool with configurable pool size:
+- Default: 10 connections
+- Maximum: Configurable per deployment
+Verification: Pool configuration review
+
+================================================================================
+4.6 MAINTAINABILITY REQUIREMENTS
+================================================================================
+
+NFR-MNT-001: Code Organization
+--------------------------------------------------------------------------------
+The system SHALL follow layered architecture:
+- Controller layer (presentation)
+- Service layer (business logic)
+- Repository layer (data access)
+- Entity layer (domain model)
+Verification: Code structure review
+
+NFR-MNT-002: Coding Standards
+--------------------------------------------------------------------------------
+The system SHALL follow Java coding conventions:
+- CamelCase for class/method names
+- Consistent indentation
+- Meaningful variable names
+Verification: Code review
+
+NFR-MNT-003: Unit Testing
+--------------------------------------------------------------------------------
+The system SHALL include unit tests for:
+- Service layer methods
+- Controller endpoints
+- Repository queries
+Measurement: Test coverage (current: 35 test classes)
+Verification: Test execution
+
+NFR-MNT-004: Configuration Externalization
+--------------------------------------------------------------------------------
+The system SHALL externalize configuration to application.properties:
+- Database connection
+- Email settings
+- Feature flags
+Verification: Configuration file review
+
+NFR-MNT-005: Logging
+--------------------------------------------------------------------------------
+The system SHALL implement logging for:
+- Security events (authentication attempts)
+- Error conditions
+- Critical business operations
+Level: DEBUG in development, INFO in production
+Verification: Log output review
+
+NFR-MNT-006: Documentation
+--------------------------------------------------------------------------------
+The system SHALL include:
+- README with setup instructions
+- This SRS document
+- JavaDoc for complex methods
+Verification: Documentation completeness check
+
+================================================================================
+4.7 PORTABILITY REQUIREMENTS
+================================================================================
+
+NFR-POR-001: Platform Independence
+--------------------------------------------------------------------------------
+The system SHALL run on any platform with Java 17 JRE:
+- Windows Server 2019+
+- Ubuntu 20.04+
+- CentOS 8+
+Verification: Multi-platform deployment testing
+
+NFR-POR-002: Database Portability
+--------------------------------------------------------------------------------
+The system uses JPA/Hibernate, enabling theoretical support for other databases.
+Currently designed and tested for MySQL only.
+Verification: JPA query compatibility review
+
+NFR-POR-003: Container Support
+--------------------------------------------------------------------------------
+The system SHOULD be deployable as a Docker container (future enhancement).
+Verification: Docker build and run testing
+
+================================================================================
+4.8 INTEROPERABILITY REQUIREMENTS
+================================================================================
+
+NFR-INT-001: Email Protocol Support
+--------------------------------------------------------------------------------
+The system SHALL support standard email protocols:
+- SMTP with TLS for sending (port 587)
+- IMAP with SSL for receiving (port 993)
+Verification: Email protocol testing
+
+NFR-INT-002: JSON API
+--------------------------------------------------------------------------------
+The system SHALL return JSON responses for AJAX endpoints.
+Content-Type: application/json
+Verification: API response inspection
+
+NFR-INT-003: DataTables Protocol
+--------------------------------------------------------------------------------
+The system SHALL comply with DataTables server-side processing protocol:
+- Input: draw, start, length, search, order parameters
+- Output: draw, recordsTotal, recordsFiltered, data structure
+Verification: DataTables integration testing
+
+================================================================================
+4.9 DATA REQUIREMENTS
+================================================================================
+
+NFR-DATA-001: Data Retention
+--------------------------------------------------------------------------------
+The system SHALL retain all data indefinitely unless explicitly deleted.
+Verification: Data persistence verification
+
+NFR-DATA-002: Backup Compatibility
+--------------------------------------------------------------------------------
+The system data SHALL be exportable via standard MySQL dump tools.
+Verification: Backup and restore testing
+
+NFR-DATA-003: Data Consistency
+--------------------------------------------------------------------------------
+The system SHALL enforce database-level constraints:
+- Primary keys on all tables
+- Foreign keys for relationships
+- Not null constraints for required fields
+Verification: Database schema review
+
+NFR-DATA-004: File Size Limits
+--------------------------------------------------------------------------------
+The system SHALL enforce:
+- Maximum file upload: 16MB per file
+- Maximum request size: 16MB total
+Verification: Large file upload testing
+
+NFR-DATA-005: Character Encoding
+--------------------------------------------------------------------------------
+The system SHALL use UTF-8 encoding for:
+- Database storage
+- HTTP responses
+- File handling
+Verification: Character encoding testing
+
+================================================================================
+                 END OF SECTION 4 - NON-FUNCTIONAL REQUIREMENTS
+================================================================================

@@ -1,0 +1,25 @@
+Weekly Progress Report
+Name: Saloni
+Role: Frontend Developer
+Week: 9 (Mar 19 - Apr 02)
+
+Work Done:
+
+1. Dark Mode:
+   - This was fun. implemented Dark/Light theme toggle.
+   - Used CSS Variables (`--main-bg`, `--text-color`).
+   - Saved the user's choice in LocalStorage so it remembers next time.
+
+2. Bulk Action UI:
+   - Added checkboxes to the first column of the Candidate List.
+   - When you select rows, a "Bulk Toolbar" slides down at the top.
+   - Designed a "Confirm Action" modal before executing bulk changes.
+
+3. Testing UI:
+   - Tested the app on my phone. Fixed where the sidebar was overlapping the content.
+   - Improved the "Match Score" display (Color coded: Green for high score).
+
+Next Week:
+- Final Polish.
+- User Manual.
+- Presentation Demo setup.

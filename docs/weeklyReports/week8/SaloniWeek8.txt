@@ -1,0 +1,27 @@
+Weekly Progress Report
+Name: Saloni
+Role: Frontend Developer
+Week: 8 (Mar 11 - Mar 18)
+
+Work Done:
+
+1. Dashboard Visualization:
+   - Integrated `Chart.js` library.
+   - Created a Bar Chart for "Department Wise Openings".
+   - Created a Donut Chart for "Application Status" (how many Rejected vs Selected).
+   - It looks really professional now.
+
+2. Reports UI:
+   - Designed the "Reports Center" page.
+   - Added a Date Range picker so HR can download reports for a specific month.
+   - Added loading spinners while the PDF is being generated.
+
+3. Polish:
+   - Designed 404 (Not Found) and 500 (Server Error) pages.
+   - Went through all pages to fix alignment issues.
+   - Standardized the button colors (Blue for Primary, Grey for secondary).
+
+Next Week:
+- Dark Mode implementation.
+- Bulk Actions UI.
+- User Manual writing.

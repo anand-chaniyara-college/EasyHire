@@ -1,0 +1,435 @@
+================================================================================
+         SOFTWARE REQUIREMENTS SPECIFICATION (SRS) - SECTION 6
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                    DATA MODEL AND REQUIREMENTS
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+6. DATA REQUIREMENTS
+================================================================================
+
+6.1 LOGICAL DATA MODEL
+================================================================================
+
+6.1.1 Entity Relationship Overview
+--------------------------------------------------------------------------------
+
+                            ENTITY RELATIONSHIP DIAGRAM
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │                                                                         │
+    │   ┌────────────┐                           ┌────────────┐              │
+    │   │   User     │ ◄──────────────────────── │ PasswordReset│            │
+    │   │            │  1                    N   │            │              │
+    │   └──────┬─────┘                           └────────────┘              │
+    │          │                                                              │
+    │          │ N                                                            │
+    │          │                                                              │
+    │   ┌──────▼─────┐                           ┌────────────┐              │
+    │   │ Department │ ◄──────────────────────── │   User     │              │
+    │   │            │  1                    N   │  (repeat)  │              │
+    │   └──────┬─────┘                           └────────────┘              │
+    │          │                                                              │
+    │          │ 1                                                            │
+    │          ▼                                                              │
+    │   ┌────────────┐      1         N    ┌────────────┐                    │
+    │   │  Vacancy   │ ◄─────────────────► │ Candidate  │                    │
+    │   │            │                      │            │                    │
+    │   └──────┬─────┘                      └──────┬─────┘                    │
+    │          │                                   │                          │
+    │          │ N         1                       │ N                        │
+    │          │                                   │                          │
+    │   ┌──────▼─────┐                     ┌──────▼─────────┐                │
+    │   │  Position  │                     │ CandidateStatus │               │
+    │   │            │                     │                 │                │
+    │   └────────────┘                     └────────┬────────┘                │
+    │                                               │                         │
+    │                                               │ N                       │
+    │                                               │                         │
+    │                                        ┌──────▼─────┐                   │
+    │                                        │   Status   │                   │
+    │                                        │            │                   │
+    │                                        └────────────┘                   │
+    │                                                                         │
+    │   ┌────────────┐      N         N    ┌────────────────┐                │
+    │   │ Interview  │ ◄─────────────────► │  Candidate     │                │
+    │   │            │                      │  Interview     │                │
+    │   └──────┬─────┘                      └────────┬───────┘                │
+    │          │                                     │                        │
+    │          │ N                                   │ N                      │
+    │          │                                     │                        │
+    │   ┌──────▼─────┐                       ┌───────▼───────┐               │
+    │   │ interview  │                       │    Reviews    │               │
+    │   │   _user    │                       │               │               │
+    │   └────────────┘                       └───────────────┘               │
+    │                                                                         │
+    │   ┌────────────┐                       ┌────────────────┐              │
+    │   │MailHistory │ ◄────►  User          │  Notification  │ ◄───► User  │
+    │   │            │ ◄────►  Candidate     │                │ ◄───► Vac.  │
+    │   └────────────┘                       └────────────────┘              │
+    │                                                                         │
+    └─────────────────────────────────────────────────────────────────────────┘
+
+6.2 ENTITY SPECIFICATIONS
+================================================================================
+
+6.2.1 User Entity
+--------------------------------------------------------------------------------
+
+Table Name: user
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ INT         │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ name               │ VARCHAR(50) │ NO       │                               │
+│ email              │ VARCHAR(40) │ NO       │                               │
+│ password           │ VARCHAR(255)│ NO       │ BCrypt encrypted              │
+│ role               │ VARCHAR(30) │ NO       │ Enum-like string              │
+│ status             │ BOOLEAN     │ NO       │ true=active, false=inactive   │
+│ department_id      │ INT         │ YES      │ FOREIGN KEY -> department     │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Valid Roles: Default-Admin, Admin, Senior-HR, Junior-HR, Department-head, Interviewer
+
+Relationships:
+- ManyToOne: department_id -> Department
+- OneToMany: mailHistories -> MailHistory
+
+6.2.2 Department Entity
+--------------------------------------------------------------------------------
+
+Table Name: department
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ INT         │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ name               │ VARCHAR(100)│ NO       │                               │
+│ address            │ VARCHAR(255)│ NO       │                               │
+│ created_datetime   │ VARCHAR(20) │ NO       │ Format: yyyy-MM-dd HH:mm      │
+│ updated_datetime   │ VARCHAR(20) │ YES      │ Format: yyyy-MM-dd HH:mm      │
+│ created_user_id    │ INT         │ NO       │ User who created              │
+│ updated_user_id    │ INT         │ YES      │ User who last updated         │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- OneToMany: users -> User
+- OneToMany: vacancies -> Vacancy
+
+6.2.3 Position Entity
+--------------------------------------------------------------------------------
+
+Table Name: position
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ INT         │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ name               │ VARCHAR(100)│ NO       │                               │
+│ created_datetime   │ VARCHAR(20) │ NO       │                               │
+│ updated_datetime   │ VARCHAR(20) │ YES      │                               │
+│ created_user_id    │ INT         │ NO       │                               │
+│ updated_user_id    │ INT         │ YES      │                               │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- OneToMany: vacancies -> Vacancy
+
+6.2.4 Vacancy Entity
+--------------------------------------------------------------------------------
+
+Table Name: vacancy
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ requirement        │ LONGTEXT    │ NO       │                               │
+│ responsibility     │ LONGTEXT    │ NO       │                               │
+│ description        │ LONGTEXT    │ NO       │                               │
+│ preference         │ LONGTEXT    │ YES      │                               │
+│ startWorkingDay    │ VARCHAR(70) │ NO       │                               │
+│ endWorkingDay      │ VARCHAR(70) │ NO       │                               │
+│ startWorkingHour   │ VARCHAR(50) │ NO       │                               │
+│ endWorkingHour     │ VARCHAR(50) │ NO       │                               │
+│ salary             │ VARCHAR(50) │ NO       │                               │
+│ count              │ INT         │ NO       │ Number of positions           │
+│ type               │ VARCHAR(50) │ NO       │ Full-time, Part-time          │
+│ reopen_status      │ BOOLEAN     │ YES      │                               │
+│ reopened           │ BOOLEAN     │ YES      │                               │
+│ created_date       │ DATE        │ NO       │                               │
+│ created_time       │ TIME        │ NO       │                               │
+│ updated_date       │ DATE        │ YES      │                               │
+│ updated_time       │ TIME        │ YES      │                               │
+│ created_user_id    │ INT         │ NO       │                               │
+│ updated_user_id    │ INT         │ YES      │                               │
+│ due_date           │ DATE        │ NO       │                               │
+│ active             │ BOOLEAN     │ NO       │ true=open, false=closed       │
+│ urgent             │ BOOLEAN     │ NO       │                               │
+│ reopen_date        │ DATE        │ YES      │                               │
+│ reopen_time        │ TIME        │ YES      │                               │
+│ department_id      │ INT         │ NO       │ FOREIGN KEY -> department     │
+│ position_id        │ INT         │ NO       │ FOREIGN KEY -> position       │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- ManyToOne: department_id -> Department
+- ManyToOne: position_id -> Position
+- OneToMany: candidates -> Candidate
+- OneToMany: notification -> Notification
+
+6.2.5 Candidate Entity
+--------------------------------------------------------------------------------
+
+Table Name: candidate
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ name               │ VARCHAR(255)│ NO       │                               │
+│ dob                │ VARCHAR(255)│ NO       │ Date of birth as string       │
+│ gender             │ BOOLEAN     │ NO       │ true=Male, false=Female       │
+│ phone              │ VARCHAR(255)│ NO       │                               │
+│ education          │ VARCHAR(255)│ NO       │                               │
+│ email              │ VARCHAR(255)│ NO       │                               │
+│ tech_skill         │ VARCHAR(255)│ NO       │ Technical skills              │
+│ language_skill     │ VARCHAR(255)│ NO       │ Language proficiency          │
+│ main_tech          │ VARCHAR(255)│ NO       │ Primary technology            │
+│ exp                │ VARCHAR(255)│ NO       │ Work experience               │
+│ level              │ VARCHAR(255)│ NO       │ Seniority level               │
+│ expected_salary    │ VARCHAR(255)│ NO       │                               │
+│ submit_date        │ DATE        │ NO       │                               │
+│ submit_time        │ TIME        │ NO       │                               │
+│ file               │ LONGBLOB    │ YES      │ CV file binary                │
+│ filetype           │ VARCHAR(255)│ NO       │ MIME type                     │
+│ is_employ          │ BOOLEAN     │ NO       │ Hired status                  │
+│ ai_match_score     │ INT         │ YES      │ 0-100 match percentage        │
+│ employed_user_id   │ INT         │ YES      │ User who hired                │
+│ is_mail_sent       │ BOOLEAN     │ NO       │ Email sent flag               │
+│ is_recall          │ BOOLEAN     │ YES      │ Recalled candidate flag       │
+│ vacancy_id         │ BIGINT      │ NO       │ FOREIGN KEY -> vacancy        │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- ManyToOne: vacancy_id -> Vacancy
+- OneToMany: candidateStatusList -> CandidateStatus
+- OneToMany: candidateInterviews -> CandidateInterview
+- OneToMany: mailHistories -> MailHistory
+
+6.2.6 Interview Entity
+--------------------------------------------------------------------------------
+
+Table Name: interview
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ start_date         │ DATE        │ NO       │                               │
+│ end_date           │ DATE        │ YES      │                               │
+│ start_time         │ VARCHAR(20) │ NO       │                               │
+│ end_time           │ VARCHAR(20) │ NO       │                               │
+│ type               │ VARCHAR(20) │ NO       │ Online, Offline               │
+│ location           │ VARCHAR(255)│ YES      │ Required if Offline           │
+│ stage              │ INT         │ NO       │ 1, 2, 3... interview stage    │
+│ status             │ BOOLEAN     │ NO       │ true=active, false=canceled   │
+│ created_datetime   │ VARCHAR(20) │ NO       │                               │
+│ updated_datetime   │ VARCHAR(20) │ YES      │                               │
+│ created_user_id    │ INT         │ NO       │                               │
+│ updated_user_id    │ INT         │ YES      │                               │
+│ canceled_datetime  │ VARCHAR(20) │ YES      │                               │
+│ canceled_user_id   │ INT         │ YES      │                               │
+│ vacany_id          │ BIGINT      │ NO       │ FOREIGN KEY -> vacancy        │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- ManyToOne: vacany_id -> Vacancy
+- ManyToMany: users -> User (via interview_user join table)
+- OneToMany: candidateInterviews -> CandidateInterview
+
+Join Table: interview_user
+┌────────────────────┬─────────────┬───────────────────────────────────────────┐
+│ COLUMN             │ TYPE        │ CONSTRAINTS                               │
+├────────────────────┼─────────────┼───────────────────────────────────────────┤
+│ interview_id       │ BIGINT      │ FOREIGN KEY -> interview                  │
+│ user_id            │ INT         │ FOREIGN KEY -> user                       │
+└────────────────────┴─────────────┴───────────────────────────────────────────┘
+
+6.2.7 CandidateInterview Entity
+--------------------------------------------------------------------------------
+
+Table Name: candidate_interview
+
+┌────────────────────────────────┬─────────────┬──────────┬───────────────────┐
+│ COLUMN                         │ TYPE        │ NULLABLE │ CONSTRAINTS       │
+├────────────────────────────────┼─────────────┼──────────┼───────────────────┤
+│ id                             │ BIGINT      │ NO       │ PK, AUTO_INCREMENT│
+│ status                         │ VARCHAR(20) │ NO       │ Pending/Passed/   │
+│                                │             │          │ Rejected          │
+│ interview_date                 │ VARCHAR(15) │ YES      │                   │
+│ interview_status_changed_user_id│ INT        │ NO       │                   │
+│ interview_id                   │ BIGINT      │ NO       │ FK -> interview   │
+│ candidate_id                   │ BIGINT      │ NO       │ FK -> candidate   │
+└────────────────────────────────┴─────────────┴──────────┴───────────────────┘
+
+Relationships:
+- ManyToOne: interview_id -> Interview
+- ManyToOne: candidate_id -> Candidate
+- OneToMany: reviews -> Reviews
+
+6.2.8 CandidateStatus Entity
+--------------------------------------------------------------------------------
+
+Table Name: candidate_status
+
+┌────────────────────────┬─────────────┬──────────┬────────────────────────────┐
+│ COLUMN                 │ TYPE        │ NULLABLE │ CONSTRAINTS                │
+├────────────────────────┼─────────────┼──────────┼────────────────────────────┤
+│ id                     │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT│
+│ date                   │ VARCHAR(20) │ NO       │ Status change date         │
+│ change_status_user_id  │ INT         │ NO       │ User who changed status    │
+│ status_id              │ INT         │ NO       │ FOREIGN KEY -> status      │
+│ candidate_id           │ BIGINT      │ NO       │ FOREIGN KEY -> candidate   │
+└────────────────────────┴─────────────┴──────────┴────────────────────────────┘
+
+Relationships:
+- ManyToOne: status_id -> Status
+- ManyToOne: candidate_id -> Candidate
+
+6.2.9 Status Entity
+--------------------------------------------------------------------------------
+
+Table Name: status
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ INT         │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ name               │ VARCHAR(255)│ NO       │ Status name                   │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Default Values (seeded on startup):
+- 1: "Received"
+- 2: "Viewed"
+- 3: "Considering"
+
+Relationships:
+- OneToMany: candidateStatusList -> CandidateStatus
+
+6.2.10 Reviews Entity
+--------------------------------------------------------------------------------
+
+Table Name: reviews
+
+┌────────────────────────┬─────────────┬──────────┬────────────────────────────┐
+│ COLUMN                 │ TYPE        │ NULLABLE │ CONSTRAINTS                │
+├────────────────────────┼─────────────┼──────────┼────────────────────────────┤
+│ id                     │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT│
+│ review                 │ VARCHAR(300)│ NO       │ Review text                │
+│ review_by              │ INT         │ NO       │ User who wrote review      │
+│ reviewed_datetime      │ VARCHAR(20) │ NO       │                            │
+│ candidate_interview_id │ BIGINT      │ NO       │ FK -> candidate_interview  │
+└────────────────────────┴─────────────┴──────────┴────────────────────────────┘
+
+Relationships:
+- ManyToOne: candidate_interview_id -> CandidateInterview
+
+6.2.11 MailHistory Entity
+--------------------------------------------------------------------------------
+
+Table Name: mail_history
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ mail_subject       │ VARCHAR(255)│ NO       │                               │
+│ sent_datetime      │ VARCHAR(20) │ NO       │                               │
+│ user_id            │ INT         │ NO       │ FOREIGN KEY -> user           │
+│ candidate_id       │ BIGINT      │ NO       │ FOREIGN KEY -> candidate      │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- ManyToOne: user_id -> User
+- ManyToOne: candidate_id -> Candidate
+
+6.2.12 Notification Entity
+--------------------------------------------------------------------------------
+
+Table Name: notifications
+
+┌────────────────────┬───────────────┬──────────┬─────────────────────────────┐
+│ COLUMN             │ TYPE          │ NULLABLE │ CONSTRAINTS                 │
+├────────────────────┼───────────────┼──────────┼─────────────────────────────┤
+│ id                 │ BIGINT        │ NO       │ PRIMARY KEY, AUTO_INCREMENT │
+│ message            │ VARCHAR(255)  │ YES      │                             │
+│ createdAt          │ DATETIME      │ YES      │ LocalDateTime               │
+│ status             │ BOOLEAN       │ YES      │ true=read, false=unread     │
+│ vacancy_id         │ BIGINT        │ YES      │ FOREIGN KEY -> vacancy      │
+└────────────────────┴───────────────┴──────────┴─────────────────────────────┘
+
+Join Table: notification_user
+┌────────────────────┬─────────────┬───────────────────────────────────────────┐
+│ COLUMN             │ TYPE        │ CONSTRAINTS                               │
+├────────────────────┼─────────────┼───────────────────────────────────────────┤
+│ notification_id    │ BIGINT      │ FOREIGN KEY -> notifications              │
+│ user_id            │ INT         │ FOREIGN KEY -> user                       │
+└────────────────────┴─────────────┴───────────────────────────────────────────┘
+
+Relationships:
+- ManyToMany: user -> User (via notification_user join table)
+- ManyToOne: vacancy_id -> Vacancy
+
+6.2.13 PasswordReset Entity
+--------------------------------------------------------------------------------
+
+Table Name: password_reset
+
+┌────────────────────┬─────────────┬──────────┬───────────────────────────────┐
+│ COLUMN             │ TYPE        │ NULLABLE │ CONSTRAINTS                   │
+├────────────────────┼─────────────┼──────────┼───────────────────────────────┤
+│ id                 │ BIGINT      │ NO       │ PRIMARY KEY, AUTO_INCREMENT   │
+│ resetToken         │ VARCHAR(10) │ YES      │ Unique token                  │
+│ stored_timestamp   │ BIGINT      │ NO       │ Expiration time in millis     │
+│ status             │ BOOLEAN     │ NO       │ true=used, false=valid        │
+│ user_id            │ INT         │ NO       │ FOREIGN KEY -> user           │
+└────────────────────┴─────────────┴──────────┴───────────────────────────────┘
+
+Relationships:
+- ManyToOne: user_id -> User
+
+6.3 DATA DICTIONARY
+================================================================================
+
+┌───────────────────────────┬───────────────────────────────────────────────────┐
+│ TERM                      │ DEFINITION                                        │
+├───────────────────────────┼───────────────────────────────────────────────────┤
+│ vacancy_id                │ Unique identifier for a job vacancy              │
+│ candidate_id              │ Unique identifier for a job applicant            │
+│ interview_id              │ Unique identifier for an interview session       │
+│ department_id             │ Unique identifier for an organizational unit     │
+│ position_id               │ Unique identifier for a job title                │
+│ user_id                   │ Unique identifier for a system user              │
+│ status_id                 │ Identifier for selection status                  │
+│ stage                     │ Interview stage number (1, 2, 3...)              │
+│ selection_status          │ Candidate progress: Received/Viewed/Considering  │
+│ interview_status          │ Interview result: Pending/Passed/Rejected        │
+│ active                    │ Vacancy open/closed flag                         │
+│ urgent                    │ Priority flag for vacancy                        │
+│ is_employ                 │ Candidate hired flag                             │
+│ is_recall                 │ Candidate brought back for new vacancy           │
+│ is_mail_sent              │ Communication sent to candidate                  │
+└───────────────────────────┴───────────────────────────────────────────────────┘
+
+================================================================================
+                      END OF SECTION 6 - DATA MODEL
+================================================================================

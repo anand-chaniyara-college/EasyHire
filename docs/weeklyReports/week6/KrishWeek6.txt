@@ -1,0 +1,26 @@
+Weekly Progress Report
+Name: Krish
+Role: DevOps Engineer
+Week: 6 (Feb 6 - Feb 24)
+
+Tasks Accomplished:
+
+1. File Storage Infrastructure:
+   - Configured a local directory outside the project folder to store uploaded CVs (for security).
+   - Configured the resource handler in Spring MVC (`WebMvcConfig`) so that only logged-in HRs can access these files via a specific URL.
+   - Tested uploading a 10MB file to check if the limit works (It rejected it as expected).
+
+2. Database Optimization:
+   - Noticed the search query was slow when I inserted 1000 dummy records.
+   - Analyzed the query and added an Index on `skills` and `status` columns in the database.
+   - Query time dropped from 200ms to 15ms.
+
+3. Email Server Setup:
+   - Configured the `application.properties` with the Gmail SMTP settings.
+   - Created a temporary 'App Password' in Google Account for testing.
+   - Wrote an Async service, so sending an email happens in the background and doesn't freeze the UI.
+
+Next Week:
+- Real-time notifications (WebSockets).
+- HTML Templates for Database.
+- Logging and Notification storage.

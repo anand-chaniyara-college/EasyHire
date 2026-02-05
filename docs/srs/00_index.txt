@@ -1,0 +1,129 @@
+================================================================================
+              SOFTWARE REQUIREMENTS SPECIFICATION (SRS)
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                           MASTER INDEX
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        IEEE 830-1998 Compliant
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+TABLE OF CONTENTS
+================================================================================
+
+This SRS is organized into multiple files for ease of navigation and 
+maintenance. Each section is detailed in its respective file.
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  SECTION │ FILE                    │ CONTENT                             │
+├───────────────────────────────────────────────────────────────────────────┤
+│  1       │ 01_introduction.txt     │ INTRODUCTION                        │
+│          │                         │ - Purpose                           │
+│          │                         │ - Scope                             │
+│          │                         │ - Definitions & Acronyms            │
+│          │                         │ - References                        │
+│          │                         │ - Document Overview                 │
+├───────────────────────────────────────────────────────────────────────────┤
+│  2       │ 02_description.txt      │ OVERALL DESCRIPTION                 │
+│          │                         │ - Product Perspective               │
+│          │                         │ - Product Functions                 │
+│          │                         │ - User Classes                      │
+│          │                         │ - Operating Environment             │
+│          │                         │ - Constraints                       │
+│          │                         │ - Assumptions & Dependencies        │
+├───────────────────────────────────────────────────────────────────────────┤
+│  3       │ 03_requirements.txt     │ FUNCTIONAL REQUIREMENTS             │
+│          │                         │ - Authentication (FR-AUTH-001-011)  │
+│          │                         │ - User Management (FR-USER-001-009) │
+│          │                         │ - Department (FR-DEPT-001-005)      │
+│          │                         │ - Position (FR-POS-001-005)         │
+│          │                         │ - Vacancy (FR-VAC-001-009)          │
+│          │                         │ - Candidate (FR-CAN-001-014)        │
+│          │                         │ - Interview (FR-INT-001-010)        │
+│          │                         │ - Review (FR-REV-001-003)           │
+│          │                         │ - Email (FR-EMAIL-001-009)          │
+│          │                         │ - Notification (FR-NOTI-001-005)    │
+│          │                         │ - Dashboard & Reports               │
+├───────────────────────────────────────────────────────────────────────────┤
+│  4       │ 04_nonfunctional.txt    │ NON-FUNCTIONAL REQUIREMENTS         │
+│          │                         │ - Performance (NFR-PERF-001-008)    │
+│          │                         │ - Security (NFR-SEC-001-010)        │
+│          │                         │ - Reliability (NFR-REL-001-006)     │
+│          │                         │ - Usability (NFR-USE-001-008)       │
+│          │                         │ - Scalability (NFR-SCA-001-004)     │
+│          │                         │ - Maintainability (NFR-MNT-001-006) │
+│          │                         │ - Portability (NFR-POR-001-003)     │
+│          │                         │ - Interoperability (NFR-INT-001-003)│
+│          │                         │ - Data Requirements (NFR-DATA-001-005)│
+├───────────────────────────────────────────────────────────────────────────┤
+│  5       │ 05_interfaces.txt       │ EXTERNAL INTERFACE REQUIREMENTS     │
+│          │                         │ - User Interfaces                   │
+│          │                         │ - Hardware Interfaces               │
+│          │                         │ - Software Interfaces               │
+│          │                         │ - Communication Interfaces          │
+├───────────────────────────────────────────────────────────────────────────┤
+│  6       │ 06_data_model.txt       │ DATA REQUIREMENTS                   │
+│          │                         │ - Entity Relationship Diagram       │
+│          │                         │ - Entity Specifications (13)        │
+│          │                         │ - Data Dictionary                   │
+├───────────────────────────────────────────────────────────────────────────┤
+│  7       │ 07_appendix.txt         │ APPENDIX                            │
+│          │                         │ - Risk Analysis                     │
+│          │                         │ - Traceability Matrix               │
+│          │                         │ - Test Case Coverage                │
+│          │                         │ - Glossary                          │
+│          │                         │ - Revision History                  │
+└───────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+
+QUICK REFERENCE
+================================================================================
+
+SYSTEM OVERVIEW:
+- Application Type: EasyHire EasyHire
+- Framework: Spring Boot 2.7.13 with Java 17
+- Database: MySQL 8.x with JPA/Hibernate
+- Security: Spring Security 5 with BCrypt
+- Template Engine: Thymeleaf
+- Real-time: WebSocket with STOMP
+
+USER ROLES (6):
+1. Default-Admin - Super administrator
+2. Admin - System administrator
+3. Senior-HR - Senior HR operations
+4. Junior-HR - Basic HR operations
+5. Department-Head - Department management
+6. Interviewer - Interview participation
+
+CORE ENTITIES (13):
+1. User          7. CandidateInterview
+2. Department    8. CandidateStatus
+3. Position      9. Status
+4. Vacancy      10. Reviews
+5. Candidate    11. MailHistory
+6. Interview    12. Notification
+                13. PasswordReset
+
+FUNCTIONAL REQUIREMENTS COUNT: 80+
+NON-FUNCTIONAL REQUIREMENTS COUNT: 50+
+
+================================================================================
+
+RELATED DOCUMENTS
+================================================================================
+
+- Abstract: ../abstract.txt
+- Development Plan: ../development_plan.txt
+- Project README: ../README.md
+- License: ../LICENSE
+
+================================================================================
+                            END OF INDEX
+================================================================================

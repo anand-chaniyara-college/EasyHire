@@ -1,0 +1,770 @@
+================================================================================
+         SOFTWARE REQUIREMENTS SPECIFICATION (SRS) - SECTION 3
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                      FUNCTIONAL REQUIREMENTS
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+3. SPECIFIC REQUIREMENTS - FUNCTIONAL
+================================================================================
+
+This section provides detailed, numbered functional requirements organized by 
+feature area. Each requirement follows the format:
+
+    [ID]: Requirement statement
+    Priority: High/Medium/Low
+    Verification: Test method
+
+================================================================================
+3.1 AUTHENTICATION AND AUTHORIZATION
+================================================================================
+
+FR-AUTH-001: System Login
+--------------------------------------------------------------------------------
+The system SHALL allow registered users to log in using email and password.
+Priority: High
+Verification: Test login with valid/invalid credentials
+
+FR-AUTH-002: Password Encryption
+--------------------------------------------------------------------------------
+The system SHALL store passwords using BCrypt encryption with minimum 10 rounds.
+Priority: High
+Verification: Verify database password column is encrypted
+
+FR-AUTH-003: Remember Me
+--------------------------------------------------------------------------------
+The system SHALL provide a "Remember Me" option that maintains session for 
+30 days when selected.
+Priority: Medium
+Verification: Test session persistence after browser close
+
+FR-AUTH-004: Logout
+--------------------------------------------------------------------------------
+The system SHALL invalidate user session upon logout and redirect to login page.
+Priority: High
+Verification: Verify session invalidation on logout
+
+FR-AUTH-005: Password Reset - Request
+--------------------------------------------------------------------------------
+The system SHALL allow users to request password reset via registered email.
+Priority: High
+Verification: Test password reset email delivery
+
+FR-AUTH-006: Password Reset - Token
+--------------------------------------------------------------------------------
+The system SHALL generate a unique 10-character reset token with expiration.
+Priority: High
+Verification: Verify token generation and expiration
+
+FR-AUTH-007: Password Reset - Validation
+--------------------------------------------------------------------------------
+The system SHALL validate reset token before allowing password change.
+Priority: High
+Verification: Test with valid/invalid/expired tokens
+
+FR-AUTH-008: Default Admin Creation
+--------------------------------------------------------------------------------
+The system SHALL automatically create a Default-Admin user on first startup 
+if none exists with credentials: defaultAdmin@gmail.com / default-admin
+Priority: High
+Verification: Verify auto-creation on fresh database
+
+FR-AUTH-009: Role-Based Authorization
+--------------------------------------------------------------------------------
+The system SHALL enforce role-based access control for all protected URLs:
+- /hr/* : Junior-HR, Senior-HR, Admin, Default-Admin
+- /senior-hr/* : Senior-HR, Admin, Default-Admin
+- /admin/* : Admin, Default-Admin
+- /department/* : Department-head, Interviewer
+- /department-head/* : Department-head, Admin, Default-Admin
+- /interviewer/* : Interviewer, Admin, Department-head, Default-Admin
+Priority: High
+Verification: Test URL access with different roles
+
+FR-AUTH-010: 403 Access Denied Page
+--------------------------------------------------------------------------------
+The system SHALL display a 403 error page when user attempts unauthorized access.
+Priority: Medium
+Verification: Test access to restricted URLs
+
+FR-AUTH-011: 404 Not Found Page
+--------------------------------------------------------------------------------
+The system SHALL display a 404 error page for non-existent resources.
+Priority: Medium
+Verification: Test access to invalid URLs
+
+================================================================================
+3.2 USER MANAGEMENT
+================================================================================
+
+FR-USER-001: Add User
+--------------------------------------------------------------------------------
+The system SHALL allow Admin/Default-Admin to create new users with:
+- Name (required, max 50 chars)
+- Email (required, max 40 chars, unique)
+- Role (required, one of 6 roles)
+- Department (optional, required for Interviewer/Dept-Head)
+Priority: High
+Verification: Test user creation with all fields
+
+FR-USER-002: Auto-Generated Password
+--------------------------------------------------------------------------------
+The system SHALL generate a random 6-character alphanumeric password for 
+new users and send via email.
+Priority: High
+Verification: Verify password generation and email delivery
+
+FR-USER-003: View User List
+--------------------------------------------------------------------------------
+The system SHALL display a paginated list of users with DataTables integration.
+Priority: High
+Verification: Test pagination, sorting, search
+
+FR-USER-004: Update User
+--------------------------------------------------------------------------------
+The system SHALL allow Admin to update user name, email, role, and department.
+Priority: Medium
+Verification: Test user update functionality
+
+FR-USER-005: Change User Status
+--------------------------------------------------------------------------------
+The system SHALL allow Admin to activate/deactivate users.
+When deactivated, all sessions for that user SHALL be invalidated.
+Priority: High
+Verification: Test status change and session invalidation
+
+FR-USER-006: Resend Password Email
+--------------------------------------------------------------------------------
+The system SHALL allow Admin to resend password email with new random password.
+Priority: Medium
+Verification: Test email resend functionality
+
+FR-USER-007: Email Uniqueness Check
+--------------------------------------------------------------------------------
+The system SHALL validate email uniqueness before user creation/update.
+Priority: High
+Verification: Test duplicate email rejection
+
+FR-USER-008: Email Format Validation
+--------------------------------------------------------------------------------
+The system SHALL validate email format using standard RFC 5322 pattern.
+Priority: Medium
+Verification: Test with valid/invalid email formats
+
+FR-USER-009: Role Promotion
+--------------------------------------------------------------------------------
+The system SHALL allow Admin to promote a user to a higher role (permitUser).
+Priority: Medium
+Verification: Test role change functionality
+
+================================================================================
+3.3 DEPARTMENT MANAGEMENT
+================================================================================
+
+FR-DEPT-001: Add Department
+--------------------------------------------------------------------------------
+The system SHALL allow Admin to create departments with:
+- Name (required, max 100 chars)
+- Address (required)
+Priority: High
+Verification: Test department creation
+
+FR-DEPT-002: View Department List
+--------------------------------------------------------------------------------
+The system SHALL display a paginated list of departments with DataTables.
+Priority: High
+Verification: Test pagination, sorting, search
+
+FR-DEPT-003: Update Department
+--------------------------------------------------------------------------------
+The system SHALL allow Admin to update department name and address.
+Priority: Medium
+Verification: Test department update
+
+FR-DEPT-004: Department Audit Trail
+--------------------------------------------------------------------------------
+The system SHALL record created/updated datetime and user ID for departments.
+Priority: Medium
+Verification: Verify audit fields in database
+
+FR-DEPT-005: View Department Users
+--------------------------------------------------------------------------------
+The system SHALL allow viewing users associated with a department.
+Priority: Medium
+Verification: Test user listing by department
+
+================================================================================
+3.4 POSITION MANAGEMENT
+================================================================================
+
+FR-POS-001: Add Position
+--------------------------------------------------------------------------------
+The system SHALL allow HR to create positions with:
+- Name (required, max 100 chars)
+Priority: High
+Verification: Test position creation
+
+FR-POS-002: View Position List
+--------------------------------------------------------------------------------
+The system SHALL display a paginated list of positions with DataTables.
+Priority: High
+Verification: Test pagination, sorting, search
+
+FR-POS-003: Update Position
+--------------------------------------------------------------------------------
+The system SHALL allow HR to update position name.
+Priority: Medium
+Verification: Test position update
+
+FR-POS-004: Position Audit Trail
+--------------------------------------------------------------------------------
+The system SHALL record created/updated datetime and user ID for positions.
+Priority: Medium
+Verification: Verify audit fields in database
+
+FR-POS-005: Position Usage Check
+--------------------------------------------------------------------------------
+The system SHALL prevent deletion of positions linked to vacancies.
+Priority: High
+Verification: Test deletion with linked vacancies
+
+================================================================================
+3.5 VACANCY MANAGEMENT
+================================================================================
+
+FR-VAC-001: Create Vacancy
+--------------------------------------------------------------------------------
+The system SHALL allow HR to create vacancies with:
+- Position (required, dropdown)
+- Department (required, dropdown)
+- Description (required, LONGTEXT)
+- Requirement (required, LONGTEXT)
+- Responsibility (required, LONGTEXT)
+- Preference (optional, LONGTEXT)
+- Working Days (required, start/end)
+- Working Hours (required, start/end)
+- Salary (required, max 50 chars)
+- Count (required, number of positions)
+- Type (required: Full-time/Part-time)
+- Due Date (required)
+- Urgent flag (boolean)
+Priority: High
+Verification: Test vacancy creation with all fields
+
+FR-VAC-002: View Vacancy List - Public
+--------------------------------------------------------------------------------
+The system SHALL display active vacancies to public users without login.
+Filtering by position and date SHALL be available.
+Priority: High
+Verification: Test public vacancy listing
+
+FR-VAC-003: View Vacancy List - Admin
+--------------------------------------------------------------------------------
+The system SHALL display all vacancies to HR with:
+- DataTables pagination
+- Status filter (Active/Inactive)
+- Date range filter
+Priority: High
+Verification: Test admin vacancy listing
+
+FR-VAC-004: View Vacancy Details
+--------------------------------------------------------------------------------
+The system SHALL display complete vacancy information including:
+- All vacancy fields
+- Associated department and position
+- Created/updated by user
+- Number of candidates applied
+Priority: High
+Verification: Test vacancy detail view
+
+FR-VAC-005: Update Vacancy
+--------------------------------------------------------------------------------
+The system SHALL allow HR to update vacancy details.
+System SHALL record updated datetime and user ID.
+Priority: High
+Verification: Test vacancy update
+
+FR-VAC-006: Close Vacancy
+--------------------------------------------------------------------------------
+The system SHALL allow HR to mark a vacancy as inactive.
+Inactive vacancies SHALL NOT appear in public listing.
+Priority: High
+Verification: Test vacancy deactivation
+
+FR-VAC-007: Reopen Vacancy
+--------------------------------------------------------------------------------
+The system SHALL allow HR to reopen a closed vacancy with:
+- New due date
+- Reopen datetime recorded
+- Reopened flag set to true
+Priority: Medium
+Verification: Test vacancy reopening
+
+FR-VAC-008: Vacancy Notification
+--------------------------------------------------------------------------------
+The system SHALL create notifications for relevant users when:
+- New vacancy is created
+- Vacancy is reopened
+Priority: Medium
+Verification: Test notification creation
+
+FR-VAC-009: Vacancy to Interview Link
+--------------------------------------------------------------------------------
+The system SHALL enforce that interviews can only be created for vacancies.
+Priority: High
+Verification: Test interview creation requires vacancy
+
+================================================================================
+3.6 CANDIDATE MANAGEMENT
+================================================================================
+
+FR-CAN-001: Job Application
+--------------------------------------------------------------------------------
+The system SHALL allow public users to apply for vacancies with:
+- Name (required)
+- Date of Birth (required)
+- Gender (required, boolean)
+- Phone (required)
+- Email (required)
+- Education (required)
+- Technical Skills (required)
+- Language Skills (required)
+- Main Technology (required)
+- Experience (required)
+- Level (required)
+- Expected Salary (required)
+- CV File (required, PDF/Word, max 16MB)
+Priority: High
+Verification: Test job application submission
+
+FR-CAN-002: Duplicate Application Check
+--------------------------------------------------------------------------------
+The system SHALL prevent duplicate applications:
+- Same email + Same vacancy = Blocked with message
+- Same email + Different vacancy = Allowed
+Priority: High
+Verification: Test duplicate detection
+
+FR-CAN-003: CV File Storage
+--------------------------------------------------------------------------------
+The system SHALL store CV files in database as LONGBLOB with file type.
+Priority: High
+Verification: Verify file storage and retrieval
+
+FR-CAN-004: View Candidate List
+--------------------------------------------------------------------------------
+The system SHALL display candidates with DataTables including:
+- Pagination, sorting, search
+- Selection status filter (Received/Viewed/Considering)
+- Interview status filter (Pending/Passed/Rejected)
+- Date range filter
+- Interview stage filter
+Priority: High
+Verification: Test candidate listing with filters
+
+FR-CAN-005: View Candidate by Vacancy
+--------------------------------------------------------------------------------
+The system SHALL display candidates filtered by specific vacancy.
+Priority: High
+Verification: Test vacancy-specific candidate listing
+
+FR-CAN-006: View Candidate Details
+--------------------------------------------------------------------------------
+The system SHALL display complete candidate profile via AJAX modal.
+Priority: High
+Verification: Test candidate detail popup
+
+FR-CAN-007: Change Selection Status
+--------------------------------------------------------------------------------
+The system SHALL allow Senior HR/Admin to change candidate selection status:
+- Received (default) → Viewed → Considering
+Priority: High
+Verification: Test status transitions
+
+FR-CAN-008: Selection Status Audit
+--------------------------------------------------------------------------------
+The system SHALL record: status, date, and user who changed selection status.
+Priority: High
+Verification: Verify audit trail in candidate_status table
+
+FR-CAN-009: View Candidate History
+--------------------------------------------------------------------------------
+The system SHALL display complete history including:
+- Selection status changes with timeline
+- Interview stages and statuses
+- All reviews received
+Priority: High
+Verification: Test history view
+
+FR-CAN-010: Download Single CV
+--------------------------------------------------------------------------------
+The system SHALL allow downloading individual candidate CV.
+Priority: High
+Verification: Test single CV download
+
+FR-CAN-011: Download Multiple CVs
+--------------------------------------------------------------------------------
+The system SHALL allow batch download of selected CVs as ZIP file.
+Priority: Medium
+Verification: Test batch CV download
+
+FR-CAN-012: Employ Candidate
+--------------------------------------------------------------------------------
+The system SHALL allow Senior HR/Admin to mark candidate as employed.
+System SHALL record: employed user ID.
+Priority: High
+Verification: Test employment marking
+
+FR-CAN-013: Recall Candidate
+--------------------------------------------------------------------------------
+The system SHALL allow recalling candidates from previous vacancies.
+Recalled candidates can be associated with new active vacancies.
+Priority: Medium
+Verification: Test candidate recall functionality
+
+FR-CAN-014: Canceled Candidate View
+--------------------------------------------------------------------------------
+The system SHALL provide separate view for candidates with canceled interviews.
+Priority: Medium
+Verification: Test canceled candidate listing
+
+================================================================================
+3.7 INTERVIEW MANAGEMENT
+================================================================================
+
+FR-INT-001: Create Interview
+--------------------------------------------------------------------------------
+The system SHALL allow HR to create interviews with:
+- Vacancy (required, dropdown)
+- Start Date (required)
+- End Date (optional)
+- Start Time (required)
+- End Time (required)
+- Type (required: Online/Offline)
+- Location (required for Offline)
+- Stage (required, numeric)
+- Interviewers (required, multi-select from department users)
+Priority: High
+Verification: Test interview creation
+
+FR-INT-002: Interview Duplication Check
+--------------------------------------------------------------------------------
+The system SHALL prevent duplicate interviews for:
+- Same vacancy + Same type + Same stage
+Priority: High
+Verification: Test duplicate detection
+
+FR-INT-003: View Interview List
+--------------------------------------------------------------------------------
+The system SHALL display interviews with DataTables including:
+- Pagination, sorting, search
+- Date range filter
+Priority: High
+Verification: Test interview listing
+
+FR-INT-004: View Interview Details
+--------------------------------------------------------------------------------
+The system SHALL display complete interview information via AJAX including:
+- All interview fields
+- Assigned interviewers
+- Associated vacancy and position
+Priority: High
+Verification: Test interview detail popup
+
+FR-INT-005: Update Interview
+--------------------------------------------------------------------------------
+The system SHALL allow HR to update interview details and interviewers.
+System SHALL record updated datetime and user ID.
+Priority: High
+Verification: Test interview update
+
+FR-INT-006: Cancel Interview
+--------------------------------------------------------------------------------
+The system SHALL allow HR to cancel an interview.
+System SHALL record canceled datetime and user ID.
+Canceled interviews remain visible but marked as canceled.
+Priority: High
+Verification: Test interview cancellation
+
+FR-INT-007: Assign Candidates to Interview
+--------------------------------------------------------------------------------
+The system SHALL allow HR to add candidates to an interview with:
+- Initial status: "Pending"
+Priority: High
+Verification: Test candidate assignment
+
+FR-INT-008: Update Candidate Interview Status
+--------------------------------------------------------------------------------
+The system SHALL allow Department-Head/Admin to change interview status:
+- Pending → Passed/Rejected
+Priority: High
+Verification: Test interview status change
+
+FR-INT-009: Multi-Stage Interview Support
+--------------------------------------------------------------------------------
+The system SHALL support multiple interview stages for a vacancy.
+Each stage has independent status tracking.
+Priority: High
+Verification: Test multi-stage workflow
+
+FR-INT-010: Get Available Interviews
+--------------------------------------------------------------------------------
+The system SHALL return appropriate interviews when sending email:
+- Based on vacancy, type, and stage
+Priority: Medium
+Verification: Test interview retrieval for email
+
+================================================================================
+3.8 REVIEW MANAGEMENT
+================================================================================
+
+FR-REV-001: Submit Review
+--------------------------------------------------------------------------------
+The system SHALL allow Interviewers to submit reviews with:
+- Review text (required, max 300 chars)
+- Review datetime (auto-recorded)
+- Reviewer ID (auto-recorded)
+Priority: High
+Verification: Test review submission
+
+FR-REV-002: View Reviews
+--------------------------------------------------------------------------------
+The system SHALL display all reviews for a candidate-interview association.
+Priority: High
+Verification: Test review listing
+
+FR-REV-003: Review Association
+--------------------------------------------------------------------------------
+The system SHALL associate reviews with specific candidate-interview records.
+Priority: High
+Verification: Verify review-candidateInterview relationship
+
+================================================================================
+3.9 EMAIL COMMUNICATION
+================================================================================
+
+FR-EMAIL-001: Email Template Selection
+--------------------------------------------------------------------------------
+The system SHALL provide pre-built email templates for:
+- Interview invitation (Online/Offline)
+- Customizable templates
+Priority: High
+Verification: Test template listing
+
+FR-EMAIL-002: Email Placeholder Substitution
+--------------------------------------------------------------------------------
+The system SHALL replace placeholders in templates:
+- [name] - Candidate name
+- [position] - Vacancy position
+- [date] - Interview date
+- [time] - Interview time
+- [location] - Interview location/link
+Priority: High
+Verification: Test placeholder replacement
+
+FR-EMAIL-003: Email Preview/Draft
+--------------------------------------------------------------------------------
+The system SHALL show email preview before sending.
+Priority: Medium
+Verification: Test email preview
+
+FR-EMAIL-004: Customize Email Body
+--------------------------------------------------------------------------------
+The system SHALL allow customizing email content after placeholder substitution.
+Priority: Medium
+Verification: Test email customization
+
+FR-EMAIL-005: Send Email
+--------------------------------------------------------------------------------
+The system SHALL send email via SMTP with:
+- To: Candidate email
+- Subject: From template
+- Body: Customized content
+Priority: High
+Verification: Test email delivery
+
+FR-EMAIL-006: CC and Attachment Support
+--------------------------------------------------------------------------------
+The system SHALL support CC recipients and file attachments.
+Priority: Medium
+Verification: Test CC and attachments
+
+FR-EMAIL-007: Mail History
+--------------------------------------------------------------------------------
+The system SHALL record sent emails with:
+- Subject
+- Sent datetime
+- User who sent
+- Candidate
+Priority: High
+Verification: Verify mail_history table
+
+FR-EMAIL-008: View Mail History
+--------------------------------------------------------------------------------
+The system SHALL display sent email history.
+Priority: Medium
+Verification: Test mail history listing
+
+FR-EMAIL-009: Read Inbox
+--------------------------------------------------------------------------------
+The system SHALL read emails from IMAP inbox for replies.
+Priority: Medium
+Verification: Test inbox reading
+
+================================================================================
+3.10 NOTIFICATION SYSTEM
+================================================================================
+
+FR-NOTI-001: Create Notification
+--------------------------------------------------------------------------------
+The system SHALL create notifications for events:
+- New vacancy created
+- New candidate applied
+- Vacancy reopened
+Priority: High
+Verification: Test notification creation
+
+FR-NOTI-002: WebSocket Delivery
+--------------------------------------------------------------------------------
+The system SHALL deliver notifications in real-time via WebSocket.
+Priority: High
+Verification: Test real-time notification
+
+FR-NOTI-003: Notification List
+--------------------------------------------------------------------------------
+The system SHALL display list of notifications for logged-in user.
+Priority: High
+Verification: Test notification listing
+
+FR-NOTI-004: Notification Count
+--------------------------------------------------------------------------------
+The system SHALL display unread notification count.
+Priority: Medium
+Verification: Test notification counter
+
+FR-NOTI-005: Mark as Read
+--------------------------------------------------------------------------------
+The system SHALL mark notifications as read when viewed.
+Priority: Medium
+Verification: Test read status update
+
+================================================================================
+3.11 DASHBOARD AND REPORTING
+================================================================================
+
+FR-DASH-001: HR Dashboard
+--------------------------------------------------------------------------------
+The system SHALL display dashboard with counts for selected year:
+- Total vacancies
+- Total candidates
+- Total interviews
+- Employed candidates
+Priority: High
+Verification: Test dashboard counts
+
+FR-DASH-002: Department Dashboard
+--------------------------------------------------------------------------------
+The system SHALL display department-specific dashboard for Department-Heads.
+Priority: Medium
+Verification: Test department-specific data
+
+FR-DASH-003: Charts
+--------------------------------------------------------------------------------
+The system SHALL display charts for:
+- Candidates by department
+- Candidates by position
+- Interview trends
+Priority: Medium
+Verification: Test chart rendering
+
+FR-DASH-004: Year Filter
+--------------------------------------------------------------------------------
+The system SHALL allow filtering dashboard by year.
+Priority: Medium
+Verification: Test year filter
+
+FR-RPT-001: Interview Summary Report
+--------------------------------------------------------------------------------
+The system SHALL generate interview summary report with filters:
+- Date range
+- Department
+- Position
+- Status
+Export formats: PDF, Excel
+Priority: High
+Verification: Test report generation
+
+FR-RPT-002: Candidate Summary Report
+--------------------------------------------------------------------------------
+The system SHALL generate candidate summary report with filters:
+- Date range
+- Position
+- Department
+- Vacancy
+Export formats: PDF, Excel
+Priority: High
+Verification: Test report generation
+
+FR-RPT-003: Candidate Summary by Vacancy
+--------------------------------------------------------------------------------
+The system SHALL generate candidate list for specific vacancy.
+Export formats: PDF, Excel
+Priority: Medium
+Verification: Test vacancy-specific report
+
+================================================================================
+3.12 ADVANCED FEATURES (Enhancements)
+================================================================================
+
+FR-ADV-001: AI Candidate Scoring
+--------------------------------------------------------------------------------
+The system SHALL implement an algorithm to calculate a "Match Score" (0-100%) 
+for each candidate by comparing their skills with the Vacancy requirements.
+Priority: Low (Enhancement)
+Verification: precise keyword matching tests
+
+FR-ADV-002: Bulk Candidate Actions
+--------------------------------------------------------------------------------
+The system SHALL allow HR to perform bulk actions (e.g., Bulk Email, Bulk Reject) 
+on multiple selected candidates simultaneously.
+Priority: Medium
+Verification: Test performance with 50+ concurrent updates
+
+FR-ADV-003: Executive Dashboard Analytics
+--------------------------------------------------------------------------------
+The system SHALL provide visual analytics including:
+- Applications per Department (Bar Chart)
+- Recruitment Funnel statistics (Pie Chart)
+Priority: Medium
+Verification: Verify data accuracy against database counts
+
+FR-ADV-004: Dark Mode
+--------------------------------------------------------------------------------
+The system SHALL provide a UI toggle for "Dark Mode" to improve user accessibility.
+Priority: Low
+Verification: Verify UI color contrast in dark mode
+
+================================================================================
+3.13 STATUS INITIALIZATION
+================================================================================
+
+FR-STATUS-001: Default Status Values
+--------------------------------------------------------------------------------
+The system SHALL auto-create status values on startup if not exist:
+- ID 1: "Received"
+- ID 2: "Viewed"
+- ID 3: "Considering"
+Priority: High
+Verification: Verify status table on fresh database
+
+================================================================================
+                END OF SECTION 3 - FUNCTIONAL REQUIREMENTS
+================================================================================

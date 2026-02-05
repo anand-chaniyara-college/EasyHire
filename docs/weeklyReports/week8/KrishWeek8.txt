@@ -1,0 +1,26 @@
+Weekly Progress Report
+Name: Krish
+Role: DevOps Engineer
+Week: 8 (Mar 11 - Mar 18)
+
+Tasks Accomplished:
+
+1. Reporting Engine Setup:
+   - Added the JasperReports library to `pom.xml`.
+   - Designed the report layout (JRXML file) using Jaspersoft Studio.
+   - Had some issues with fonts not appearing in Linux, so I embedded the fonts in the classpath.
+
+2. Testing:
+   - Wrote JUnit tests for the `UserService` and `VacancyService`.
+   - Added Mockito to mock the database calls so tests run fast.
+   - Achieved about 60% code coverage on the core services.
+
+3. Docker Draft:
+   - Wrote the initial `Dockerfile`.
+   - Used `openjdk:17-alpine` to keep the image size small.
+   - Created a `docker-compose` file to launch the App and MySQL together.
+
+Next Week:
+- Production environment setup.
+- Optimize queries for bulk actions.
+- Finals slides.

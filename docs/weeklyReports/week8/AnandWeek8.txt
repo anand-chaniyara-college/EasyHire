@@ -1,0 +1,25 @@
+Weekly Progress Report
+Name: Anand
+Role: Backend Developer
+Week: 8 (Mar 11 - Mar 18)
+
+Tasks Completed:
+
+1. Dashboard APIs:
+   - Wrote SQL queries to simplify data for the dashboard.
+   - Created APIs to get "Count of Applications today" and "Candidates per Department".
+   - Optimized the query using `GROUP BY` to make it faster.
+
+2. Reporting Service:
+   - Added JasperReports dependency.
+   - Wrote the Java code to compile the `.jrxml` files and fill them with data from our database.
+   - Created endpoints to download the reports as PDF and Excel.
+
+3. Feedback Backend:
+   - Created the backend for storing Interview Reviews.
+   - Linked it to the specific Interview ID. An interviewer can only review a candidate assigned to them.
+
+Next Week:
+- AI Scoring algorithm.
+- Bulk Actions for candidates.
+- Documentation.

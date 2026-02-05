@@ -1,0 +1,77 @@
+================================================================================
+                    PROJECT TRANSFORMATION PLAN
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+================================================================================
+                        Target: Establish Originality & Uniqueness
+                        Strategy: UI Overhaul, Refactoring & Feature Expansion
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+1. UI/UX VISUAL TRANSFORMATION (The "First Impression")
+================================================================================
+Goal: Make the application visually unrecognizable from the original source.
+
+[ ] Global Style Overhaul (CSS)
+    - Change Color Palette: Move away from user default colors.
+      - Suggestion: Use a "Professional Blue/Slate" or "Modern Teal" theme.
+    - Typography: Replace default fonts with modern Google Fonts (e.g., 'Inter', 'Poppins', or 'Roboto').
+    - Border Radius: Change standard boxy look to rounded corners (modern card style).
+
+[ ] Layout Restructuring
+    - Navigation: Add some icons.
+    - Dashboard: Rearrange the dashboard widgets (move counters, change chart types).
+    - Login Page: Completely redesign the login screen (e.g., split screen design with image on one side).
+
+[ ] Interaction Design
+    - Add hover effects to buttons and tables.
+    - Implement a "Loader/Spinner" for async operations if missing.
+    - Updates FontAwesome icons to a different style (e.g., solid vs outline).
+
+2. CODE REFACTORING (Structural Changes)
+================================================================================
+Goal: Change the "shape" of the code to reduce similarity in structural analysis.
+
+[ ] Rename & Reorganize
+    - Rename Controller endpoints (URLs) slightly to match new terminology.
+    - Rename key Service methods to be more descriptive.
+    - Package Structure: If all valid, move some utility classes to new packages.
+
+
+3. FEATURE EXPANSION (The "Value Add")
+================================================================================
+Goal: Add 2-3 Distinct Features that clearly did not exist in the base version.
+
+[ ] Feature A: Candidate "Self-Assessment" or "Quiz"
+    - Add a simple module where candidates answer 5-10 pre-set technical questions during application.
+    - Store score in Candidate entity.
+
+[ ] Feature B: Dark Mode Toggle
+    - Implement a system-wide Dark Mode switch stored in local storage.
+    - This affects every page and is a high-visibility change.
+
+[ ] Feature C: Export Enhancements
+    - If current exports are basic, add a "Resume Book" generation (compile all selected CVs into one ZIP).
+
+4. TERMINOLOGY CHANGES
+================================================================================
+Goal: distinct domain language.
+
+[ ] Replace Common TeEasyHire in UI and Variables
+    - "Vacancy" -> "Job Opening"
+    - "Candidate" -> "Applicant"
+
+5. CLEANUP & FINALIZATION
+================================================================================
+[ ] Remove unused imports and dead code.
+[ ] Update all code comments to reflect new logic (remove old author comments if any).
+[ ] Ensure `pom.xml` metadata (ArtifactId, GroupId, Description) is updated to your project details.
+[ ] Add proper comments to the code in each file's each logic.
+
+================================================================================
+                                END OF PLAN
+================================================================================

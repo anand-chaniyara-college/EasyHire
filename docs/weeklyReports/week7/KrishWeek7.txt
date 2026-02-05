@@ -1,0 +1,25 @@
+Weekly Progress Report
+Name: Krish
+Role: DevOps Engineer
+Week: 7 (Feb 25 - Mar 10)
+
+Tasks Accomplished:
+
+1. WebSockets (Notifications):
+   - Configured the STOMP endpoint for real-time messaging.
+   - Implemented the "Push Notification" logic.
+   - Tested it by opening the app in two different browsers (Chrome and Firefox) to see if the message appears instantly. It works!
+
+2. Email Templates:
+   - Designed responsive HTML templates for emails using tables (old school, but works best for email clients).
+   - Added placeholders like `{{candidate_name}}` and `{{interview_time}}`.
+   - Used Thymeleaf's `Context` to replace these placeholders dynamically in the backend.
+
+3. Integration Testing:
+   - Tested the flow: Application Submitted -> Notification appears on HR Dashboard -> Email sent to candidate.
+   - Fixed a small issue where the WebSocket connection dropped after 10 minutes of inactivity.
+
+Next Week:
+- JasperReports integration.
+- Unit Testing with JUnit.
+- Dockerizing the app.

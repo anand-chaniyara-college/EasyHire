@@ -1,0 +1,214 @@
+================================================================================
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                           ABSTRACT DOCUMENT
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+1. EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+
+This document presents a comprehensive abstract for the Recruitment and Interview 
+Management System (EasyHire), a web-based enterprise application designed to 
+streamline and automate the end-to-end hiring process for organizations. The 
+system was developed as a collaborative project by a 3-member team over a 
+2-month development cycle, demonstrating professional-grade software engineering 
+practices.
+
+2. PROBLEM STATEMENT
+--------------------------------------------------------------------------------
+
+Organizations face significant challenges in managing recruitment workflows:
+
+2.1 Pain Points Addressed:
+    - Manual tracking of job vacancies leads to inefficiency and errors
+    - Coordination between HR teams, interviewers, and department heads lacks
+      transparency
+    - Candidate status tracking is fragmented across emails and spreadsheets
+    - Interview scheduling conflicts and communication gaps cause delays
+    - Lack of centralized reporting hampers data-driven hiring decisions
+    - Email communication with candidates requires manual effort and consistency
+    - No unified platform for multiple stakeholders with different access needs
+
+2.2 Industry Context:
+    - Growing demand for digital transformation in HR processes
+    - Need for role-based access control in multi-stakeholder environments
+    - Requirement for real-time collaboration and notification systems
+    - Compliance needs for audit trails and status tracking
+
+3. SCOPE
+--------------------------------------------------------------------------------
+
+3.1 In-Scope Features:
+    - Complete vacancy lifecycle management (create, update, reopen, close)
+    - Multi-role user management with hierarchical permissions
+    - Candidate application processing with CV upload/download
+    - Multi-stage interview scheduling and management
+    - Dynamic email template system with customization
+    - Real-time notifications via WebSocket
+    - Dashboard with analytics and charts
+    - Report generation (PDF/Excel) using JasperReports
+    - Password recovery with token-based reset
+    - Candidate status workflow (Received → Viewed → Considering)
+    - Interview status tracking (Pending → Passed/Rejected)
+
+3.2 Out-of-Scope:
+    - Mobile native applications (iOS/Android)
+    - Third-party job board integrations
+    - Video conferencing integration
+    - AI-based candidate screening
+    - Payroll system integration
+    - Background verification workflows
+
+4. OBJECTIVES
+--------------------------------------------------------------------------------
+
+4.1 Primary Objectives:
+    a) Automate the recruitment lifecycle from vacancy creation to employment
+    b) Provide role-based access control for 6 distinct user categories
+    c) Enable efficient candidate tracking with complete audit history
+    d) Facilitate seamless communication between HR and candidates
+    e) Generate actionable insights through dashboards and reports
+
+4.2 Secondary Objectives:
+    a) Reduce manual HR workload by 60-70%
+    b) Improve candidate response time through templated communications
+    c) Enhance data accuracy with validation and status tracking
+    d) Enable remote access through web-based architecture
+    e) Support scalability for growing organizations
+
+5. HIGH-LEVEL SYSTEM OVERVIEW
+--------------------------------------------------------------------------------
+
+5.1 Architecture:
+    - Architecture Pattern: Monolithic MVC (Model-View-Controller)
+    - Framework: Spring Boot 2.7.13 with Java 17
+    - Database: MySQL with JPA/Hibernate ORM
+    - Frontend: Thymeleaf templates with Bootstrap, jQuery
+    - Security: Spring Security 5 with BCrypt password encoding
+    - Real-time: WebSocket with STOMP protocol
+    - Reporting: JasperReports 6.20.5
+
+5.2 User Roles (Hierarchical):
+    1. Default Admin    - Full system access, admin management
+    2. Admin            - Department/user management, interview decisions
+    3. Senior HR        - Candidate status, mail sending, employment decisions
+    4. Junior HR        - Vacancy management, interview creation, reporting
+    5. Department Head  - Interview status decisions for department
+    6. Interviewer      - Candidate reviews and feedback
+
+5.3 Core Data Entities:
+    - User             - System users with role-based access
+    - Department       - Organizational units
+    - Position         - Job positions/titles
+    - Vacancy          - Job openings with lifecycle management
+    - Candidate        - Job applicants with CV storage
+    - Interview        - Multi-stage interview instances
+    - CandidateInterview - Association with stage/status tracking
+    - Reviews          - Interviewer feedback on candidates
+    - MailHistory      - Audit trail of all communications
+    - Notification     - Real-time alerts for users
+    - Status           - Candidate selection statuses
+    - CandidateStatus  - Status change history
+    - PasswordReset    - Token-based password recovery
+
+5.4 Technology Stack Summary:
+    ┌─────────────────┬──────────────────────────────────┐
+    │ Layer           │ Technology                       │
+    ├─────────────────┼──────────────────────────────────┤
+    │ Presentation    │ Thymeleaf, Bootstrap, jQuery     │
+    │ Application     │ Spring Boot 2.7.13, Java 17      │
+    │ Security        │ Spring Security 5, BCrypt        │
+    │ Persistence     │ JPA/Hibernate, Spring Data       │
+    │ Database        │ MySQL 8.x                        │
+    │ Communication   │ Spring Mail (SMTP/IMAP)          │
+    │ Real-time       │ WebSocket/STOMP                  │
+    │ Reporting       │ JasperReports                    │
+    │ Testing         │ JUnit 5, Spring Test             │
+    │ Build           │ Maven 3.x                        │
+    └─────────────────┴──────────────────────────────────┘
+
+6. EXPECTED OUTCOMES
+--------------------------------------------------------------------------------
+
+6.1 Functional Outcomes:
+    a) Centralized vacancy management accessible to authorized personnel
+    b) Complete candidate lifecycle tracking with audit trails
+    c) Automated email communications with customizable templates
+    d) Multi-stage interview scheduling with interviewer assignment
+    e) Real-time notifications for all stakeholders
+    f) Downloadable reports in PDF and Excel formats
+    g) Dashboard analytics by year, department, and position
+
+6.2 Non-Functional Outcomes:
+    a) Secure access with role-based authorization
+    b) Responsive UI compatible with modern browsers
+    c) Scalable architecture supporting concurrent users
+    d) Maintainable codebase with separation of concerns
+    e) Comprehensive test coverage for reliability
+
+6.3 Business Outcomes:
+    a) Reduced time-to-hire through streamlined workflows
+    b) Improved candidate experience with timely communications
+    c) Enhanced decision-making through data visibility
+    d) Better compliance through status tracking and audit logs
+    e) Increased HR productivity through automation
+
+7. KEY DIFFERENTIATORS
+--------------------------------------------------------------------------------
+
+7.1 Multi-Stage Interview Support:
+    Unlike simple ATS systems, EasyHire supports multiple interview stages with
+    independent status tracking and interviewer assignments per stage.
+
+7.2 Dynamic Email Templates:
+    The system provides both pre-built and customizable email templates with
+    placeholder substitution for candidate-specific information.
+
+7.3 Real-Time Notifications:
+    WebSocket-based notifications ensure stakeholders are immediately informed
+    of relevant events without page refresh.
+
+7.4 Recall Functionality:
+    Unique feature allowing recall of previously interviewed candidates for
+    new vacancies, maintaining historical context.
+
+7.5 Dual Dashboard Support:
+    Separate dashboards for HR (organization-wide) and Department Heads
+    (department-specific) with appropriate data visibility.
+
+8. CONSTRAINTS AND ASSUMPTIONS
+--------------------------------------------------------------------------------
+
+8.1 Constraints:
+    - Single-tenant deployment model
+    - MySQL database dependency
+    - Server-side rendering (no SPA architecture)
+    - Sequential interview stages (no parallel tracks)
+    - Email-based communication only (no SMS/WhatsApp)
+
+8.2 Assumptions:
+    - Users have modern web browsers (Chrome, Firefox, Edge)
+    - Stable internet connectivity for all users
+    - SMTP/IMAP server availability for email operations
+    - MySQL database server provisioned and accessible
+    - Java 17 runtime environment available
+
+9. DOCUMENT REFERENCES
+--------------------------------------------------------------------------------
+
+- Software Requirements Specification: srs.txt
+- Development Planning Document: development_plan.txt
+- README Documentation: README.md
+- Project License: LICENSE (MIT)
+
+================================================================================
+                          END OF ABSTRACT DOCUMENT
+================================================================================

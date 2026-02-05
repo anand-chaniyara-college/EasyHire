@@ -1,0 +1,305 @@
+================================================================================
+         SOFTWARE REQUIREMENTS SPECIFICATION (SRS) - SECTION 5
+                              EASYHIRE
+              RECRUITMENT AND INTERVIEW MANAGEMENT SYSTEM
+                   EXTERNAL INTERFACE REQUIREMENTS
+================================================================================
+                        Document Version: 1.0
+                        Date: February 5, 2026
+                        
+                        Team Members:
+                        - Anand (Backend Development)
+                        - Krish (DevOps)
+                        - Saloni (Frontend Development)
+================================================================================
+
+5. EXTERNAL INTERFACE REQUIREMENTS
+================================================================================
+
+5.1 USER INTERFACES
+================================================================================
+
+5.1.1 General UI Guidelines
+--------------------------------------------------------------------------------
+
+The system follows these UI/UX principles:
+- Bootstrap 5 framework for responsive design
+- Consistent sidebar navigation for admin users
+- Top bar with user info and notifications
+- Card-based layout for data display
+- Modal dialogs for CRUD operations
+- DataTables for list views with pagination
+
+5.1.2 Public Interface (Client Side)
+--------------------------------------------------------------------------------
+
+UI-PUB-001: Home Page
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Header              │  Logo, navigation menu                              │
+│  Hero Section        │  Company branding, call-to-action                   │
+│  Job Listing         │  Grid/list of active vacancies                      │
+│  Filters             │  Position dropdown, date filters                    │
+│  Footer              │  Contact info, links                                │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-PUB-002: Vacancy List Page
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Search Bar          │  Text search for vacancies                          │
+│  Filter Panel        │  Position, department, date range                   │
+│  Vacancy Cards       │  Title, department, salary, due date                │
+│  Pagination          │  Navigate through vacancy list                      │
+│  Apply Button        │  Opens vacancy detail modal                         │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-PUB-003: Vacancy Detail Page
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Position Title      │  Job title and department                           │
+│  Job Details         │  Description, requirements, responsibilities        │
+│  Working Info        │  Days, hours, salary, type                          │
+│  Apply Button        │  Opens application form modal                       │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-PUB-004: Application Form Modal
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  FIELD               │  TYPE                    │  VALIDATION              │
+├──────────────────────┼──────────────────────────┼──────────────────────────┤
+│  Full Name           │  Text input              │  Required                │
+│  Email               │  Email input             │  Required, unique/vac    │
+│  Phone               │  Text input              │  Required                │
+│  Date of Birth       │  Date picker             │  Required                │
+│  Gender              │  Radio button            │  Required                │
+│  Education           │  Text input              │  Required                │
+│  Technical Skills    │  Textarea                │  Required                │
+│  Language Skills     │  Textarea                │  Required                │
+│  Main Technology     │  Text input              │  Required                │
+│  Experience          │  Text input              │  Required                │
+│  Level               │  Dropdown                │  Required                │
+│  Expected Salary     │  Text input              │  Required                │
+│  CV Upload           │  File input              │  Required, PDF/Word      │
+│  Submit Button       │  Button                  │  Validates all fields    │
+└──────────────────────┴──────────────────────────┴──────────────────────────┘
+
+5.1.3 Admin Interface (HR Side)
+--------------------------------------------------------------------------------
+
+UI-ADM-001: Login Page
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Email Input         │  User email field                                   │
+│  Password Input      │  Masked password field                              │
+│  Remember Me         │  Checkbox for persistent session                    │
+│  Login Button        │  Submit credentials                                 │
+│  Forgot Password     │  Link to password reset                             │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-ADM-002: Dashboard
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Sidebar             │  Navigation menu (role-based)                       │
+│  Top Bar             │  Notifications, user menu, logout                   │
+│  Summary Cards       │  Total vacancies, candidates, interviews, employed  │
+│  Year Filter         │  Dropdown for year selection                        │
+│  Charts              │  Bar/line charts for trends                         │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-ADM-003: Vacancy Management
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Vacancy List Table  │  DataTables with sorting, search, pagination        │
+│  Add Vacancy Button  │  Opens vacancy form                                 │
+│  Filter Panel        │  Status, date range filters                         │
+│  Action Column       │  View, Edit, Reopen, Close buttons                  │
+│  Vacancy Form        │  Full form with rich text editors                   │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-ADM-004: Candidate Management
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Candidate Table     │  DataTables with multi-level filtering              │
+│  Filter Panel        │  Selection status, interview status, stage, date    │
+│  Detail Modal        │  Full candidate profile popup                       │
+│  Action Column       │  View, Change Status, Send Email, Download CV       │
+│  History View        │  Timeline of status changes and interviews          │
+│  Batch Download      │  Select multiple candidates for CV download         │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-ADM-005: Interview Management
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Interview Table     │  DataTables with date filtering                     │
+│  Add Interview Btn   │  Opens interview creation form                      │
+│  Vacancy Selector    │  Dynamic dropdown loading                           │
+│  Interviewer Select  │  Multi-select based on vacancy department           │
+│  Detail Modal        │  Full interview details with candidates             │
+│  Action Column       │  View, Edit, Cancel buttons                         │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+UI-ADM-006: Email Interface
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  COMPONENT           │  DESCRIPTION                                        │
+├──────────────────────┼──────────────────────────────────────────────────────┤
+│  Template Selector   │  Choose email template                              │
+│  Email Form          │  Subject, body with placeholders replaced           │
+│  Preview Panel       │  Preview email before sending                       │
+│  CC Field            │  Additional recipients                              │
+│  Attachment Upload   │  Add file attachments                               │
+│  Send Button         │  Deliver email                                      │
+└──────────────────────┴──────────────────────────────────────────────────────┘
+
+5.2 HARDWARE INTERFACES
+================================================================================
+
+The system has no direct hardware interfaces. It operates through:
+- Standard network interfaces (TCP/IP)
+- Storage through file system/database
+- No specialized hardware required
+
+5.3 SOFTWARE INTERFACES
+================================================================================
+
+5.3.1 Database Interface (MySQL)
+--------------------------------------------------------------------------------
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  PROPERTY            │  VALUE                                              │
+├──────────────────────┼─────────────────────────────────────────────────────┤
+│  Database System     │  MySQL 8.0+                                         │
+│  Driver              │  mysql-connector-java (MySQL Connector/J)           │
+│  Connection Protocol │  JDBC                                               │
+│  Connection Pool     │  HikariCP (Spring Boot default)                     │
+│  Port                │  3306 (default)                                     │
+│  Schema Name         │  recruitment                                        │
+│  Schema Management   │  JPA/Hibernate with ddl-auto=update                 │
+└──────────────────────┴─────────────────────────────────────────────────────┘
+
+Configuration in application.properties:
+  spring.datasource.url=jdbc:mysql://localhost:3306/recruitment
+  spring.datasource.username=<username>
+  spring.datasource.password=<password>
+  spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+  spring.jpa.hibernate.ddl-auto=update
+
+5.3.2 Email Interface (SMTP/IMAP)
+--------------------------------------------------------------------------------
+
+SMTP Configuration (Sending):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  PROPERTY            │  VALUE                                              │
+├──────────────────────┼─────────────────────────────────────────────────────┤
+│  Protocol            │  SMTP with STARTTLS                                 │
+│  Host                │  smtp.gmail.com (default)                           │
+│  Port                │  587                                                │
+│  Authentication      │  Required (username/password)                       │
+│  TLS                 │  Enabled                                            │
+└──────────────────────┴─────────────────────────────────────────────────────┘
+
+IMAP Configuration (Reading):
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  PROPERTY            │  VALUE                                              │
+├──────────────────────┼─────────────────────────────────────────────────────┤
+│  Protocol            │  IMAP with SSL                                      │
+│  Host                │  imap.gmail.com (default)                           │
+│  Port                │  993                                                │
+│  Authentication      │  Required (username/password)                       │
+│  SSL                 │  Enabled                                            │
+└──────────────────────┴─────────────────────────────────────────────────────┘
+
+5.3.3 Web Server Interface
+--------------------------------------------------------------------------------
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  PROPERTY            │  VALUE                                              │
+├──────────────────────┼─────────────────────────────────────────────────────┤
+│  Server              │  Embedded Apache Tomcat 9.x                         │
+│  Default Port        │  8080                                               │
+│  Protocol            │  HTTP (HTTPS recommended for production)            │
+│  Session Management  │  In-memory (default)                                │
+│  Context Path        │  / (root)                                           │
+└──────────────────────┴─────────────────────────────────────────────────────┘
+
+5.3.4 JasperReports Interface
+--------------------------------------------------------------------------------
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  PROPERTY            │  VALUE                                              │
+├──────────────────────┼─────────────────────────────────────────────────────┤
+│  Library Version     │  6.20.5                                             │
+│  Template Location   │  src/main/resources/*.jrxml                         │
+│  Output Formats      │  PDF, XLSX (Excel)                                  │
+│  Data Source         │  JRBeanCollectionDataSource                         │
+└──────────────────────┴─────────────────────────────────────────────────────┘
+
+5.4 COMMUNICATION INTERFACES
+================================================================================
+
+5.4.1 HTTP/HTTPS Protocol
+--------------------------------------------------------------------------------
+
+Request Format:
+- Content-Type: application/x-www-form-urlencoded (foEasyHire)
+- Content-Type: multipart/form-data (file uploads)
+- Accept: text/html, application/json
+
+Response Format:
+- Content-Type: text/html (page views)
+- Content-Type: application/json (AJAX responses)
+- Content-Type: application/pdf (PDF reports)
+- Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet (Excel)
+
+5.4.2 WebSocket Protocol
+--------------------------------------------------------------------------------
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  PROPERTY            │  VALUE                                              │
+├──────────────────────┼─────────────────────────────────────────────────────┤
+│  Protocol            │  STOMP over WebSocket                               │
+│  Connection Endpoint │  /ws                                                │
+│  Message Broker      │  Simple in-memory broker                            │
+│  Application Prefix  │  /app                                               │
+│  Topic Prefix        │  /topic                                             │
+│  Fallback            │  SockJS for browser compatibility                   │
+└──────────────────────┴─────────────────────────────────────────────────────┘
+
+Notification Message Format:
+{
+  "id": <long>,
+  "message": "<notification text>",
+  "createdAt": "<ISO datetime>",
+  "status": <boolean>,
+  "vacancyId": <long>
+}
+
+5.4.3 DataTables Protocol
+--------------------------------------------------------------------------------
+
+Request Parameters:
+- draw: Request sequence number
+- start: Pagination offset
+- length: Page size
+- search[value]: Global search term
+- order[0][column]: Sort column index
+- order[0][dir]: Sort direction (asc/desc)
+- columns[n][search][value]: Column-specific search
+
+Response Format:
+{
+  "draw": <request draw value>,
+  "recordsTotal": <total unfiltered count>,
+  "recordsFiltered": <filtered count>,
+  "data": [ <array of row objects> ]
+}
+
+================================================================================
+                   END OF SECTION 5 - EXTERNAL INTERFACES
+================================================================================

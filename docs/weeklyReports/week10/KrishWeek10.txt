@@ -1,0 +1,23 @@
+Weekly Progress Report
+Name: Krish
+Role: DevOps Engineer
+Week: 10 (Apr 03 - Apr 17)
+
+Tasks Accomplished:
+
+1. Final Deployment:
+   - Built the final Docker Image.
+   - Cleaned up the `docker-compose.yml` file.
+   - Verified that the "One-Click Run" works on a fresh computer (tested on Anand's laptop).
+
+2. Presentation:
+   - Created the PPT slides.
+   - Drew the final "System Architecture" diagram.
+   - Added the "Future Enhancements" slide.
+
+3. Security Audit:
+   - Did one last check: Removed all our test passwords and logs.
+   - Ensured the database password is not hardcoded in the code but comes from environment variables.
+
+Status: PROJECT SUCCESSFUL.
+Ready for the external viva.

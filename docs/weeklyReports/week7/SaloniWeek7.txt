@@ -1,0 +1,27 @@
+Weekly Progress Report
+Name: Saloni
+Role: Frontend Developer
+Week: 7 (Feb 25 - Mar 10)
+
+Work Done:
+
+1. Scheduling UI:
+   - Designed the "Schedule Interview" modal popup.
+   - Integrated a "Date Time Picker" library because the default HTML date input looks bad.
+   - Added a "Multi-select" dropdown to choose 3-4 interviewers at once.
+
+2. Candidate Timeline:
+   - Designed a vertical timeline on the Candidate Profile.
+   - It visually shows the candidate's journey (Green dots for completed steps, Grey for future).
+   - Added "Action Buttons" (Shortlist, Reject) at the top of the profile for easy access.
+
+3. Email Composer:
+   - Built the "Send Email" page.
+   - It allows HR to select a template (e.g., "Interview Invite").
+   - shows a preview of the email with the candidate's name filled in.
+   - Verified that the "Send" button gets disabled after clicking once (to prevent double emails).
+
+Next Week:
+- Dashboard Charts (Chart.js).
+- Report Download page.
+- Dark Mode toggle.

@@ -1,0 +1,23 @@
+Weekly Progress Report
+Name: Saloni
+Role: Frontend Developer
+Week: 10 (Apr 03 - Apr 17)
+
+Work Done:
+
+1. Final UI Polish:
+   - Fixed the font size inconsistencies on the Settings page.
+   - Added "Tooltips" on buttons so users know what they do.
+   - Made sure the logo looks good on all backgrounds (Dark/Light).
+
+2. Manuals:
+   - Wrote the "HR User Manual".
+   - Took screenshots of "How to Post a Job" and "How to Schedule Interview" and added them to the doc.
+   - Added a "Help" link in the footer.
+
+3. Demo Prep:
+   - Created the dummy data (John Doe, Jane Smith) for the presentation.
+   - Practiced the demo flow with the team.
+
+Status: PROJECT SUCCESSFUL.
+Ready for the external viva.

@@ -1,0 +1,24 @@
+Weekly Progress Report
+Name: Krish
+Role: DevOps Engineer
+Week: 9 (Mar 19 - Apr 02)
+
+Tasks Accomplished:
+
+1. Production Optimization:
+   - The Bulk Action was causing slow loading. I analyzed the logs.
+   - Increased the database connection pool size in `application.properties`.
+   - Added an index on the `ai_match_score` column since we filter by it now.
+
+2. Staging Setup:
+   - Set up a complete local environment that mimics the presentation PC.
+   - Configured self-signed HTTPS certificates (just for demo purposes to show we know how SSL works).
+
+3. Stress Testing:
+   - Tried sending 500 emails at once. The server held up fine.
+   - Monitored memory usage using VisualVM during the test.
+
+Next Week:
+- Finalize Docker images.
+- Presentation Slides.
+- Burn code to CD/USB.
