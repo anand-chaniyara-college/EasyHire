@@ -1,69 +1,54 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
--- Clean existing data
-TRUNCATE TABLE easyhire_candidate;
-TRUNCATE TABLE easyhire_candidate_interview;
-TRUNCATE TABLE easyhire_candidate_status;
-TRUNCATE TABLE easyhire_department;
-TRUNCATE TABLE easyhire_interview;
-TRUNCATE TABLE easyhire_mail_history;
-TRUNCATE TABLE easyhire_notifications;
-TRUNCATE TABLE easyhire_password_reset;
-TRUNCATE TABLE easyhire_position;
-TRUNCATE TABLE easyhire_reviews;
-TRUNCATE TABLE easyhire_status;
-TRUNCATE TABLE easyhire_user;
-TRUNCATE TABLE easyhire_vacancy;
-TRUNCATE TABLE easyhire_interview_user;
-TRUNCATE TABLE easyhire_notification_user;
-
 -- 1. Departments (12 records)
-INSERT INTO easyhire_department (department_id, department_name, department_address, department_created_datetime, department_created_user_id) VALUES
-(1, 'Human Resources', 'Building A, Floor 2', '2025-01-01 00:00:00', 1),
-(2, 'Software Development', 'Building B, Floor 3', '2025-01-01 00:00:00', 1),
-(3, 'Sales', 'Building C, Floor 1', '2025-01-01 00:00:00', 1),
-(4, 'Marketing', 'Building A, Floor 1', '2025-01-01 00:00:00', 1),
-(5, 'Finance', 'Building D, Floor 2', '2025-01-01 00:00:00', 1),
-(6, 'Legal', 'Building D, Floor 3', '2025-01-01 00:00:00', 1),
-(7, 'Operations', 'Building E, Floor 1', '2025-01-01 00:00:00', 1),
-(8, 'Customer Support', 'Building E, Floor 2', '2025-01-01 00:00:00', 1),
-(9, 'Research & Development', 'Building B, Floor 4', '2025-01-01 00:00:00', 1),
-(10, 'IT Infrastructure', 'Building B, Floor 1', '2025-01-01 00:00:00', 1),
-(11, 'Product Management', 'Building A, Floor 3', '2025-01-01 00:00:00', 1),
-(12, 'Security', 'Building F, Floor 1', '2025-01-01 00:00:00', 1);
+INSERT INTO easyhire_department (department_id, department_name, department_address, department_created_datetime, department_created_user_id, department_updated_datetime, department_updated_user_id) VALUES
+(1, 'Human Resources', 'Building A, Floor 2', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(2, 'Software Development', 'Building B, Floor 3', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(3, 'Sales', 'Building C, Floor 1', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(4, 'Marketing', 'Building A, Floor 1', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(5, 'Finance', 'Building D, Floor 2', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(6, 'Legal', 'Building D, Floor 3', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(7, 'Operations', 'Building E, Floor 1', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(8, 'Customer Support', 'Building E, Floor 2', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(9, 'Research & Development', 'Building B, Floor 4', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(10, 'IT Infrastructure', 'Building B, Floor 1', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(11, 'Product Management', 'Building A, Floor 3', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(12, 'Security', 'Building F, Floor 1', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0);
 
 -- 2. Positions (12 records)
-INSERT INTO easyhire_position (position_id, position_name, position_created_datetime, position_created_user_id) VALUES
-(1, 'HR Manager', '2025-01-01 00:00:00', 1),
-(2, 'HR Assistant', '2025-01-01 00:00:00', 1),
-(3, 'Senior Java Developer', '2025-01-01 00:00:00', 1),
-(4, 'Frontend Developer', '2025-01-01 00:00:00', 1),
-(5, 'Sales Representative', '2025-01-01 00:00:00', 1),
-(6, 'Marketing Intern', '2025-01-01 00:00:00', 1),
-(7, 'Financial Analyst', '2025-01-01 00:00:00', 1),
-(8, 'Legal Counsel', '2025-01-01 00:00:00', 1),
-(9, 'Operations Manager', '2025-01-01 00:00:00', 1),
-(10, 'Support Specialist', '2025-01-01 00:00:00', 1),
-(11, 'DevOps Engineer', '2025-01-01 00:00:00', 1),
-(12, 'Product Owner', '2025-01-01 00:00:00', 1);
+INSERT INTO easyhire_position (position_id, position_name, position_created_datetime, position_created_user_id, position_updated_datetime, position_updated_user_id) VALUES
+(1, 'HR Manager', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(2, 'HR Assistant', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(3, 'Senior Java Developer', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(4, 'Frontend Developer', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(5, 'Sales Representative', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(6, 'Marketing Intern', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(7, 'Financial Analyst', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(8, 'Legal Counsel', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(9, 'Operations Manager', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(10, 'Support Specialist', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(11, 'DevOps Engineer', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0),
+(12, 'Product Owner', '2025-01-01 00:00:00', 1, '2025-01-01 00:00:00', 0);
 
 -- 3. Users (15 records)
+-- user_status = 0 (Active) as per project logic where false is enabled (mapped in CustomAuthenticationSuccessHandler)
+-- Roles mapped strictly to: Admin, Senior-HR, Junior-HR, Department-head, Interviewer
 INSERT INTO easyhire_user (user_id, user_name, user_email, user_password, user_role, user_status, user_department_id) VALUES
-(1, 'System Admin', 'admin@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Admin', 1, 2),
-(2, 'Sarah HR', 'sarah.hr@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 1),
-(3, 'John Dev', 'john.dev@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 2),
-(4, 'Mike Sales', 'mike.sales@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 3),
-(5, 'Emily Marketing', 'emily.mkt@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 4),
-(6, 'Super HR', 'hr@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'HR', 1, 1),
-(7, 'David Finance', 'david.fin@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 5),
-(8, 'Lisa Legal', 'lisa.legal@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 6),
-(9, 'Tom Ops', 'tom.ops@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 7),
-(10, 'Anna Support', 'anna.support@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 8),
-(11, 'Chris DevOps', 'chris.devops@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 10),
-(12, 'Kate Product', 'kate.product@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 11),
-(13, 'James Security', 'james.sec@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'Interviewer', 1, 12),
-(14, 'Recruiter One', 'recruiter1@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'HR', 1, 1),
-(15, 'Recruiter Two', 'recruiter2@gmail.com', '$2a$10$CJowS/FKp57h7Y3YDVxude5hnu6QroHc6tNT3xsrwAf94a.CrBlOW', 'HR', 1, 1);
+(1, 'System Admin', 'admin@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Admin', 0, 2),
+(2, 'Sarah HR', 'sarah.hr@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 1),
+(3, 'John Dev', 'john.dev@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 2),
+(4, 'Mike Sales', 'mike.sales@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 3),
+(5, 'Emily Marketing', 'emily.mkt@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 4),
+(6, 'Super HR', 'hr@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Senior-HR', 0, 1),
+(7, 'David Finance', 'david.fin@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 5),
+(8, 'Lisa Legal', 'lisa.legal@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 6),
+(9, 'Tom Ops', 'tom.ops@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 7),
+(10, 'Anna Support', 'anna.support@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 8),
+(11, 'Chris DevOps', 'chris.devops@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 10),
+(12, 'Kate Product', 'kate.product@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 11),
+(13, 'James Security', 'james.sec@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Interviewer', 0, 12),
+(14, 'Recruiter One', 'recruiter1@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Junior-HR', 0, 1),
+(15, 'Recruiter Two', 'recruiter2@gmail.com', '$2a$10$EGJGJAATvFUwGTOCJhDMduRC3lNPQ16040viq2PNzd80/KSvdvUeu', 'Junior-HR', 0, 1);
 
 -- 4. Status (10 records)
 INSERT INTO easyhire_status (status_id, status_name) VALUES
@@ -79,42 +64,42 @@ INSERT INTO easyhire_status (status_id, status_name) VALUES
 (10, 'Background Check');
 
 -- 5. Vacancies (12 records)
-INSERT INTO easyhire_vacancy (vacancy_id, vacancy_requirement, vacancy_responsibility, vacancy_description, vacancy_preference, vacancy_start_working_day, vacancy_end_working_day, vacancy_start_working_hour, vacancy_end_working_hour, vacancy_salary, vacancy_count, vacancy_type, vacancy_created_date, vacancy_created_time, vacancy_created_user_id, vacancy_due_date, vacancy_active, vacancy_urgent, vacancy_department_id, vacancy_position_id, vacancy_reopen_status, vacancy_reopened) VALUES
-(1, 'Strong Java, Spring Boot', 'Backend Dev', 'Join core team', 'Cloud exp', 'Monday', 'Friday', '09:00', '18:00', 'High', 3, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 1, 2, 3, 0, 0),
-(2, 'Admin skills', 'Assist HR Manager', 'HR Support', 'Excel', 'Monday', 'Friday', '08:00', '17:00', 'Medium', 1, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 1, 0, 1, 2, 0, 0),
-(3, 'Selling skills', 'Sell products', 'Sales team', 'Charisma', 'Monday', 'Friday', '09:00', '18:00', 'Commission', 5, 'Contract', DATE_SUB(CURDATE(), INTERVAL 2 MONTH), CURTIME(), 1, DATE_SUB(CURDATE(), INTERVAL 1 MONTH), 0, 0, 3, 5, 0, 0),
-(4, 'Social Media', 'Post content', 'Marketing team', 'Canva', 'Monday', 'Friday', '10:00', '16:00', 'Low', 2, 'Part-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 3 MONTH), 1, 0, 4, 6, 0, 0),
-(5, 'Financial modeling', 'Budget analysis', 'Finance team', 'CPA', 'Monday', 'Friday', '09:00', '17:00', 'High', 2, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 0, 5, 7, 0, 0),
-(6, 'Contract law', 'Review contracts', 'Legal team', 'Bar passed', 'Monday', 'Friday', '09:00', '17:00', 'High', 1, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 1, 6, 8, 0, 0),
-(7, 'Process optimization', 'Manage ops', 'Ops team', 'Six Sigma', 'Monday', 'Friday', '08:00', '17:00', 'Medium', 2, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 1, 0, 7, 9, 0, 0),
-(8, 'Customer service', 'Answer tickets', 'Support team', 'Patience', 'Monday', 'Friday', '24h', 'Shift', 'Low', 10, 'Shift', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 4 MONTH), 1, 1, 8, 10, 0, 0),
-(9, 'AWS, Docker', 'CI/CD pipeline', 'DevOps team', 'Kubernetes', 'Monday', 'Friday', '09:00', '18:00', 'Very High', 2, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 1, 10, 11, 0, 0),
-(10, 'Agile, Scrum', 'Manage product', 'Product team', 'CSPO', 'Monday', 'Friday', '09:00', '18:00', 'High', 1, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 0, 11, 12, 0, 0),
-(11, 'Java, React', 'Fullstack Dev', 'Feature squad', 'NodeJS', 'Monday', 'Friday', '09:00', '18:00', 'High', 5, 'Full-Time', DATE_SUB(CURDATE(), INTERVAL 1 MONTH), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 1, 0, 2, 3, 0, 0),
-(12, 'Python, ML', 'AI projects', 'R&D team', 'PhD', 'Monday', 'Friday', '10:00', '18:00', 'Very High', 2, 'Contract', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), 1, 1, 9, 3, 0, 0);
+INSERT INTO easyhire_vacancy (vacancy_id, vacancy_requirement, vacancy_responsibility, vacancy_description, vacancy_preference, vacancy_start_working_day, vacancy_end_working_day, vacancy_start_working_hour, vacancy_end_working_hour, vacancy_salary, vacancy_count, vacancy_type, vacancy_created_date, vacancy_created_time, vacancy_created_user_id, vacancy_due_date, vacancy_active, vacancy_urgent, vacancy_department_id, vacancy_position_id, vacancy_reopen_status, vacancy_reopened, vacancy_updated_date, vacancy_updated_time, vacancy_updated_user_id, vacancy_reopen_date, vacancy_reopen_time) VALUES
+(1, 'Strong Java, Spring Boot', 'Backend Dev', 'Join core team', 'Cloud exp', 'Monday', 'Friday', '09:00', '18:00', 'High', 3, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 1, 2, 3, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(2, 'Admin skills', 'Assist HR Manager', 'HR Support', 'Excel', 'Monday', 'Friday', '08:00', '17:00', 'Medium', 1, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 1, 0, 1, 2, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(3, 'Selling skills', 'Sell products', 'Sales team', 'Charisma', 'Monday', 'Friday', '09:00', '18:00', 'Commission', 5, 'Contract', DATE_SUB(CURDATE(), INTERVAL 2 MONTH), CURTIME(), 1, DATE_SUB(CURDATE(), INTERVAL 1 MONTH), 0, 0, 3, 5, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(4, 'Social Media', 'Post content', 'Marketing team', 'Canva', 'Monday', 'Friday', '10:00', '16:00', 'Low', 2, 'Part-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 3 MONTH), 1, 0, 4, 6, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(5, 'Financial modeling', 'Budget analysis', 'Finance team', 'CPA', 'Monday', 'Friday', '09:00', '17:00', 'High', 2, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 0, 5, 7, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(6, 'Contract law', 'Review contracts', 'Legal team', 'Bar passed', 'Monday', 'Friday', '09:00', '17:00', 'High', 1, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 1, 6, 8, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(7, 'Process optimization', 'Manage ops', 'Ops team', 'Six Sigma', 'Monday', 'Friday', '08:00', '17:00', 'Medium', 2, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 1, 0, 7, 9, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(8, 'Customer service', 'Answer tickets', 'Support team', 'Patience', 'Monday', 'Friday', '24h', 'Shift', 'Low', 10, 'Shift', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 4 MONTH), 1, 1, 8, 10, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(9, 'AWS, Docker', 'CI/CD pipeline', 'DevOps team', 'Kubernetes', 'Monday', 'Friday', '09:00', '18:00', 'Very High', 2, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 1, 10, 11, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(10, 'Agile, Scrum', 'Manage product', 'Product team', 'CSPO', 'Monday', 'Friday', '09:00', '18:00', 'High', 1, 'Full-Time', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 2 MONTH), 1, 0, 11, 12, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(11, 'Java, React', 'Fullstack Dev', 'Feature squad', 'NodeJS', 'Monday', 'Friday', '09:00', '18:00', 'High', 5, 'Full-Time', DATE_SUB(CURDATE(), INTERVAL 1 MONTH), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 1 MONTH), 1, 0, 2, 3, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME()),
+(12, 'Python, ML', 'AI projects', 'R&D team', 'PhD', 'Monday', 'Friday', '10:00', '18:00', 'Very High', 2, 'Contract', CURDATE(), CURTIME(), 1, DATE_ADD(CURDATE(), INTERVAL 6 MONTH), 1, 1, 9, 3, 0, 0, CURDATE(), CURTIME(), 0, CURDATE(), CURTIME());
 
 -- 6. Candidates (20 records)
-INSERT INTO easyhire_candidate (candidate_id, candidate_name, candidate_dob, candidate_gender, candidate_phone, candidate_education, candidate_email, candidate_tech_skill, candidate_language_skill, candidate_main_tech, candidate_exp, candidate_level, candidate_expected_salary, candidate_submit_date, candidate_submit_time, candidate_filetype, candidate_is_employ, candidate_is_mail_sent, candidate_vacancy_id) VALUES
-(1, 'Alice Coder', '1995-05-12', 0, '0912345678', 'BS CS', 'alice@coder.com', 'Java, Spring', 'English', 'Java', '3 Years', 'Senior', '5000', DATE_SUB(CURDATE(), INTERVAL 5 DAY), CURTIME(), 'pdf', 0, 1, 1),
-(2, 'Bob Basic', '1998-01-01', 1, '0987654321', 'Bootcamp', 'bob@basic.com', 'HTML, CSS', 'English', 'Web', '1 Year', 'Junior', '2000', DATE_SUB(CURDATE(), INTERVAL 10 DAY), CURTIME(), 'pdf', 0, 0, 1),
-(3, 'Charlie HR', '1990-03-15', 1, '0911223344', 'MBA', 'charlie@hr.com', 'Management', 'Spanish', 'Admin', '5 Years', 'Manager', '4000', DATE_SUB(CURDATE(), INTERVAL 20 DAY), CURTIME(), 'docx', 1, 1, 2),
-(4, 'Dave Design', '2000-06-10', 1, '0900000001', 'BA Arts', 'dave@design.com', 'Photoshop', 'English', 'Design', '0 Years', 'Fresh', '1000', CURDATE(), CURTIME(), 'pdf', 0, 0, 4),
-(5, 'Eve Sales', '1992-12-12', 0, '0900000002', 'BBA', 'eve@sales.com', 'Salesforce', 'English', 'Sales', '4 Years', 'Mid', '3000', DATE_SUB(CURDATE(), INTERVAL 40 DAY), CURTIME(), 'docx', 0, 0, 3),
-(6, 'Frank Front', '1996-07-20', 1, '0900000003', 'BS IT', 'frank@front.com', 'React, Angular', 'English', 'JS', '2 Years', 'Mid', '3500', DATE_SUB(CURDATE(), INTERVAL 2 DAY), CURTIME(), 'pdf', 0, 0, 1),
-(7, 'Grace Finance', '1993-02-28', 0, '0900000004', 'MS Finance', 'grace@fin.com', 'Excel, SAP', 'English', 'Finance', '5 Years', 'Senior', '6000', CURDATE(), CURTIME(), 'pdf', 0, 0, 5),
-(8, 'Harry Legal', '1989-11-11', 1, '0900000005', 'JD Law', 'harry@legal.com', 'Contracts', 'English', 'Legal', '8 Years', 'Senior', '9000', CURDATE(), CURTIME(), 'pdf', 0, 0, 6),
-(9, 'Ivy Ops', '1994-08-08', 0, '0900000006', 'BS BA', 'ivy@ops.com', 'Logistics', 'German', 'Ops', '4 Years', 'Mid', '4500', CURDATE(), CURTIME(), 'pdf', 0, 0, 7),
-(10, 'Jack Support', '1999-09-09', 1, '0900000007', 'High School', 'jack@sup.com', 'Communicator', 'English', 'Support', '1 Year', 'Junior', '2500', CURDATE(), CURTIME(), 'docx', 0, 0, 8),
-(11, 'Kevin DevOps', '1991-04-04', 1, '0900000008', 'BS CS', 'kevin@devops.com', 'AWS, Linux', 'English', 'Cloud', '6 Years', 'Senior', '8000', CURDATE(), CURTIME(), 'pdf', 0, 1, 9),
-(12, 'Laura Product', '1990-10-10', 0, '0900000009', 'MBA', 'laura@prod.com', 'Jira', 'English', 'Product', '7 Years', 'Senior', '8500', CURDATE(), CURTIME(), 'pdf', 0, 0, 10),
-(13, 'Mike ML', '1995-01-01', 1, '0900000010', 'MS AI', 'mike@ml.com', 'Python, PyTorch', 'English', 'AI', '3 Years', 'Mid', '7000', CURDATE(), CURTIME(), 'pdf', 0, 1, 12),
-(14, 'Nancy Node', '1997-03-03', 0, '0900000011', 'BS CS', 'nancy@node.com', 'NodeJS, Express', 'English', 'JS', '2 Years', 'Junior', '4000', CURDATE(), CURTIME(), 'pdf', 0, 0, 11),
-(15, 'Oscar Java', '1994-05-05', 1, '0900000012', 'BS CS', 'oscar@java.com', 'Java, EE', 'French', 'Java', '4 Years', 'Mid', '5500', CURDATE(), CURTIME(), 'pdf', 0, 0, 1),
-(16, 'Paul Python', '1993-06-06', 1, '0900000013', 'BS Math', 'paul@py.com', 'Python, Django', 'English', 'Python', '5 Years', 'Senior', '6000', CURDATE(), CURTIME(), 'pdf', 0, 0, 12),
-(17, 'Quinn QA', '1996-07-07', 0, '0900000014', 'BS IT', 'quinn@qa.com', 'Selenium', 'English', 'Testing', '3 Years', 'Mid', '4000', CURDATE(), CURTIME(), 'docx', 0, 0, 11),
-(18, 'Rachel React', '1998-08-08', 0, '0900000015', 'Bootcamp', 'rachel@react.com', 'React, Redux', 'English', 'JS', '1 Year', 'Junior', '3000', CURDATE(), CURTIME(), 'pdf', 0, 0, 11),
-(19, 'Steve Sec', '1990-12-12', 1, '0900000016', 'BS CS', 'steve@sec.com', 'CyberSec', 'English', 'Security', '8 Years', 'Senior', '9500', CURDATE(), CURTIME(), 'pdf', 0, 0, 9),
-(20, 'Tina Tech', '1999-01-20', 0, '0900000017', 'BS IT', 'tina@tech.com', 'IT Support', 'English', 'Support', '1 Year', 'Junior', '2500', CURDATE(), CURTIME(), 'docx', 0, 0, 8);
+INSERT INTO easyhire_candidate (candidate_id, candidate_name, candidate_dob, candidate_gender, candidate_phone, candidate_education, candidate_email, candidate_tech_skill, candidate_language_skill, candidate_main_tech, candidate_exp, candidate_level, candidate_expected_salary, candidate_submit_date, candidate_submit_time, candidate_filetype, candidate_is_employ, candidate_is_mail_sent, candidate_vacancy_id, candidate_file, candidate_employed_user_id, candidate_is_recall) VALUES
+(1, 'Alice Coder', '1995-05-12', 0, '0912345678', 'BS CS', 'alice@coder.com', 'Java, Spring', 'English', 'Java', '3 Years', 'Senior', '5000', DATE_SUB(CURDATE(), INTERVAL 5 DAY), CURTIME(), 'pdf', 0, 1, 1, '', 0, 0),
+(2, 'Bob Basic', '1998-01-01', 1, '0987654321', 'Bootcamp', 'bob@basic.com', 'HTML, CSS', 'English', 'Web', '1 Year', 'Junior', '2000', DATE_SUB(CURDATE(), INTERVAL 10 DAY), CURTIME(), 'pdf', 0, 0, 1, '', 0, 0),
+(3, 'Charlie HR', '1990-03-15', 1, '0911223344', 'MBA', 'charlie@hr.com', 'Management', 'Spanish', 'Admin', '5 Years', 'Manager', '4000', DATE_SUB(CURDATE(), INTERVAL 20 DAY), CURTIME(), 'docx', 1, 1, 2, '', 0, 0),
+(4, 'Dave Design', '2000-06-10', 1, '0900000001', 'BA Arts', 'dave@design.com', 'Photoshop', 'English', 'Design', '0 Years', 'Fresh', '1000', CURDATE(), CURTIME(), 'pdf', 0, 0, 4, '', 0, 0),
+(5, 'Eve Sales', '1992-12-12', 0, '0900000002', 'BBA', 'eve@sales.com', 'Salesforce', 'English', 'Sales', '4 Years', 'Mid', '3000', DATE_SUB(CURDATE(), INTERVAL 40 DAY), CURTIME(), 'docx', 0, 0, 3, '', 0, 0),
+(6, 'Frank Front', '1996-07-20', 1, '0900000003', 'BS IT', 'frank@front.com', 'React, Angular', 'English', 'JS', '2 Years', 'Mid', '3500', DATE_SUB(CURDATE(), INTERVAL 2 DAY), CURTIME(), 'pdf', 0, 0, 1, '', 0, 0),
+(7, 'Grace Finance', '1993-02-28', 0, '0900000004', 'MS Finance', 'grace@fin.com', 'Excel, SAP', 'English', 'Finance', '5 Years', 'Senior', '6000', CURDATE(), CURTIME(), 'pdf', 0, 0, 5, '', 0, 0),
+(8, 'Harry Legal', '1989-11-11', 1, '0900000005', 'JD Law', 'harry@legal.com', 'Contracts', 'English', 'Legal', '8 Years', 'Senior', '9000', CURDATE(), CURTIME(), 'pdf', 0, 0, 6, '', 0, 0),
+(9, 'Ivy Ops', '1994-08-08', 0, '0900000006', 'BS BA', 'ivy@ops.com', 'Logistics', 'German', 'Ops', '4 Years', 'Mid', '4500', CURDATE(), CURTIME(), 'pdf', 0, 0, 7, '', 0, 0),
+(10, 'Jack Support', '1999-09-09', 1, '0900000007', 'High School', 'jack@sup.com', 'Communicator', 'English', 'Support', '1 Year', 'Junior', '2500', CURDATE(), CURTIME(), 'docx', 0, 0, 8, '', 0, 0),
+(11, 'Kevin DevOps', '1991-04-04', 1, '0900000008', 'BS CS', 'kevin@devops.com', 'AWS, Linux', 'English', 'Cloud', '6 Years', 'Senior', '8000', CURDATE(), CURTIME(), 'pdf', 0, 1, 9, '', 0, 0),
+(12, 'Laura Product', '1990-10-10', 0, '0900000009', 'MBA', 'laura@prod.com', 'Jira', 'English', 'Product', '7 Years', 'Senior', '8500', CURDATE(), CURTIME(), 'pdf', 0, 0, 10, '', 0, 0),
+(13, 'Mike ML', '1995-01-01', 1, '0900000010', 'MS AI', 'mike@ml.com', 'Python, PyTorch', 'English', 'AI', '3 Years', 'Mid', '7000', CURDATE(), CURTIME(), 'pdf', 0, 1, 12, '', 0, 0),
+(14, 'Nancy Node', '1997-03-03', 0, '0900000011', 'BS CS', 'nancy@node.com', 'NodeJS, Express', 'English', 'JS', '2 Years', 'Junior', '4000', CURDATE(), CURTIME(), 'pdf', 0, 0, 11, '', 0, 0),
+(15, 'Oscar Java', '1994-05-05', 1, '0900000012', 'BS CS', 'oscar@java.com', 'Java, EE', 'French', 'Java', '4 Years', 'Mid', '5500', CURDATE(), CURTIME(), 'pdf', 0, 0, 1, '', 0, 0),
+(16, 'Paul Python', '1993-06-06', 1, '0900000013', 'BS Math', 'paul@py.com', 'Python, Django', 'English', 'Python', '5 Years', 'Senior', '6000', CURDATE(), CURTIME(), 'pdf', 0, 0, 12, '', 0, 0),
+(17, 'Quinn QA', '1996-07-07', 0, '0900000014', 'BS IT', 'quinn@qa.com', 'Selenium', 'English', 'Testing', '3 Years', 'Mid', '4000', CURDATE(), CURTIME(), 'docx', 0, 0, 11, '', 0, 0),
+(18, 'Rachel React', '1998-08-08', 0, '0900000015', 'Bootcamp', 'rachel@react.com', 'React, Redux', 'English', 'JS', '1 Year', 'Junior', '3000', CURDATE(), CURTIME(), 'pdf', 0, 0, 11, '', 0, 0),
+(19, 'Steve Sec', '1990-12-12', 1, '0900000016', 'BS CS', 'steve@sec.com', 'CyberSec', 'English', 'Security', '8 Years', 'Senior', '9500', CURDATE(), CURTIME(), 'pdf', 0, 0, 9, '', 0, 0),
+(20, 'Tina Tech', '1999-01-20', 0, '0900000017', 'BS IT', 'tina@tech.com', 'IT Support', 'English', 'Support', '1 Year', 'Junior', '2500', CURDATE(), CURTIME(), 'docx', 0, 0, 8, '', 0, 0);
 
 -- 7. Candidate Status
 INSERT INTO easyhire_candidate_status (candidate_status_candidate_id, candidate_status_status_id, candidate_status_change_status_user_id, candidate_status_date) VALUES
@@ -154,17 +139,17 @@ INSERT INTO easyhire_candidate_status (candidate_status_candidate_id, candidate_
 (20, 1, 1, '2025-02-04');
 
 -- 8. Interviews
-INSERT INTO easyhire_interview (interview_id, interview_start_date, interview_start_time, interview_end_time, interview_type, interview_location, interview_stage, interview_status, interview_created_datetime, interview_created_user_id, interview_vacany_id) VALUES
-(1, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '10:00', '11:00', 'Online', 'Zoom', 1, 1, '2025-01-22', 1, 1),
-(2, DATE_SUB(CURDATE(), INTERVAL 15 DAY), '14:00', '15:00', 'In-Person', 'Room 101', 1, 0, '2025-01-05', 1, 2),
-(3, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '16:00', '17:00', 'Phone', 'N/A', 1, 1, '2025-02-01', 1, 1),
-(4, DATE_SUB(CURDATE(), INTERVAL 10 DAY), '10:00', '11:00', 'Online', 'Meet', 1, 0, '2025-01-15', 11, 9),
-(5, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '11:00', '12:00', 'Online', 'Teams', 1, 1, '2025-01-22', 1, 12),
-(6, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '09:00', '10:00', 'In-Person', 'Office', 1, 1, '2025-02-03', 3, 1),
-(7, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '10:00', '11:00', 'Online', 'Zoom', 1, 1, '2025-02-03', 1, 12),
-(8, DATE_ADD(CURDATE(), INTERVAL 4 DAY), '13:00', '14:00', 'Online', 'Meet', 1, 1, '2025-02-04', 11, 9),
-(9, DATE_ADD(CURDATE(), INTERVAL 10 DAY), '10:00', '11:00', 'In-Person', 'HQ', 2, 1, '2025-01-30', 1, 1),
-(10, DATE_SUB(CURDATE(), INTERVAL 5 DAY), '14:00', '15:00', 'In-Person', 'HQ', 2, 0, '2025-01-20', 11, 9);
+INSERT INTO easyhire_interview (interview_id, interview_start_date, interview_start_time, interview_end_time, interview_type, interview_location, interview_stage, interview_status, interview_created_datetime, interview_created_user_id, interview_vacany_id, interview_end_date, interview_updated_datetime, interview_updated_user_id, interview_canceled_datetime, interview_canceled_user_id) VALUES
+(1, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '10:00', '11:00', 'Online', 'Zoom', 1, 1, '2025-01-22', 1, 1, DATE_ADD(CURDATE(), INTERVAL 2 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(2, DATE_SUB(CURDATE(), INTERVAL 15 DAY), '14:00', '15:00', 'In-Person', 'Room 101', 1, 0, '2025-01-05', 1, 2, DATE_SUB(CURDATE(), INTERVAL 15 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(3, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '16:00', '17:00', 'Phone', 'N/A', 1, 1, '2025-02-01', 1, 1, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(4, DATE_SUB(CURDATE(), INTERVAL 10 DAY), '10:00', '11:00', 'Online', 'Meet', 1, 0, '2025-01-15', 11, 9, DATE_SUB(CURDATE(), INTERVAL 10 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(5, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '11:00', '12:00', 'Online', 'Teams', 1, 1, '2025-01-22', 1, 12, DATE_ADD(CURDATE(), INTERVAL 3 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(6, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '09:00', '10:00', 'In-Person', 'Office', 1, 1, '2025-02-03', 3, 1, DATE_ADD(CURDATE(), INTERVAL 5 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(7, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '10:00', '11:00', 'Online', 'Zoom', 1, 1, '2025-02-03', 1, 12, DATE_ADD(CURDATE(), INTERVAL 6 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(8, DATE_ADD(CURDATE(), INTERVAL 4 DAY), '13:00', '14:00', 'Online', 'Meet', 1, 1, '2025-02-04', 11, 9, DATE_ADD(CURDATE(), INTERVAL 4 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(9, DATE_ADD(CURDATE(), INTERVAL 10 DAY), '10:00', '11:00', 'In-Person', 'HQ', 2, 1, '2025-01-30', 1, 1, DATE_ADD(CURDATE(), INTERVAL 10 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0),
+(10, DATE_SUB(CURDATE(), INTERVAL 5 DAY), '14:00', '15:00', 'In-Person', 'HQ', 2, 0, '2025-01-20', 11, 9, DATE_SUB(CURDATE(), INTERVAL 5 DAY), '2025-01-01 00:00:00', 0, '2025-01-01 00:00:00', 0);
 
 -- 9. Interview Users
 INSERT INTO easyhire_interview_user (interview_id, user_id) VALUES
@@ -210,17 +195,20 @@ INSERT INTO easyhire_reviews (reviews_review, reviews_review_by, reviews_reviewe
 ('Average communication.', 3, '2025-02-03', 7);
 
 -- 13. Notifications
-INSERT INTO easyhire_notifications (notification_message, notification_created_at, notification_status, notification_vacancy_id) VALUES
-('New Candidate Applied for Java Dev', NOW(), 0, 1),
-('Interview Scheduled for Alice', NOW(), 0, 1),
-('New Candidate Applied for DevOps', NOW(), 0, 9),
-('Interview Scheduled for Kevin', NOW(), 1, 9),
-('New Candidate Applied for AI', NOW(), 0, 12),
-('Offer Sent to Charlie', NOW(), 1, 2),
-('New Candidate Applied for Support', NOW(), 0, 8),
-('New Candidate Applied for Legal', NOW(), 0, 6),
-('Vacancy Expiring Soon: Sales Rep', NOW(), 0, 3),
-('New Candidate Applied for Finance', NOW(), 0, 5);
+INSERT INTO easyhire_notifications (notification_id, notification_message, notification_created_at, notification_status, notification_vacancy_id) VALUES
+(1, 'New Candidate Applied for Java Dev', NOW(), 0, 1),
+(2, 'Interview Scheduled for Alice', NOW(), 0, 1),
+(3, 'New Candidate Applied for DevOps', NOW(), 0, 9),
+(4, 'Interview Scheduled for Kevin', NOW(), 1, 9),
+(5, 'New Candidate Applied for AI', NOW(), 0, 12),
+(6, 'Offer Sent to Charlie', NOW(), 1, 2),
+(7, 'New Candidate Applied for Support', NOW(), 0, 8),
+(8, 'New Candidate Applied for Legal', NOW(), 0, 6),
+(9, 'Vacancy Expiring Soon: Sales Rep', NOW(), 0, 3),
+(10, 'New Candidate Applied for Finance', NOW(), 0, 5);
+
+INSERT INTO easyhire_notification_user (notification_id, user_id) VALUES
+(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
