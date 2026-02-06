@@ -3,10 +3,73 @@
 	height: 100%;
 }
 
-.welcome {
-	margin-left: 3rem;
-	margin-right: 3rem;
+/* Modern Hero Section */
+.hero-banner {
+	position: relative;
+	width: 100%;
+	height: 500px;
+	/* Adjust height as needed */
+	background-image: url('../images/easyhire-banner.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 3rem;
+	border-radius: 0 0 8px 8px;
+	overflow: hidden;
+}
+
+.hero-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	/* Dark overlay for text readability */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
+	padding: 2rem;
+}
+
+.hero-content h1 {
+	color: #ffffff;
+	font-size: 3rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content h3 {
+	color: #f0f0f0;
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 2rem;
+	max-width: 800px;
+}
+
+.hero-content .btn-cta {
+	padding: 0.8rem 2rem;
+	font-size: 1.1rem;
+	background-color: #cc0000;
+	color: white;
+	border: none;
+	border-radius: 50px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	text-decoration: none;
+	box-shadow: 0 4px 15px rgba(204, 0, 0, 0.4);
+}
+
+.hero-content .btn-cta:hover {
+	background-color: #a30000;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(204, 0, 0, 0.6);
 }
 
 
@@ -16,59 +79,91 @@
 
 /* CSS style for the pop-up animation */
 .job-featured {
-  transition: transform 0.2s; /* Set the duration for the animation */
+	transition: transform 0.2s;
+	/* Set the duration for the animation */
 }
 
 .job-featured:hover {
-  transform: translateY(-5px); /* Adjust the amount of vertical movement */
+	transform: translateY(-5px);
+	/* Adjust the amount of vertical movement */
 }
 
 /* CSS style to remove underline on hover */
 a.tab-link {
-  text-decoration: none; /* Remove the underline for normal state */
+	text-decoration: none;
+	/* Remove the underline for normal state */
 }
 
 a.tab-link:hover {
-  text-decoration: none; /* Remove the underline on hover */
+	text-decoration: none;
+	/* Remove the underline on hover */
 }
 
-.tab-bottom{
-	background-color:#1c497f;
+.tab-bottom {
+	background-color: #cc0000;
+	/* Updated to Red */
 }
-.card{
-	
-	width:97%;
-	height:13rem;
+
+.card {
+	width: 97%;
+	height: 13rem;
 	background-color: white;
-	box-shadow: 0 0rem .5rem .2rem #d2d4d2;
-	border-radius:4px;
-	transition: transform 0.3s; /* Set the duration for the animation */
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	/* Softer shadow */
+	border-radius: 8px;
+	transition: transform 0.3s, box-shadow 0.3s;
 	margin-bottom: 1.5rem;
-	font-family: serif;
+	font-family: 'Nunito', sans-serif !important;
+	/* Force Sans-Serif */
+	border: none;
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Adjust the amount of vertical movement */
-	
+	transform: translateY(-5px);
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
-.card-header{
-	font-family:sans-serif;
-	text-transform:capitalize;
-	height:2.3rem;
+
+.card-header {
+	font-family: 'Nunito', sans-serif !important;
+	text-transform: capitalize;
+	height: 2.3rem;
 	border: 0;
+	background-color: transparent;
+	padding-top: 1rem;
 }
-.card-body{
-	font-family:sans-serif;
-	background-color: #f7f7f7;
+
+.card-header h3 a {
+	font-weight: 700;
+	font-size: 1.1rem;
+	color: #333;
+}
+
+.card-body {
+	font-family: 'Nunito', sans-serif !important;
+	background-color: transparent;
+	/* Cleaner look */
 	margin-left: 0rem;
 	margin-right: 0rem;
+	padding-top: 0.5rem;
 }
-.card-footer{
+
+.card-footer {
 	border: 0;
+	background-color: transparent;
+	padding-bottom: 1rem;
 }
-@media ( max-width : 576px) {
+
+@media (max-width : 576px) {
 	.hide-on-phone {
 		display: none;
+	}
+
+	.hero-content h1 {
+		font-size: 2rem;
+	}
+
+	.hero-content h3 {
+		font-size: 1.1rem;
 	}
 }
 
@@ -88,11 +183,31 @@ a.tab-link:hover {
 .no-background {
 	background-color: transparent !important;
 }
-.btn-detail{
-	color:white;
-	background-color: #1d497f;
+
+.btn-detail {
+	color: white;
+	background-color: #cc0000;
+	/* Brand Red */
+	border: none;
+	border-radius: 4px;
+	padding: 0.4rem 1rem;
 }
-.btn-detail:hover{
-	color:white;
-	background-color: #1c1075;
+
+.btn-detail:hover {
+	color: white;
+	background-color: #a30000;
+	/* Darker Red */
+}
+
+.text-info {
+	color: #666 !important;
+	/* Subtle grey instead of bright blue/teal */
+}
+
+.text-success {
+	color: #666 !important;
+}
+
+.text-green {
+	color: #28a745 !important;
 }
