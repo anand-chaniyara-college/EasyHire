@@ -41,25 +41,25 @@ $colors: (
 
 
 $theme-colors: (
-  primary:         #4B49AC,
-  secondary:       #a3a4a5,
-  success:         #57B657,
-  info:            #248AFD,
-  warning:         #FFC100,
-  danger:          #FF4747,
-  light:           #f8f9fa,
-  dark:            #282f3a
+  primary:         #cc0000,   // Azilen Red (Logo Match)
+  secondary:       #1a1a1a,   // Tech Obsidian (Sidebar/Structure)
+  success:         #198754,   // Standard Success Green
+  info:            #6c757d,   // Neutral Grey Info (No Blue clutter)
+  warning:         #ffc107,   // Standard Warning Amber
+  danger:          #a30000,   // Darker Red for Destructive
+  light:           #f8f9fa,   // Clean Light
+  dark:            #1a1a1a    // Tech Obsidian
 );
 
 $theme-gradient-colors: (
-  primary:         linear-gradient(230deg, #759bff, #843cf6),
-  secondary:       linear-gradient(to right, #e7ebf0, #868e96),
+  primary:         linear-gradient(135deg, #cc0000 0%, #a30000 100%), // Red Shift
+  secondary:       linear-gradient(to right, #2c2c2c, #1a1a1a),
   success:         linear-gradient(45deg, #7bffce, #30c93e),
-  info:            linear-gradient(to bottom, #0e4cfd, #6a8eff),
+  info:            linear-gradient(to bottom, #8e8e93, #6c757d),
   warning:         linear-gradient(135deg, #ffc480, #ff763b),
-  danger:          linear-gradient(316deg, #fc5286, #fbaaa2),
+  danger:          linear-gradient(316deg, #ff4b4b, #cc0000),
   light:           linear-gradient(to right, #cfd9df 0%, #e2ebf0 100%),
-  dark:            linear-gradient(to right, #7d7979 0%, #000000 100%)
+  dark:            linear-gradient(to right, #000000 0%, #1a1a1a 100%)
 );
 
 ////////// COLOR SYSTEM //////////
@@ -216,10 +216,10 @@ $card-description-color: #76838f;
 $grid-gutter-width: 30px;
 $action-transition-duration: 0.25s;
 $action-transition-timing-function: ease;
-$card-tale:#7DA0FA;
-$card-dark-blue:#4747A1;
-$card-light-blue:#7978E9;
-$card-light-danger:#F3797E;
+$card-tale: #64748b;        // Slate
+$card-dark-blue: #1F487E;   // Corporate Navy
+$card-light-blue: #3b82f6;  // Standard Blue
+$card-light-danger: #D90429; // Logo Red
 ////////// OTHER VARIABLES //////////
 
 
