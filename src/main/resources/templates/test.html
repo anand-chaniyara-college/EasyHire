@@ -1,79 +1,76 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Ace Data System</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="/css/general/interview.css" rel="stylesheet">
-<link href="/css/general/virtual-select.min.css" rel="stylesheet">
-<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/ti-icons/css/themify-icons.css}">
-<link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/ti-icons/css/themify-icons.css}">
-<link rel="stylesheet" type="text/css"
-	href="@{/js/select.dataTables.min.css}">
-<link rel="stylesheet" th:href="@{/css/vertical-layout-light/style.css}">
-<link rel="shortcut icon" th:href="@{/images/EasyHire_Logo_FullSize.svg}" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-.dash {
-	text-align: center;
-}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Ace Data System</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="/css/general/interview.css" rel="stylesheet">
+	<link href="/css/general/virtual-select.min.css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
+	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
+	<link rel="stylesheet" th:href="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
+	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" type="text/css" href="@{/js/select.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/vertical-layout-light/style.css}">
+	<link rel="stylesheet" th:href="@{/css/compact-theme.css}">
+	<link rel="shortcut icon" th:href="@{/images/EasyHire_Logo_FullSize.svg}" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		.dash {
+			text-align: center;
+		}
 
-.status-badge {
-	display: inline-flex;
-	align-items: center;
-	padding: 6px 16px;
-	border-radius: 50px;
-	font-size: 10px;
-	text-transform: uppercase;
-	background-size: cover;
-	color: #fff;
-}
+		.status-badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 6px 16px;
+			border-radius: 50px;
+			font-size: 10px;
+			text-transform: uppercase;
+			background-size: cover;
+			color: #fff;
+		}
 
-.status-received {
-	background-color: #ffc107; /* Yellow */
-}
+		.status-received {
+			background-color: #ffc107;
+			/* Yellow */
+		}
 
-.status-viewed {
-	background-color: #6c757d; /* Grey */
-}
+		.status-viewed {
+			background-color: #6c757d;
+			/* Grey */
+		}
 
-.status-considering {
-	background-color: #28a745; /* Green */
-}
+		.status-considering {
+			background-color: #28a745;
+			/* Green */
+		}
 
-.status-decline {
-	background-color: #dc3545; /* Red */
-}
+		.status-decline {
+			background-color: #dc3545;
+			/* Red */
+		}
 
-.stage-info {
-	background-color: #17a2b8; /* Blue */
-}
+		.stage-info {
+			background-color: #17a2b8;
+			/* Blue */
+		}
 
-.center-align-hyphen {
-	text-align: center;
-}
-</style>
+		.center-align-hyphen {
+			text-align: center;
+		}
+	</style>
 </head>
+
 <body>
 	<div class="container-scroller">
 		<div th:replace="fragments/topbar :: topbar"></div>
@@ -82,27 +79,25 @@
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<!-- Bootstrap Alert Notification -->
-					<div class="alert alert-success alert-dismissible fade show"
-						role="alert" id="successAlert" style="display: none;">
+					<div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert"
+						style="display: none;">
 						Updated Successfully!
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<!-- Bootstrap Alert Notification -->
 
 					<select id="selectionStatusSelect">
-							<option value="all">All</option>
-							<option value="Received">Received</option>
-							<option value="Viewed">Viewed</option>
-							<option value="Considering">Considering</option>
-						</select> 
+						<option value="all">All</option>
+						<option value="Received">Received</option>
+						<option value="Viewed">Viewed</option>
+						<option value="Considering">Considering</option>
+					</select>
 
 					<h4 class="card-title">Candidate</h4>
 					<div class="table-responsive">
-						<table class="table table-hover " id="candidateTable"
-							style="width: 100%;">
+						<table class="table table-hover " id="candidateTable" style="width: 100%;">
 							<thead>
 								<tr>
 									<th></th>
@@ -123,22 +118,19 @@
 
 							</tbody>
 						</table>
-						<button type="button" class="btn btn-success btn-md"
-							id="downloadButton">Download</button>
+						<button type="button" class="btn btn-success btn-md" id="downloadButton">Download</button>
 					</div>
 
 				</div>
 
 				<!-- Ask Email Sent -->
 				<!-- Success Modal -->
-				<div class="modal fade" id="successModal" tabindex="-1"
-					role="dialog">
+				<div class="modal fade" id="successModal" tabindex="-1" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title">Success</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
@@ -150,8 +142,8 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary" id="sendEmailBtn">Send
 									Email</button>
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal" id="closeBtn">Cancel</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal"
+									id="closeBtn">Cancel</button>
 							</div>
 						</div>
 					</div>
@@ -161,14 +153,12 @@
 
 				<!-- Interview Error Model -->
 
-				<div class="modal fade" id="warningModal" tabindex="-1"
-					role="dialog">
+				<div class="modal fade" id="warningModal" tabindex="-1" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title">Warning</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
@@ -176,8 +166,8 @@
 								<p id="warningMessage"></p>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal" id="closeBtn">Close</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal"
+									id="closeBtn">Close</button>
 							</div>
 						</div>
 					</div>
@@ -189,14 +179,13 @@
 
 
 				<!-- Modal for Employ Confirmation -->
-				<div class="modal fade" id="employConfirmationModal" tabindex="-1"
-					role="dialog">
+				<div class="modal fade" id="employConfirmationModal" tabindex="-1" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title">Confirmation</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close" id="confirmCloseX">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+									id="confirmCloseX">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
@@ -204,8 +193,8 @@
 								Are you sure you want to employ "<span id="candidateNameEmploy"></span>"?
 							</div>
 							<div class="modal-footer">
-								<button type="button" id="cancelEmployChange"
-									class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+								<button type="button" id="cancelEmployChange" class="btn btn-secondary"
+									data-dismiss="modal">Cancel</button>
 								<button type="button" class="btn btn-primary" id="confirmEmploy">OK</button>
 							</div>
 						</div>
@@ -214,14 +203,13 @@
 				<!--  Model confirm end -->
 
 				<!-- Modal for Confirmation -->
-				<div class="modal fade" id="confirmationModal" tabindex="-1"
-					role="dialog">
+				<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title">Confirmation</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close" id="confirmCloseX">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+									id="confirmCloseX">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
@@ -230,10 +218,9 @@
 									id="statusName"></span>"?
 							</div>
 							<div class="modal-footer">
-								<button type="button" id="cancelStatusChange"
-									class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-								<button type="button" class="btn btn-primary"
-									id="confirmStatusChange">OK</button>
+								<button type="button" id="cancelStatusChange" class="btn btn-secondary"
+									data-dismiss="modal">Cancel</button>
+								<button type="button" class="btn btn-primary" id="confirmStatusChange">OK</button>
 							</div>
 						</div>
 					</div>
@@ -241,8 +228,8 @@
 				<!--  Model confirm end -->
 
 				<!-- The modal markup -->
-				<div class="modal fade" id="updateModel" tabindex="-1"
-					aria-labelledby="updateModelLabel" aria-hidden="true">
+				<div class="modal fade" id="updateModel" tabindex="-1" aria-labelledby="updateModelLabel"
+					aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -261,8 +248,7 @@
 								<p>Experience:</p>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 							</div>
 						</div>
 					</div>
@@ -282,8 +268,7 @@
 	<!-- Plugin js for this page -->
 	<script th:src="@{/vendors/chart.js/Chart.min.js}"></script>
 	<script th:src="@{/vendors/datatables.net/jquery.dataTables.js}"></script>
-	<script
-		th:src="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+	<script th:src="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
 	<script th:src="@{/js/dataTables.select.min.js}"></script>
 
 	<!-- End plugin js for this page -->
@@ -300,4 +285,5 @@
 	<script th:src="@{/js/dashboard.js}"></script>
 	<script th:src="@{/js/Chart.roundedBarCharts.js}"></script>
 </body>
+
 </html>

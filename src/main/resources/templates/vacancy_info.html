@@ -1,60 +1,46 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Ace Data Systems</title>
-<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/ti-icons/css/themify-icons.css}">
-<link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/ti-icons/css/themify-icons.css}">
-<link rel="stylesheet" type="text/css"
-	th:href="@{/js/select.dataTables.min.css}">
-<link rel="stylesheet" th:href="@{/css/vertical-layout-light/style.css}">
-<link rel="shortcut icon" th:href="@{/images/EasyHire_Logo_FullSize.svg}" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{/css/vacancyDetail.css}">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Ace Data Systems</title>
+	<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
+	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
+	<link rel="stylesheet" th:href="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
+	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/js/select.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/vertical-layout-light/style.css}">
+	<link rel="stylesheet" th:href="@{/css/compact-theme.css}">
+	<link rel="shortcut icon" th:href="@{/images/EasyHire_Logo_FullSize.svg}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/vacancyDetail.css}">
 
 </head>
 
 <body>
 	<div class="container-scroller">
 		<!-- partial:partials/_navbar.html -->
-		<nav class="navbar col-sm-12 col-12 p-0 fixed-top d-flex "
-			th:fragment="nav">
-			<div
-				class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+		<nav class="navbar col-sm-12 col-12 p-0 fixed-top d-flex " th:fragment="nav">
+			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
 				<a class="navbar-brand brand-logo mr-5" th:href="@{/}"><img
-					th:src="@{/images/EasyHire_Logo_FullSize.svg}" alt="logo" style="height: 50px; width: auto;" /></a> <a
-					class="navbar-brand brand-logo-mini" th:href="@{/}"><img
-					th:src="@{/images/EasyHire_Logo_FullSize.svg}" alt="logo" style="height: 50px; width: auto;" /></a>
+						th:src="@{/images/EasyHire_Logo_FullSize.svg}" alt="logo"
+						style="height: 50px; width: auto;" /></a> <a class="navbar-brand brand-logo-mini"
+					th:href="@{/}"><img th:src="@{/images/EasyHire_Logo_FullSize.svg}" alt="logo"
+						style="height: 50px; width: auto;" /></a>
 			</div>
-			<div
-				class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+			<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 
 				<ul class="navbar-nav navbar-nav-right">
 
-					<li class="navbar-nav mr-sm-2"><a
-						class="nav-item text-decoration-none" th:href="@{/}">
+					<li class="navbar-nav mr-sm-2"><a class="nav-item text-decoration-none" th:href="@{/}">
 							<button class="btn btn-light btn-sm hide-on-phone">Home</button>
-					</a> <a class="nav-item text-decoration-none"
-						th:href="@{/candidate/jobs}"><button
-								class="btn btn-light btn-sm">Jobs</button></a> <a
-						class="nav-item text-decoration-none"
-						th:href="@{/candidate/about}"><button
-								class="btn btn-light btn-sm">About</button></a></li>
+						</a> <a class="nav-item text-decoration-none" th:href="@{/candidate/jobs}"><button
+								class="btn btn-light btn-sm">Jobs</button></a> <a class="nav-item text-decoration-none"
+							th:href="@{/candidate/about}"><button class="btn btn-light btn-sm">About</button></a></li>
 				</ul>
 			</div>
 
@@ -68,24 +54,22 @@
 				<div class="title">
 
 					<input type="hidden" th:value="*{vacancyInfo.id}" id="vacancy-id" />
-					<div class="alert alert-success alert-dismissible fade show"
-						role="alert" id="successAlert" th:if="${param.success}">
+					<div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert"
+						th:if="${param.success}">
 						Successful!
-						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<h3 th:text="*{vacancyInfo.position.name}"
-								style="text-transform: capitalize;"></h3>
+							<h3 th:text="*{vacancyInfo.position.name}" style="text-transform: capitalize;"></h3>
 
 						</div>
 						<div class="col-6">
 							<div class="btn-box text-right">
-								<button class="btn btn-info" type="button"
-									data-bs-toggle="modal" data-bs-target="#candidateModel">Apply
+								<button class="btn btn-info" type="button" data-bs-toggle="modal"
+									data-bs-target="#candidateModel">Apply
 									Now</button>
 							</div>
 						</div>
@@ -94,8 +78,7 @@
 						<div class="col-lg-8 col-sm-6">
 							<div class="row">
 								<div class="col-lg-3 col-md-6 col-sm-6">
-									<i class="ti-user text-info"></i> <span
-										th:text="*{vacancyInfo.count}"></span>
+									<i class="ti-user text-info"></i> <span th:text="*{vacancyInfo.count}"></span>
 								</div>
 								<div class="col-lg-3 col-md-6 col-sm-6">
 									<i class="ti-location-pin text-info"></i> <span
@@ -106,8 +89,7 @@
 										th:text="*{vacancyInfo.createdDate}"></span>
 								</div>
 								<div class="col-lg-3 col-md-6 col-sm-6">
-									<i class="ti-wallet text-info"></i> <span
-										th:text="*{vacancyInfo.salary}"></span>
+									<i class="ti-wallet text-info"></i> <span th:text="*{vacancyInfo.salary}"></span>
 								</div>
 							</div>
 						</div>
@@ -116,8 +98,7 @@
 
 					<div class="d-flex mt-3">
 						<div class="mr-2">
-							<span class="badge rounded-pill badge-info text-white"
-								th:text="*{vacancyInfo.type}"></span>
+							<span class="badge rounded-pill badge-info text-white" th:text="*{vacancyInfo.type}"></span>
 						</div>
 						<div>
 							<span th:if="${vacancyInfo.urgent == true}"
@@ -134,13 +115,11 @@
 									<div class="job-content col-lg-8 col-md-12 col-sm-12">
 										<div class="mt-5 ml-0">
 											<h3>Job Description</h3>
-											<p th:text="*{vacancyInfo.description}"
-												class="text-wrap mt-4"></p>
+											<p th:text="*{vacancyInfo.description}" class="text-wrap mt-4"></p>
 											<h3 class="mt-4 mb-4">Job Responsibilities</h3>
 											<ul class="mt-4 mb-4">
-												<li class="mb-4"
-													th:each="responsibility :  ${responsibilities}"><span
-													th:text="${responsibility}"></span></li>
+												<li class="mb-4" th:each="responsibility :  ${responsibilities}"><span
+														th:text="${responsibility}"></span></li>
 											</ul>
 											<h3 class="mt-4 mb-4">Job Requirements</h3>
 											<ul class="mt-4 mb-4">
@@ -163,8 +142,7 @@
 					</div>
 
 
-					<div class="card sm-card col-lg-3 col-sm-12"
-						style="background-color: #f5f7fcff;">
+					<div class="card sm-card col-lg-3 col-sm-12" style="background-color: #f5f7fcff;">
 						<div class="card-body">
 							<h3 class="card-ti">Job Overview</h3>
 							<div class="job-info p-3">
@@ -236,25 +214,22 @@
 							</div>
 
 						</div>
-						<div class="modal fade" id="candidateModel" tabindex="-1"
-							aria-labelledby="candidateModelLabel" aria-hidden="true"
-							data-bs-backdrop="static">
+						<div class="modal fade" id="candidateModel" tabindex="-1" aria-labelledby="candidateModelLabel"
+							aria-hidden="true" data-bs-backdrop="static">
 							<div class="modal-dialog">
 								<div class="modal-content">
 
 									<div class="modal-header">
-										<button type="button" class="btn-close btn-secondary"
-											data-bs-dismiss="modal"
+										<button type="button" class="btn-close btn-secondary" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form action="/candidate/register" method="post"
-										enctype="multipart/form-data" id="myForm">
+									<form action="/candidate/register" method="post" enctype="multipart/form-data"
+										id="myForm">
 										<div class="modal-body">
 
 											<div class="row">
-													<div class="form-group">
-													<div
-														class="text-center text-dark text-center btn-sm">
+												<div class="form-group">
+													<div class="text-center text-dark text-center btn-sm">
 														<h3>Job Registration</h3>
 													</div>
 												</div>
@@ -306,14 +281,14 @@
 															style="position: relative; left: 1.5rem; width: 13rem">
 															<div class="col-6">
 																<div class="form-check " style="height: 1.65rem">
-																	<input class="form-check-input" type="radio" value="0"
-																		id="male" name="gender" checked>Male
+																	<input class="form-check-input" type="radio"
+																		value="0" id="male" name="gender" checked>Male
 																</div>
 															</div>
 															<div class="col-6">
 																<div class="form-check">
-																	<input class="form-check-input" type="radio" value="1"
-																		id="female" name="gender">Female
+																	<input class="form-check-input" type="radio"
+																		value="1" id="female" name="gender">Female
 																</div>
 															</div>
 														</div>
@@ -323,8 +298,7 @@
 													<div class="form-group">
 														<label for="levelSelect">Please choose your level.</label>
 														<div class="dropdown input-group">
-															<select class="custom-select" id="levelSelect"
-																name="level">
+															<select class="custom-select" id="levelSelect" name="level">
 
 																<option value="Low">Low</option>
 																<option value="Mid">Mid</option>
@@ -340,11 +314,11 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label for="techSkill">Technical Skill</label>
-														<textarea type="text" class="form-control"
-															name="techSkill" id="techSkill"
+														<textarea type="text" class="form-control" name="techSkill"
+															id="techSkill"
 															placeholder="Enter Your Technical skills"></textarea>
-														<div id="techSkillValidationMessage"
-															class="invalid-feedback">Technical Skill cannot
+														<div id="techSkillValidationMessage" class="invalid-feedback">
+															Technical Skill cannot
 															empty.</div>
 													</div>
 												</div>
@@ -352,9 +326,10 @@
 													<div class="form-group">
 														<label for="education">Education</label>
 														<textarea type="text" class="form-control" id="education"
-															name="education" placeholder="Your Education Level."></textarea>
-														<div id="educationValidationMessage"
-															class="invalid-feedback">Education cannot empty.</div>
+															name="education"
+															placeholder="Your Education Level."></textarea>
+														<div id="educationValidationMessage" class="invalid-feedback">
+															Education cannot empty.</div>
 													</div>
 												</div>
 												<!-- Tech Skill and education -->
@@ -362,16 +337,16 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label for="exp">Work Experience</label>
-														<textarea type="text" class="form-control" id="exp"
-															name="exp" placeholder="Work Experience"></textarea>
+														<textarea type="text" class="form-control" id="exp" name="exp"
+															placeholder="Work Experience"></textarea>
 														<div id="expValidationMessage" class="invalid-feedback"></div>
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
 														<label for="languageSkill">Language Skill</label>
-														<textarea type="text" class="form-control"
-															name="languageSkill" id="languageSkill"
+														<textarea type="text" class="form-control" name="languageSkill"
+															id="languageSkill"
 															placeholder="Which languages do you express?"></textarea>
 														<div id="languageSkillValidationMessage"
 															class="invalid-feedback"></div>
@@ -384,8 +359,8 @@
 														<label for="mainTech">Main Specialist Technology</label> <input
 															type="text" class="form-control" name="mainTech"
 															id="mainTech" placeholder="Enter specialize technology">
-														<div id="mainTechValidationMessage"
-															class="invalid-feedback"></div>
+														<div id="mainTechValidationMessage" class="invalid-feedback">
+														</div>
 													</div>
 												</div>
 												<div class="col-sm-6">
@@ -405,8 +380,8 @@
 												<label for="file" style="display: block;">Upload
 													Your CV (Word, PDF)</label> <input type="file"
 													class="form-control btn-primary" id="file" name="file"
-													accept=".docx, .pdf"> <input type="hidden"
-													name="vacancyId" th:value="${vacancyInfo.id}">
+													accept=".docx, .pdf"> <input type="hidden" name="vacancyId"
+													th:value="${vacancyInfo.id}">
 												<div id="fileValidationMessage" class="invalid-feedback">Please
 													select your cv form.</div>
 											</div>
@@ -414,8 +389,8 @@
 												sumitting</p>
 										</div>
 										<div class="modal-footer">
-											<span style="position: relative; right: .3rem"><button
-													type="button" class="btn btn-secondary btn-md"
+											<span style="position: relative; right: .3rem"><button type="button"
+													class="btn btn-secondary btn-md"
 													data-bs-dismiss="modal">Close</button></span>
 											<button type="submit" class="btn btn-primary btn-md"
 												id="submitButton">Submit</button>
@@ -438,8 +413,7 @@
 	<!-- Plugin js for this page -->
 	<script th:src="@{/vendors/chart.js/Chart.min.js}"></script>
 	<script th:src="@{/vendors/datatables.net/jquery.dataTables.js}"></script>
-	<script
-		th:src="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+	<script th:src="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
 	<script th:src="@{/js/dataTables.select.min.js}"></script>
 
 	<!-- End plugin js for this page -->
@@ -455,8 +429,7 @@
 	<script th:src="@{/js/dashboard.js}"></script>
 	<script th:src="@{/js/Chart.roundedBarCharts.js}"></script>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
 		crossorigin="anonymous"></script>
 	<!-- End custom js for this page-->

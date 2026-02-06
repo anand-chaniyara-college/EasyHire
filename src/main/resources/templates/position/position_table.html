@@ -1,40 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Position</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="/css/general/interview.css" rel="stylesheet">
-<link href="/css/general/virtual-select.min.css" rel="stylesheet">
-<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/ti-icons/css/themify-icons.css}">
-<link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
-<link rel="stylesheet"
-	th:href="@{/vendors/ti-icons/css/themify-icons.css}">
-<link rel="stylesheet" type="text/css"
-	href="@{/js/select.dataTables.min.css}">
-<link rel="stylesheet" th:href="@{/css/vertical-layout-light/style.css}">
-<link rel="shortcut icon" th:href="@{/images/EasyHire_Logo_FullSize.svg}" />
-<link href="https://cdn.jsdelivr.net/npm/font-awesome@6.4.2/css/font-awesome.css " rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Position</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="/css/general/interview.css" rel="stylesheet">
+	<link href="/css/general/virtual-select.min.css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
+	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
+	<link rel="stylesheet" th:href="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
+	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
+	<link rel="stylesheet" type="text/css" href="@{/js/select.dataTables.min.css}">
+	<link rel="stylesheet" th:href="@{/css/vertical-layout-light/style.css}">
+	<link rel="stylesheet" th:href="@{/css/compact-theme.css}">
+	<link rel="shortcut icon" th:href="@{/images/EasyHire_Logo_FullSize.svg}" />
+	<link href="https://cdn.jsdelivr.net/npm/font-awesome@6.4.2/css/font-awesome.css " rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -44,11 +34,10 @@
 			<div th:replace="fragments/sidebar :: sidebar"></div>
 			<div class="main-panel">
 
-				<div class="alert alert-success alert-dismissible fade show"
-					role="alert" id="successAlert" style="display: none;">
+				<div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert"
+					style="display: none;">
 					Successful
-					<button type="button" class="close" data-dismiss="alert"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -56,15 +45,14 @@
 
 				<div class="content-wrapper">
 
-					<h4 class="card-title"
-						style="padding-bottom: 5px; border-bottom: 2px solid #ccc;">All
+					<h4 class="card-title" style="padding-bottom: 5px; border-bottom: 2px solid #ccc;">All
 						Positions</h4>
 					<div class="table-responsive">
 
 						<!-- 	<div class="col-sm-6"> -->
 						<span style="float: right; margin-bottom: 1rem;">
-							<button type="button" class="btn btn-primary btn-md"
-								data-bs-toggle="modal" data-bs-target="#positionModal">Add</button>
+							<button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal"
+								data-bs-target="#positionModal">Add</button>
 						</span>
 						<!-- </div> -->
 
@@ -98,14 +86,12 @@
 									aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-								<form id="updatePositionForm" action="/hr/update-position/{id}"
-									method="POST">
+								<form id="updatePositionForm" action="/hr/update-position/{id}" method="POST">
 									<input type="hidden" id="positionId" name="id">
 									<div class="form-group">
-										<label for="positionUpdateName">Position Name</label> <input
-											type="text" class="form-control" id="positionUpdateName"
-											name="positionName" maxlength="50"
-											placeholder="Enter Position Name"> <small
+										<label for="positionUpdateName">Position Name</label> <input type="text"
+											class="form-control" id="positionUpdateName" name="positionName"
+											maxlength="50" placeholder="Enter Position Name"> <small
 											id="error-msg-update" class="text-danger"></small>
 									</div>
 									<button type="submit" class="btn btn-primary">Update</button>
@@ -117,8 +103,8 @@
 				<!-- Update Modal End -->
 
 				<!-- Detail Modal Start-->
-				<div class="modal fade" id="detailModal" tabindex="-1" role="dialog"
-					aria-labelledby="detailModalLabel" aria-hidden="true">
+				<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
+					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -131,8 +117,7 @@
 								<!-- Detail content goes here -->
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 							</div>
 						</div>
 					</div>
@@ -141,8 +126,8 @@
 				<!-- Detail Model end -->
 				<!-- Add Position Model Start-->
 
-				<div class="modal fade" id="positionModal" tabindex="-1"
-					aria-labelledby="positionModalLabel" aria-hidden="true">
+				<div class="modal fade" id="positionModal" tabindex="-1" aria-labelledby="positionModalLabel"
+					aria-hidden="true">
 					<div class="modal-dialog" style="max-width: 25rem;">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -152,12 +137,11 @@
 									aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-								<form id="addPositionForm" action="/hr/add-position"
-									method="POST">
+								<form id="addPositionForm" action="/hr/add-position" method="POST">
 									<div class="form-group">
 										<input type="text" class="form-control" id="name" name="name"
-											placeholder="Enter Position Name" maxlength="50"> <small
-											id="error-msg" class="text-danger"></small>
+											placeholder="Enter Position Name" maxlength="50"> <small id="error-msg"
+											class="text-danger"></small>
 									</div>
 									<button type="submit" class="btn btn-primary">Add</button>
 								</form>
@@ -184,15 +168,12 @@
 	<!-- Plugin js for this page -->
 	<script th:src="@{/vendors/chart.js/Chart.min.js}"></script>
 	<script th:src="@{/vendors/datatables.net/jquery.dataTables.js}"></script>
-	<script
-		th:src="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+	<script th:src="@{/vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
 	<script th:src="@{/js/dataTables.select.min.js}"></script>
 	<!-- Stomp -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<!-- SockJS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<!-- Stomp -->
 	<!-- End plugin js for this page -->
 	<!-- inject:js -->

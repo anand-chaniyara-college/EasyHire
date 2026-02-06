@@ -15,108 +15,14 @@
 	<!-- End plugin css for this page -->
 	<!-- inject:css -->
 	<link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+	<link rel="stylesheet" th:href="@{/css/compact-theme.css}">
 	<!-- endinject -->
-	<link rel="shortcut icon" type="icon/image" href="https://acedatasystems.com/wp-content/themes/acedata/shared/images/fav/favicon.ico">
+	<link rel="shortcut icon" type="icon/image"
+		href="https://acedatasystems.com/wp-content/themes/acedata/shared/images/fav/favicon.ico">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 </head>
-<style>
-	.btn-forgot {
-		color: #adacac;
-		background-color: transparent;
-	}
 
-	.btn-forgot:hover {
-		color: black;
-	}
-
-	.spinner {
-		--t: 2500ms;
-		--animation: rotate var(--t) linear infinite;
-		--animation2: scale var(--t) linear infinite alternate;
-		position: relative;
-		width: 10rem;
-		height: 10rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		animation: var(--animation), var(--animation2);
-	}
-
-	.spinner::before,
-	.spinner::after {
-		content: '';
-		position: absolute;
-	}
-
-	.spinner::before {
-		inset: 0;
-		border: 3px solid turquoise;
-		border-radius: 50%;
-		mask-image: conic-gradient(transparent 10%, black);
-		animation: borderScale var(--t) linear infinite alternate;
-	}
-
-	.spinner::after {
-		--r: 45deg;
-		--scale: 2;
-		width: 20%;
-		height: 20%;
-		background: radial-gradient(circle at 30% 35%, white 3px, transparent 0),
-			radial-gradient(circle at 70% 35%, white 3px, transparent 0),
-			radial-gradient(circle at top center, white 6px, transparent 0),
-			turquoise;
-		background-position: 0 0, 0 0, 0 1.25rem;
-		top: 0;
-		translate: 0 -50%;
-		rotate: 45deg;
-		animation: var(--animation) reverse, var(--animation2);
-		border-radius: 20%;
-	}
-
-	@keyframes rotate {
-		to {
-			rotate: calc(360deg + var(--r, 0deg));
-
-		}
-
-	}
-
-	@keyframes scale {
-		to {
-			scale: var(--scale, 0.5);
-
-		}
-
-	}
-
-	@keyframes borderScale {
-		to {
-			border: 6pxsolidturquoise;
-
-		}
-	}
-
-	.form-group {
-		position: relative;
-	}
-
-	#exampleInputPassword1 {
-		padding-right: 40px;
-	}
-
-	#togglePassword {
-		font-size: 18px;
-		position: absolute;
-		right: 5px;
-		top: 50%;
-		transform: translateY(-50%);
-		cursor: pointer;
-		background-color: transparent;
-		border: none;
-	}
-	
-</style>
 
 <body>
 	<div class="container-scroller">
@@ -132,11 +38,11 @@
 									style="position: relative; margin: 0; width: 250px; height: auto;">
 							</div>
 							<div class="error-message" th:if="${param.error}">
-								<h4 style="color: red">Check your email and password.</h4>
+								<h4 class="text-danger">Check your email and password.</h4>
 							</div>
 
 							<div class="ban-message" th:if="${param.deny}">
-								<h4 style="color: red">Your Account has been Ban.</h4>
+								<h4 class="text-danger">Your Account has been Ban.</h4>
 							</div>
 							<div class="success-message" th:unless="${param.error}">
 								<div th:unless="${param.deny}">
@@ -149,15 +55,17 @@
 										id="exampleInputEmail1" placeholder="Enter your email.">
 								</div>
 								<div class="form-group">
-								    <input type="password" class="form-control form-control-md" name="password" id="exampleInputPassword1" placeholder="Password">
-								    <span toggle="#exampleInputPassword1" class="fa fa-fw fa-eye field-icon toggle-password"></span> show-password
+									<input type="password" class="form-control form-control-md" name="password"
+										id="exampleInputPassword1" placeholder="Password">
+									<span toggle="#exampleInputPassword1"
+										class="fa fa-fw fa-eye field-icon toggle-password"></span>
 								</div>
 								<div class="mt-3">
 									<input type="submit" value="Log in"
 										class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
 								</div>
-								<div style="float:right">
-									
+								<div class="float-right">
+
 									<button type="button" class="btn btn-forgot"
 										onclick="showForgotPasswordModal()">Forgot
 										password?</button>
@@ -176,33 +84,33 @@
 					<div class="modal-dialog modal-dialog-centered" style="max-width: 25rem;">
 						<div class="modal-content">
 							<div class="text-right">
-								<a type="button" class="btn btn-close" data-bs-dismiss="modal"
-									style="float: right;" aria-label="Close" onclick="clearEmailForm()">x</a>
+								<a type="button" class="btn btn-close" data-bs-dismiss="modal" style="float: right;"
+									aria-label="Close" onclick="clearEmailForm()">x</a>
 							</div>
 							<div class="modal-header">
 								<div class="text-left">
 									<div>
-										<h2 style="font-family: serif;">Reset Password</h2>
+										<h2 class="font-weight-bold">Reset Password</h2>
 									</div>
 								</div>
 							</div>
 							<div class="modal-body">
-								
-									<div class="form-group">
-										<form id="emailForm">
-											<div class="input-div">
-												<input type="email" class="form-control" id="email" name="email"
-													style="max-width: 100%;" placeholder="Enter your email.">
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-													onclick="clearEmailForm()">Cancel</button>
-												<button type="button" class="btn btn-primary"
-													onclick="getEmail()">Submit</button>
-											</div>
-										</form>
-									</div>
-								
+
+								<div class="form-group">
+									<form id="emailForm">
+										<div class="input-div">
+											<input type="email" class="form-control" id="email" name="email"
+												style="max-width: 100%;" placeholder="Enter your email.">
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+												onclick="clearEmailForm()">Cancel</button>
+											<button type="button" class="btn btn-primary"
+												onclick="getEmail()">Submit</button>
+										</div>
+									</form>
+								</div>
+
 							</div>
 
 						</div>
@@ -249,7 +157,7 @@
 							<div class="modal-header">
 								<div class=" text-left">
 									<div class="brand-logo">
-										<h2 style="font-family: serif;">Reset Password</h2>
+										<h2 class="font-weight-bold">Reset Password</h2>
 									</div>
 								</div>
 							</div>
@@ -305,7 +213,7 @@
 							<div class="modal-header">
 								<div class=" text-left">
 									<div class="brand-logo">
-										<h2 style="font-family: serif;">Reset Password</h2>
+										<h2 class="font-weight-bold">Reset Password</h2>
 									</div>
 								</div>
 							</div>
@@ -374,7 +282,7 @@
 							<div class="modal-header">
 								<div class=" text-left">
 									<div class="brand-logo">
-										<h2 style="font-family: serif;">Reset Password</h2>
+										<h2 class="font-weight-bold">Reset Password</h2>
 									</div>
 								</div>
 							</div>
@@ -476,16 +384,16 @@
 	<!-- container-scroller -->
 	<!-- plugins:js -->
 	<script>
-	 document.addEventListener('DOMContentLoaded', function() {
-	        const togglePassword = document.querySelector('.toggle-password');
-	        const passwordInput = document.querySelector('#exampleInputPassword1');
+		document.addEventListener('DOMContentLoaded', function () {
+			const togglePassword = document.querySelector('.toggle-password');
+			const passwordInput = document.querySelector('#exampleInputPassword1');
 
-	        togglePassword.addEventListener('click', function() {
-	            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-	            passwordInput.setAttribute('type', type);
-	            this.classList.toggle('fa-eye-slash');
-	        });
-	    });
+			togglePassword.addEventListener('click', function () {
+				const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+				passwordInput.setAttribute('type', type);
+				this.classList.toggle('fa-eye-slash');
+			});
+		});
 	</script>
 
 	<script src="../../vendors/js/vendor.bundle.base.js"></script>
