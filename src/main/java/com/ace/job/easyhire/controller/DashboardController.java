@@ -31,6 +31,16 @@ public class DashboardController {
 	@Autowired
 	ChartService chartService;
 
+	@GetMapping("/dashboard")
+	public String defaultDashboard(Authentication authentication) {
+		if (authentication != null && authentication.getAuthorities().stream()
+				.anyMatch(a -> a.getAuthority().equals("Interviewer")
+						|| a.getAuthority().equals("Department-head"))) {
+			return "redirect:/department/dashboard";
+		}
+		return "redirect:/hr/dashboard";
+	}
+
 	@GetMapping("/hr/dashboard")
 	public String showDashboardHR(Model model) {
 		int minYear = dashboardService.getMinYear();
