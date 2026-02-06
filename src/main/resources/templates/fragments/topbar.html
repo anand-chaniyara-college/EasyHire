@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Ace Admin</title>
+	<title>EasyHire</title>
 	<!-- plugins:css -->
 	<link rel="stylesheet" th:href="@{/vendors/feather/feather.css}">
 	<link rel="stylesheet" th:href="@{/vendors/ti-icons/css/themify-icons.css}">
@@ -26,10 +26,10 @@
 <body>
 	<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" th:fragment="topbar">
 		<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-			<a class="navbar-brand brand-logo mr-5" href="index.html"><img
+			<a class="navbar-brand brand-logo mr-5" th:href="@{/dashboard}"><img
 					th:src="@{/images/EasyHire_Logo_FullSize.svg}" alt="logo" style="height: 50px; width: auto;" /></a>
-			<a class="navbar-brand brand-logo-mini" href="#"><img th:src="@{/images/EasyHire_Logo_FullSize.svg}"
-					alt="logo" style="height: 50px; width: auto;" /></a>
+			<a class="navbar-brand brand-logo-mini" th:href="@{/dashboard}"><img
+					th:src="@{/images/EasyHire_Logo_FullSize.svg}" alt="logo" style="height: 50px; width: auto;" /></a>
 		</div>
 		<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 			<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize"
